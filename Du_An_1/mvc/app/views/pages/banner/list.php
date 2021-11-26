@@ -75,7 +75,7 @@
                                                                                                             } ?>></td>
                         <td><?= $u['ma_banner'] ?></td>
                         <td>
-                            <img src="../../../../../../Du_An_1/mvc/storage/image/<?php echo $u['hinh'] ?>" alt="" width="300" style="display: inline-block;">
+                            <img src="../../../../../../Du_An_1/mvc/storage/image/<?php echo $u['hinh'] ?>" alt="" width="120" style="display: inline-block;">
                         </td>
                         <td><?=  ($u['status'] == 1) ? "Đang sử dụng" : "Chưa sử dụng"?></td>
                         <td>

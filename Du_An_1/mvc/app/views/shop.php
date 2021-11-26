@@ -12,11 +12,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://cdn.tiny.cloud/1/hqu7rkbua1f9yiw4o0umokh5blx2hry628dd0p6banxt3z84/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/css/all.min.css">
+
     <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/fileCss/home.css">
-    <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/fileCss/shop.css">
+    <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/fileCss/chi_tiet_sp.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet prefetch" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
 
 
 </head>
@@ -35,27 +38,85 @@
                         if (!empty($products)) {
                             foreach ($products as $u) :
 
+                                $list_so_sao = Product::so_binh_luan($u['ma_sp']);
+                                $tong_so_sao = 0;
+                                foreach ($list_so_sao as $value) {
+                                    $tong_so_sao += $value['so_sao'];
+                                }
+                                $so_luong = count($list_so_sao);
+                                // var_dump($tong_so_sao);
+                                if ($so_luong > 0) {
+                                    $tb_so_sao = ceil($tong_so_sao / $so_luong);
+                                    // var_dump($tb_so_sao);
+                                }
+
                         ?>
-                                <div>
+                                <div style="padding: 10px; ">
 
-                                    <div class="img_hover">
-                                        <a href="detail?act=chi_tiet_sp&ma_sp=<?php echo $u['ma_sp'] ?>">
-                                        <img class="anh1" src="../../../../Du_An_1/mvc/storage/image/<?= $u['hinh'] ?>" alt="" style="max-width: 100%;height: 380px; width: 100%;">
-                                        <img class="anh2" src="../../../../Du_An_1/mvc/storage/image/<?= $u['hinh2'] ?>" alt="" style="max-width: 100%;height: 380px;width: 100%;">
-                                        </a>
+                                    <div class="tong_product">
+                                        <div id="img_product">
+                                            <img class="anh1" src="../../../../Du_An_1/mvc/storage/image/<?= $u['hinh'] ?>" alt="" style="max-width: 100%;height: 200px; width: 100%; ">
+                                            <div class="text-center icon_product">
+                                                <ul>
+                                                    <li class="inline-block p-3 bg-white hover_icon_sp"><a href="cart?act=add_to_cart_shop&id_addtoCart=<?php echo $u['ma_sp'] ?>" ><i class="fas fa-shopping-cart text-mb"></i></a></li>
+
+                                                    <li class="inline-block p-3 bg-white hover_icon_sp"><a href=""><i class="fas fa-heart text-mb"></i></a></li>
+                                                    <li class="inline-block p-3 bg-white hover_icon_sp"><a href="detail?act=chi_tiet_sp&ma_sp=<?php echo $u['ma_sp'] ?>"><i class="fas fa-eye text-mb"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="text-center mt-2">
+                                            <div>
+                                                <a href="detail?act=chi_tiet_sp&ma_sp=<?php echo $u['ma_sp'] ?>">
+                                                    <p class="text-2xl "><?= $u['ten_sp'] ?></p>
+                                                </a>
+                                                <div>
+                                                    <span class="text-2xl " style="color: #F4A851; font-weight: 600;">$ </span>
+                                                    <span class="text-2xl ml-2" style="color: gray; text-decoration: line-through; ">$<?= $u['gia'] ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="stars">
+                                                <form action="">
+                                                    <div id="rating">
+
+
+
+                                                        <input type="radio" id="star5" name="rating" value="5" <?php if (isset($tb_so_sao) && $tb_so_sao >= 5) {
+                                                                                                                    echo "checked='checked'";
+                                                                                                                } ?> />
+                                                        <label class="full" for="star5" title="Pretty good - 4 stars"></label>
+                                                        <input type="radio" id="star4" name="rating" value="4" <?php if (isset($tb_so_sao) && $tb_so_sao == 4) {
+                                                                                                                    echo "checked='checked'";
+                                                                                                                } ?> />
+                                                        <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+
+                                                        <input type="radio" id="star3" name="rating" value="3" <?php if (isset($tb_so_sao) && $tb_so_sao == 3) {
+                                                                                                                    echo "checked='checked'";
+                                                                                                                } ?> />
+                                                        <label class="full" for="star3" title="Meh - 3 stars"></label>
+
+                                                        <input type="radio" id="star2" name="rating" value="2" <?php if (isset($tb_so_sao) && $tb_so_sao == 2) {
+                                                                                                                    echo "checked='checked'";
+                                                                                                                } ?> />
+                                                        <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                                                        <input type="radio" id="star1" name="rating" value="1" <?php if (isset($tb_so_sao) && $tb_so_sao == 1) {
+                                                                                                                    echo "checked='checked'";
+                                                                                                                } ?> />
+                                                        <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="flex justify-between ">
-                                        <div>
-                                            <a href="detail?act=chi_tiet_sp&ma_sp=<?php echo $u['ma_sp'] ?>"><p class="text-3xl "><?= $u['ten_sp'] ?></p></a>
-                                            <span class="text-2xl " style="color: #F4A851; font-weight: 600;">$<?= $u['gia'] ?></span>
-                                        </div>
-                                        <div>
-                                            <a href="cart?act=add_to_cart_shop&id_addtoCart=<?php echo $u['ma_sp'] ?>" class="add_cart text-xl">Add to cart</a>
-                                        </div>
-                                    </div>
+
                                 </div>
-                        <?php endforeach;
+                        <?php
+                                unset($tb_so_sao);
+                            endforeach;
                         } ?>
 
 
@@ -142,9 +203,7 @@
                                     <div>
                                         <a class="text-xl" href="detail?act=chi_tiet_sp&ma_sp=<?php echo $u['ma_sp'] ?>"><?php echo $u['ten_sp'] ?></a>
                                         <p class="text-gray-400 text-xl font-semibold line-through">$<?php echo $u['gia'] ?>.00</p>
-                                        <p class="text-yellow-500 text-xl font-semibold">$
-                                            <?php echo $u['gia'] - ($u['gia'] * $u['giamgia'] / 100) ?>
-                                            .00</p>
+                                        <p class="text-yellow-500 text-xl font-semibold">$<?php echo $u['gia'] - ($u['gia'] * $u['giamgia'] / 100) ?>.00</p>
                                     </div>
                                 </li>
                         <?php endforeach;

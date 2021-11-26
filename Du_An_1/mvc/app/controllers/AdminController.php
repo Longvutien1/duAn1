@@ -70,18 +70,41 @@ class AdminController
                     break;
 
                 case 'btn_update':
+                    $loai_status = LoaiHang::list_loai_by_status();
                     $ten_loai = $_POST['ten_loai'];
                     $ma_loai = $_POST['ma_loai'];
+
+                    if (isset($_POST['status']) && $_POST['status'] == 'Sử dụng') {
+                        $status = 1;
+                    } else {
+                        $status = 0;
+                    }
 
                     if ($ten_loai == "") {
                         $error = "Không được để trống tên loại";
                     } else {
 
-                        $update_loai = LoaiHang::update_loai_hang($ten_loai, $ma_loai);
-                        if (isset($update_loai)) {
-                            echo "<script> alert('$update_loai')</script>";
-                            $categorys = LoaiHang::list_loai_hang();
-                            header("refresh:0.5;url=admin?act=list");
+                        //   var_dump(count($loai_status));
+                        //   die;
+
+                        if ($status == 0) {
+                            $update_loai = LoaiHang::update_loai_hang($ten_loai, $ma_loai, $status);
+                            if (isset($update_loai)) {
+                                echo "<script> alert('$update_loai')</script>";
+                                $categorys = LoaiHang::list_loai_hang();
+                                header("refresh:0.5;url=admin?act=list");
+                            }
+                        } else {
+                            if (count($loai_status) >= 4) {
+                                $error = "Số lượng sp đã đầy trong danh sách sản phẩm theo loại";
+                            } else {
+                                $update_loai = LoaiHang::update_loai_hang($ten_loai, $ma_loai, $status);
+                                if (isset($update_loai)) {
+                                    echo "<script> alert('$update_loai')</script>";
+                                    $categorys = LoaiHang::list_loai_hang();
+                                    header("refresh:0.5;url=admin?act=list");
+                                }
+                            }
                         }
                     }
                     $VIEWPAGE = "./app/views/pages/loai_hang/update.php";
@@ -91,9 +114,9 @@ class AdminController
 
                     $check_ma_loai = Product::list_hang_hoa_theo_loai($ma_loai);
 
-                    if (isset($check_ma_loai[0]['ma_loai'])) {
-                        echo "<script> alert('Loại hàng này đã tồn tại trong sản phẩm khác, vui lòng kiểm tra lại !')</script>";
-                        // header("refresh:0.5;url=index.php");
+                    if (count($check_ma_loai) > 0) {
+                        $error =  "Loại hàng này đã tồn tại trong sản phẩm khác, vui lòng kiểm tra lại !";
+                        // header("refresh:0.2;url=admin?act=list");
                     } else {
                         $result_del = LoaiHang::delete_loai_hang($ma_loai);
                         echo "<script> alert('$result_del')</script>";
@@ -124,18 +147,24 @@ class AdminController
             $mang = count($_POST['check_sp']);
             // var_dump("delete11111");
 
+
             for ($i = 0; $i < $mang; $i++) {
                 $delete_id = $_POST['check_sp'][$i];
-                // $result_del_sp = $pdo_loai_hang->delete_loai_hang($delete_id);
-                $result_del_sp = LoaiHang::delete_loai_hang($delete_id);
-            }
+                $check_ma_loai = Product::list_hang_hoa_theo_loai($delete_id);
 
-            if ($result_del_sp) {
+                if (count($check_ma_loai) > 0) {
+                    $error =  "Loại hàng này đã tồn tại trong sản phẩm khác, vui lòng kiểm tra lại !";
+                } else {
+                    $result_del_sp = LoaiHang::delete_loai_hang($delete_id);
+                }
+            }
+            if (isset($result_del_sp)) {
                 echo "<script> alert('$result_del_sp')</script>";
                 unset($result_del_sp);
                 // header("refresh:0.5;url=index.php");
 
             }
+
             $categorys = LoaiHang::list_loai_hang();
             $VIEWPAGE = "./app/views/pages/loai_hang/list.php";
         }
@@ -178,8 +207,7 @@ class AdminController
                     $hinh_anh = $_FILES['productImage']['name'];
                     $hinh_anh_tmp = $_FILES['productImage']['tmp_name'];
 
-                    $hinh_anh2 = $_FILES['productImage2']['name'];
-                    $hinh_anh_tmp2 = $_FILES['productImage2']['tmp_name'];
+
                     $ngay_nhap = $_POST['ngaynhap'];
                     $mo_ta = $_POST['mota'];
 
@@ -199,14 +227,11 @@ class AdminController
                         $error = "Giảm giá không được để trống";
                     } else if ($hinh_anh == "") {
                         $error = "Hình ảnh không được để trống";
-                    } else if ($hinh_anh2 == "") {
-                        $error = "Hình ảnh không được để trống";
                     } else if ($ngay_nhap == "") {
                         $error = "Ngày nhập không được để trống";
                     } else {
-                        $result_add = Product::add_hang_hoa($ten_hang_hoa, $don_gia, $giam_gia, $hinh_anh,$hinh_anh2 ,$ngay_nhap, $mo_ta, $hangDacBiet, $loai_hang);
+                        $result_add = Product::add_hang_hoa($ten_hang_hoa, $don_gia, $giam_gia, $hinh_anh, $ngay_nhap, $mo_ta, $hangDacBiet, $loai_hang);
                         move_uploaded_file($hinh_anh_tmp, '../../Du_An_1/mvc/storage/image/' . $hinh_anh);
-                        move_uploaded_file($hinh_anh_tmp2, '../../Du_An_1/mvc/storage/image/' . $hinh_anh2);
                     }
 
                     if (isset($result_add)) {
@@ -246,8 +271,7 @@ class AdminController
                     $productImage = $_FILES['productImage']['name'];
                     $hinh_anh_tmp = $_FILES['productImage']['tmp_name'];
 
-                    $productImage2 = $_FILES['productImage2']['name'];
-                    $hinh_anh_tmp2 = $_FILES['productImage2']['tmp_name'];
+
                     $ngay_nhap2 = $_POST['ngaynhap'];
                     $mo_ta2 = $_POST['mota'];
 
@@ -261,9 +285,6 @@ class AdminController
                         $productImage = $u['hinh'];
                     }
 
-                    if ($productImage2 == "") {
-                        $productImage2 = $u['hinh2'];
-                    }
 
                     // validate
                     if ($ten_hang_hoa == "") {
@@ -276,9 +297,8 @@ class AdminController
                         $error = "Ngày nhập không được để trống";
                     } else {
 
-                        $result_update = Product::update_hang_hoa($ten_hang_hoa, $don_gia2, $giam_gia2, $productImage,$productImage2, $ngay_nhap2, $mo_ta2, $hangDacBiet, $loai_hang2, $ma_sp);
+                        $result_update = Product::update_hang_hoa($ten_hang_hoa, $don_gia2, $giam_gia2, $productImage, $ngay_nhap2, $mo_ta2, $hangDacBiet, $loai_hang2, $ma_sp);
                         move_uploaded_file($hinh_anh_tmp, '../../Du_An_1/mvc/storage/image/' . $productImage);
-                        move_uploaded_file($hinh_anh_tmp2, '../../Du_An_1/mvc/storage/image/' . $productImage2);
                     }
 
                     if (isset($result_update)) {
@@ -472,6 +492,7 @@ class AdminController
                     if ($hinh_anh == "") {
                         $hinh_anh = $hinh;
                     }
+
                     // validate
                     if ($ho_ten == "") {
                         $error = "Họ tên không được để trống !";
@@ -493,20 +514,29 @@ class AdminController
                         move_uploaded_file($tmp_hinh_anh, '../../Du_An_1/mvc/storage/image/' . $hinh_anh);
                         if (isset($result)) {
                             echo "<script> alert('$result')</script>";
-                            // header("refresh:0.5;url=khach_hang?act=list");
+                            header("refresh:0.5;url=khach_hang?act=list");
                         }
                     }
                     $VIEWPAGE = "./app/views/pages/khach_hang/list.php";
                     break;
                 case 'delete':
                     $ma_kh = $_GET['id_delete'];
-
-                    $result_del = KhachHang::delete_khach_hang($ma_kh);
-                    if (isset($result_del)) {
-                        echo "<script> alert('$result_del')</script>";
-                        unset($result_del);
-                        header("refresh:0.5;url=khach_hang?act=list");
+                    $check_ma_bl = KhachHang::list_khach_hang_bl($ma_kh);
+                    $kh = KhachHang::list_kh_theo_id($ma_kh);
+        
+                    if ($kh['0']['vaitro'] == 1 ) {
+                        $error =  "Tài khoản này là admin, vui lòng kiểm tra lại !";
+                        
+                    }else {
+                      
+                        $result_del = KhachHang::delete_khach_hang($ma_kh);
+                        if (isset($result_del)) {
+                            echo "<script> alert('$result_del')</script>";
+                            unset($result_del);
+                            header("refresh:0.5;url=khach_hang?act=list");
+                        }
                     }
+              
 
 
                     $VIEWPAGE = "./app/views/pages/khach_hang/list.php";
@@ -546,9 +576,10 @@ class AdminController
     //  bình luận
     public function binh_luan()
     {
-        $tong_so_lh = BinhLuan::list__count_binh_luan();
-        // var_dump($tong_so_hh);
-        $so_trang = ceil($tong_so_lh / 10);
+        $tong_so_lh = BinhLuan::list_binh_luan();
+        // var_dump(count($tong_so_lh));
+        // die;
+        $so_trang = ceil(count($tong_so_lh) / 10);
         // var_dump($so_trang);
         if (isset($_POST['all_product'])) {
             unset($_GET['search']);
@@ -573,11 +604,29 @@ class AdminController
                     $ten_hh = BinhLuan::name_hh_by_id($ma_hh);
                     // var_dump($ten_hh);
 
+                    
+
+                    $tong_so_bl = BinhLuan::list_count_binh_luan_by_id_masp($_GET['ma_sp']);
+                    // var_dump($tong_so_bl);
+                    // die;
+
+                    // var_dump($tong_so_hh);
+                    $so_trang = ceil($tong_so_bl / 10);
+                    // var_dump($so_trang);
+                    if (isset($_POST['all_product'])) {
+                        unset($_GET['search']);
+                    }
+                    if (isset($_GET['search'])) {
+                        $search = $_GET['search'];
+                    }
+                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    
                     $result = BinhLuan::list_bl_by_ma_hh($ma_hh);
                     $VIEWPAGE = "./app/views/pages/binh_luan/chi_tiet.php";
                     break;
 
                 case 'list':
+                    
                     $VIEWPAGE = "./app/views/pages/binh_luan/list.php";
                     break;
 
@@ -607,6 +656,7 @@ class AdminController
         if (array_key_exists('del_click', $_REQUEST)) {
             $mang = array();
             $mang = count($_POST['check_sp']);
+
             for ($i = 0; $i < $mang; $i++) {
                 $delete_id = $_POST['check_sp'][$i];
                 $result_del_sp = BinhLuan::delete_binh_luan($delete_id);
@@ -781,7 +831,7 @@ class AdminController
                     $VIEWPAGE = "./app/views/pages/banner/add.php";
                     break;
                 case 'btn_add':
-                    
+
                     $hinh_anh = $_FILES['productImage']['name'];
                     $hinh_anh_tmp = $_FILES['productImage']['tmp_name'];
                     if ($hinh_anh == "") {
@@ -817,43 +867,63 @@ class AdminController
 
                 case 'btn_update':
                     $result = Banner::list_banner_by_id($ma_banner);
+                    $banner = Banner::list_banner_by_status();
                     foreach ($result as $u) {
                         extract($u);
                     }
+
 
                     $ma_banner = $_POST['ma_banner'];
                     $hinh_anh = $_FILES['productImage']['name'];
                     $hinh_anh_tmp = $_FILES['productImage']['tmp_name'];
 
+
                     if ($hinh_anh == "") {
                         $hinh_anh = $hinh;
-                    } 
+                    }
                     if (isset($_POST['status']) && $_POST['status'] == 'Sử dụng') {
                         $status = 1;
                     } else {
                         $status = 0;
                     }
-                        $update_loai = Banner::update_banner($hinh_anh, $status ,$ma_banner);
+
+                    if ($status == 0) {
+                        $update_loai = Banner::update_banner($hinh_anh, $status, $ma_banner);
                         move_uploaded_file($hinh_anh_tmp, '../../Du_An_1/mvc/storage/image/' . $hinh_anh);
                         if (isset($update_loai)) {
                             echo "<script> alert('$update_loai')</script>";
-                           
-                            header("refresh:0.5;url=banner?act=list");
-                        
+
+                            // header("refresh:0.5;url=banner?act=list");
+
+                        }
+                    } else {
+                        if (count($banner) >= 3) {
+                            $error = "Số lượng sp đã đầy trong banner";
+                        } else {
+                            $update_loai = Banner::update_banner($hinh_anh, $status, $ma_banner);
+                            move_uploaded_file($hinh_anh_tmp, '../../Du_An_1/mvc/storage/image/' . $hinh_anh);
+                            if (isset($update_loai)) {
+                                echo "<script> alert('$update_loai')</script>";
+
+                                // header("refresh:0.5;url=banner?act=list");
+
+                            }
+                        }
                     }
+
                     $VIEWPAGE = "./app/views/pages/banner/update.php";
                     break;
                 case 'delete':
-                        $ma_banner = $_GET['id_delete'];
+                    $ma_banner = $_GET['id_delete'];
 
-                        $result_del = Banner::delete_banner($ma_banner);
-                        echo "<script> alert('$result_del')</script>";
-                        unset($ma_banner);
+                    $result_del = Banner::delete_banner($ma_banner);
+                    echo "<script> alert('$result_del')</script>";
+                    unset($ma_banner);
 
-                        // hiển thị lại ds
+                    // hiển thị lại ds
 
-                        header("refresh:0.5;url=banner?act=list");
-                    
+                    header("refresh:0.5;url=banner?act=list");
+
                     $VIEWPAGE = "./app/views/pages/banner/list.php";
                     break;
                 case 'del_click':
@@ -884,11 +954,96 @@ class AdminController
                 echo "<script> alert('$result_del_sp')</script>";
                 unset($result_del_sp);
                 header("refresh:0.5;url=banner?act=list");
-
             }
             $VIEWPAGE = "./app/views/pages/banner/list.php";
         }
 
         include_once './app/views/admin.php';
+    }
+
+    public function don_hang()
+    {
+        $tong_so_lh = DonHang::list__count_don_hang();
+        // var_dump($tong_so_hh);
+        $so_trang = ceil($tong_so_lh / 10);
+        // var_dump($so_trang);
+        if (isset($_POST['all_product'])) {
+            unset($_GET['search']);
+            unset($search);
+            header("refresh:0.5;url=don_hang?act=list");
+        }
+        if (isset($_GET['search'])) {
+            $search = $_GET['search'];
+        }
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+
+        $error = "";
+        extract($_REQUEST);
+
+        if (isset($_GET['act'])) {
+
+            $act = $_GET['act'];
+            switch ($act) {
+                case 'chi_tiet':
+                    $ma_don_hang = $_GET['ma_don_hang'];
+                    // $ten_hh = BinhLuan::name_hh_by_id($ma_hh);
+                    // var_dump($ten_hh);
+
+                    $result = DonHang::list_don_hang_by_id($ma_don_hang);
+                    foreach ($result as $tt_kh) {
+                        extract($tt_kh);
+                    }
+
+                    $VIEWPAGE = "./app/views/pages/don_hang/chi_tiet.php";
+                    break;
+
+                case 'list':
+                    $VIEWPAGE = "./app/views/pages/don_hang/list.php";
+                    break;
+
+                case 'delete':
+                    $ma_bl = $_GET['id_delete'];
+
+                    $result_del = BinhLuan::delete_binh_luan($ma_bl);
+                    if (isset($result_del)) {
+                        echo "<script> alert('$result_del')</script>";
+                        unset($result_del);
+                        header("refresh:0.5;url=binh_luan?act=list");
+                    }
+
+
+                    $VIEWPAGE = "./app/views/pages/don_hang/list.php";
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+        } else {
+
+            $VIEWPAGE = "./app/views/pages/don_hang/list.php";
+        }
+
+        if (array_key_exists('del_click', $_REQUEST)) {
+            $mang = array();
+            $mang = count($_POST['check_sp']);
+
+            for ($i = 0; $i < $mang; $i++) {
+                $delete_id = $_POST['check_sp'][$i];
+                $result_del_sp = DonHang::delete_don_hang($delete_id);
+            }
+
+            if ($result_del_sp) {
+                echo "<script> alert('$result_del_sp')</script>";
+                unset($result_del_sp);
+                header("refresh:0.5;url=don_hang?act=list");
+            }
+
+            $VIEWPAGE = "./app/views/pages/don_hang/list.php";
+        }
+
+        include_once './app/views/admin.php';
+        // return "Trang admin";
     }
 }

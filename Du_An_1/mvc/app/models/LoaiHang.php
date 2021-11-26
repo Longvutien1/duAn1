@@ -29,9 +29,9 @@ class LoaiHang {
         }
     }
 
-    function update_loai_hang($ten_loai,$ma_loai){
-        $sql = "UPDATE loaihang set ten_loai=? where ma_loai=?";
-        $result = pdo_execute($sql, $ten_loai, $ma_loai);
+    function update_loai_hang($ten_loai,$ma_loai, $status){
+        $sql = "UPDATE loaihang set ten_loai=?, `status`=? where ma_loai=?";
+        $result = pdo_execute($sql, $ten_loai, $status, $ma_loai);
         if ($result) {
             return "Update loại hàng " . $result;
         } else {
@@ -49,6 +49,13 @@ class LoaiHang {
         return $row;
     }
 
+    function list_loai_by_status()
+    {
+
+        $sql = "SELECT * FROM loaihang where `status` = 1 ";
+        $row = pdo_query($sql);
+        return $row;
+    }
     function delete_loai_hang($ma_loai){
         $sql = "DELETE FROM loaihang where ma_loai='$ma_loai'";
         $result = pdo_execute($sql);

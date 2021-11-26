@@ -81,12 +81,13 @@
                     <!-- end search -->
                 </div>
 
-                <form action="">
+                <form action="" method="POST">
 
                     <div>
                         <table style="margin-top: 10px;">
                             <thead>
                                 <tr>
+                                    <th class="th"></th>
                                     <th class="th">Mã SP </th>
                                     <th class="th">Ảnh sản phẩm</th>
                                     <th class="th">Tên sản phẩm </th>
@@ -128,18 +129,19 @@
                                         foreach ($_SESSION['cart'] as $key => $value) :
                                             if ($value['ten_sp'] == $_POST['search']) {  ?>
                                                 <tr>
-                                                <td><?php echo $key ?> </td>
-                                                <td><img class="mx-auto" src="../../../../../../Du_An_1/mvc/storage/image/<?= $value['hinh'] ?>" width="120"></td>
-                                                <td><?php echo $value['ten_sp'] ?></td>
-                                                <td><?php echo $value['qtity'] ?></td>
-                                                <td class="text-yellow-500 text-lg font-semibold">$<?php echo $value['gia'] ?>.00</td>
-                                                <td><?php echo $value['ngaynhap'] ?></td>
-                                                <td><?php echo $value['dacbiet'] == 1 ? "Hàng đặc biệt" : "Bình thường" ?></td>
-                                                <td>
-                                                    <a onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không ?')" href="cart?act=cart&id_del=<?php echo $key ?>"> <i class="fas fa-trash-alt" style="color: #E34724;"></i></a>
-                                                </td>
+                                                  
+                                                    <td><?php echo $key ?> </td>
+                                                    <td><img class="mx-auto" src="../../../../../../Du_An_1/mvc/storage/image/<?= $value['hinh'] ?>" width="120"></td>
+                                                    <td><?php echo $value['ten_sp'] ?></td>
+                                                    <td><?php echo $value['qtity'] ?></td>
+                                                    <td class="text-yellow-500 text-lg font-semibold">$<?php echo $value['gia'] ?>.00</td>
+                                                    <td><?php echo $value['ngaynhap'] ?></td>
+                                                    <td><?php echo $value['dacbiet'] == 1 ? "Hàng đặc biệt" : "Bình thường" ?></td>
+                                                    <td>
+                                                        <a onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không ?')" href="cart?act=cart&id_del=<?php echo $key ?>"> <i class="fas fa-trash-alt" style="color: #E34724;"></i></a>
+                                                    </td>
 
-                                            </tr>
+                                                </tr>
 
                                         <?php }
                                         endforeach; ?>
@@ -183,11 +185,21 @@
                                 <tr>
                                     <td colspan="3">Tổng tiền: </td>
                                     <td colspan="4"> $<?php echo $tong ?>.00 </td>
-
+                                    <td colspan="2">
+                                       
+                                        <!-- <a href="cart?act=thanh_toan">thanhtoan</a> -->
+                                        <?php if (isset($_SESSION['ma_kh'])) {
+                                            echo " <a href='cart?act=thanh_toan' style='background: #3F3F3F; color: #fff; ' class='p-1 px-3 rounded-md my-4'>Thanh toán</a>";
+                                        } else {
+                                            echo "<p style='color: red;font-size: 20px;'>Đăng nhập để thanh toán</p>";
+                                        } ?>
+                                    </td>
                                 </tr>
 
                             </tfoot>
                         </table>
+                    
+
                     </div>
                 </form>
                 <!-- end danh sách sản phẩm -->

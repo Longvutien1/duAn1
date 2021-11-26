@@ -43,191 +43,314 @@
     </header>
 
     <body>
-        <!-- <img src="../../../../Du_An_1/mvc/storage/image/messi.jpg" alt="" style="width: 400px;"> -->
-        <section class=" w-10/12 mx-auto mt-16">
+    
+        <form action="" method="POST">
+            <section class=" w-10/12 mx-auto mt-16">
 
-            <div class="product">
-                <div class="image">
-                    <div class="imgbig">
-                        <!-- <img src="../../../../Du_An_1/mvc/storage/image/messi.jpg" alt="" > -->
-                        <img class="imgtotal" src="../../../../Du_An_1/mvc/storage/image/<?= $hinh ?>" alt="" width="800">
-                    </div>
-                    <div class="imgsmall">
-                        <div style="margin-bottom: 5px;">
-                            <img class="imgcon" src="../../../../Du_An_1/mvc/storage/image/<?= $hinh ?>" alt="">
+                <div class="product">
+                    <div class="image">
+                        <div class="imgbig">
+                            
+                            <img class="imgtotal" src="../../../../Du_An_1/mvc/storage/image/<?= $hinh ?>" alt="" width="800">
                         </div>
-                        <div style="margin-bottom: 5px;">
-                            <img class="imgcon" src="../../../../Du_An_1/mvc/storage/image/<?= $hinh ?>" alt="">
-                        </div>
+                        <div class="imgsmall">
+                            <div style="margin-bottom: 5px;">
+                                <img class="imgcon" src="../../../../Du_An_1/mvc/storage/image/<?= $hinh ?>" alt="">
+                            </div>
+                            <div style="margin-bottom: 5px;">
+                                <img class="imgcon" src="../../../../Du_An_1/mvc/storage/image/<?= $hinh ?>" alt="">
+                            </div>
 
-                    </div>
-                </div>
-                <div class="infor">
-                    <div class="title">
-                        <p class="text-4xl" style="color: #F4A851;"><?= $ten_sp ?></p>
-                        <div class="stars">
-                            <form action="">
-                                <input class="star star-5" id="star-5" type="radio" name="star" />
-                                <label class="star star-5" for="star-5"></label>
-                                <input class="star star-4" id="star-4" type="radio" name="star" />
-                                <label class="star star-4" for="star-4"></label>
-                                <input class="star star-3" id="star-3" type="radio" name="star" />
-                                <label class="star star-3" for="star-3"></label>
-                                <input class="star star-2" id="star-2" type="radio" name="star" />
-                                <label class="star star-2" for="star-2"></label>
-                                <input class="star star-1" id="star-1" type="radio" name="star" />
-                                <label class="star star-1" for="star-1"></label>
-                            </form>
                         </div>
                     </div>
-                    <div class="price">
-                        <span style="font-size: 24px;margin: 0 10px 0 0;color: #F4A851;">$<?= $gia ?></span>
-                        <strike style="font-size: 24px;">$<?= $giamgia ?></strike>
-                    </div>
-                    <div class="infor_pr"><?= $mota ?> </div>
-                    <div class="quantity">
-                        <div class="buttons_added">
-                            <form action="" method="post">
-                                <Label>Số Lượng:  </Label>
-                                <input class="w-8 text-center" style="background: #F4A851;" onclick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN(qty) &  qty > 1 ) result.value--;return false;" type='button' value='-' />
-                                <input class="w-10 text-center" id='quantity' min='1' name='quantity' type='text' value='1' />
-                                <input class="w-8 text-center" style="background: #F4A851;" onclick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN(qty)) result.value++;return false;" type='button' value='+' />
-                                <a href="detail?act=add_to_cart&id_addtoCart=<?php echo $u['ma_sp'] ?>" class="py-1 px-4 ml-4 " style="width: 130px;border: 1px solid #3f3f3f;">Thêm giỏ hàng</a>
-                            </form>
+                    <div class="infor">
+                        <div class="title">
+                            <p class="text-4xl" style="color: #F4A851;"><?= $ten_sp ?></p>
+                            <div class="stars">
+
+                                <form action="">
+                                    <div id="rating">
+
+
+
+                                        <input type="radio" id="star5" name="rating" value="5" <?php if (isset($tb_so_sao) && $tb_so_sao >= 5) {
+                                                                                                    echo "checked='checked'";
+                                                                                                } ?> />
+                                        <label class="full" for="star5" title="Pretty good - 4 stars"></label>
+                                        <input type="radio" id="star4" name="rating" value="4" <?php if (isset($tb_so_sao) && $tb_so_sao == 4) {
+                                                                                                    echo "checked='checked'";
+                                                                                                } ?> />
+                                        <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+
+                                        <input type="radio" id="star3" name="rating" value="3" <?php if (isset($tb_so_sao) && $tb_so_sao == 3) {
+                                                                                                    echo "checked='checked'";
+                                                                                                } ?> />
+                                        <label class="full" for="star3" title="Meh - 3 stars"></label>
+
+                                        <input type="radio" id="star2" name="rating" value="2" <?php if (isset($tb_so_sao) && $tb_so_sao == 2) {
+                                                                                                    echo "checked='checked'";
+                                                                                                } ?> />
+                                        <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                                        <input type="radio" id="star1" name="rating" value="1" <?php if (isset($tb_so_sao) && $tb_so_sao == 1) {
+                                                                                                    echo "checked='checked'";
+                                                                                                } ?> />
+                                        <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+
+                                    </div>
+                                </form>
+
+
+                            </div>
                         </div>
-                    </div>
-                    <div class="tags">
-                        <span>Mã hàng: <?= $ma_sp ?></span><br>
-                        <span>Loại: <?= $ten_loai ?></span><br>
-                        <span>Tags: ...</span>
-                    </div>
-                    <div class="share">
-                        <form action="" method="POST">
+                        <div class="price">
+                            <span style="font-size: 24px;margin: 0 10px 0 0;color: #F4A851;">$<?php echo $gia - ($gia * $giamgia / 100) ?></span>
+                            
+                            <strike style="font-size: 24px;">$<?= $gia ?></strike>
+                        </div>
+                        <div class="infor_pr"><?= $mota ?> </div>
+                        <div class="quantity">
+                            <div class="buttons_added">
+                                <form action="" method="POST">
+                                    <Label>Số Lượng: </Label>
+                                    <input class="w-8 text-center" style="background: #F4A851;" onclick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN(qty) &  qty > 1 ) result.value--;return false;" type='button' value='-' />
+                                    <input class="w-10 text-center" id='quantity' min='1' name='quantity' type='text' value='1' />
+                                    <input class="w-8 text-center" style="background: #F4A851;" onclick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN(qty)) result.value++;return false;" type='button' value='+' />
+                                    <!-- <a href="detail?act=add_to_cart&id_addtoCart=<?php echo $u['ma_sp'] ?>" class="py-1 px-4 ml-4 " style="width: 130px;border: 1px solid #3f3f3f;"></a> -->
+                                    <button type="submit" name="add_to_cart">Thêm giỏ hàng</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tags">
+                            <span>Mã hàng: <?= $ma_sp ?></span><br>
+                            <span>Loại: <?= $ten_loai ?></span><br>
+                            <span>Tags: ...</span>
+                        </div>
+                        <div class="share">
+
                             <label>Chia sẻ: </label>
                             <a href="http://"><i class="fab fa-facebook-square"></i></a>
                             <a href="http://"><i class="fab fa-twitter"></i></a>
                             <a href="http://"><i class="fab fa-pinterest"></i></a>
                             <a href="http://"><i class="fab fa-instagram"></i></a>
-                        </form>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="story">
-                <div class="title-str">
-                    <a href=""><strike>
-                            <h2>Mô Tả</h2>
-                        </strike></a>
-                    <a href="">
-                        <h2>Thông Tin Sản Phẩm</h2>
-                    </a>
-                    <a href="">
-                        <h2>Nhận Xét</h2>
-                    </a>
+                <div class="story">
+                    <div class="title-str">
+                        <a href=""><strike>
+                                <h2>Mô Tả</h2>
+                            </strike></a>
+                        <a href="">
+                            <h2>Thông Tin Sản Phẩm</h2>
+                        </a>
+                        <a href="">
+                            <h2>Nhận Xét</h2>
+                        </a>
+                    </div>
+                    <div class="text-str">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium reprehenderit, quaerat fuga facere
+                        dolor molestiae laborum quis eligendi doloremque repudiandae! Velit atque dolorum ab excepturi nisi
+                        ullam ut
+                        necessitatibus placeat, quas eaque quo ipsa maxime quaerat inventore exercitationem, nihil nostrum
+                        temporibus optio cum saepe quibusdam iusto impedit ea mollitia! Accusamus nisi sint eum temporibus natus
+                        dolorum delectus laudantium accusantium sapiente, officia ex doloremque, voluptatem placeat quas. Quo
+                        eligendi enim error, neque aliquam quia facere atque laudantium amet officia cupiditate quidem a earum
+                        at
+                        deserunt odit nam ut molestias nihil! Repudiandae numquam quidem quod magnam suscipit assumenda soluta
+                        ratione fuga provident.
+                    </div>
                 </div>
-                <div class="text-str">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium reprehenderit, quaerat fuga facere
-                    dolor molestiae laborum quis eligendi doloremque repudiandae! Velit atque dolorum ab excepturi nisi
-                    ullam ut
-                    necessitatibus placeat, quas eaque quo ipsa maxime quaerat inventore exercitationem, nihil nostrum
-                    temporibus optio cum saepe quibusdam iusto impedit ea mollitia! Accusamus nisi sint eum temporibus natus
-                    dolorum delectus laudantium accusantium sapiente, officia ex doloremque, voluptatem placeat quas. Quo
-                    eligendi enim error, neque aliquam quia facere atque laudantium amet officia cupiditate quidem a earum
-                    at
-                    deserunt odit nam ut molestias nihil! Repudiandae numquam quidem quod magnam suscipit assumenda soluta
-                    ratione fuga provident.
-                </div>
-            </div>
-            <!-- end -->
-            <div class="mt-8">
+                <!-- end -->
+                <div class="mt-8">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>BÌNH LUẬN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul style=" padding: 10px 30px;">
+                                        <?php
+                                        if (!empty($result_bl)) {
+                                            foreach ($result_bl as $u) :
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>BÌNH LUẬN</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <ul style="list-style: disc;  padding: 10px 30px;">
-                                    <li>
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <span><?php if (isset($noidung)) echo $noidung ?></span>
-                                            <div>
-                                                <span><?php if (isset($hoten)) echo $hoten ?></span>
-                                                <span class="ml-3 font-normal"><?php if (isset($ngay_bl)) echo $ngay_bl ?></span>
+                                        ?>
+                                                <li style="border-bottom: 1px solid #ddd; padding: 15px 0;">
+                                                    <div style="display: grid; grid-template-columns: 40px 1fr;">
+                                                        <div>
+                                                            <img style="border-radius: 100%;" src="../../../../Du_An_1/mvc/storage/image/<?= $u['hinh']?>" alt="" width="30">
+                                                        </div>
+                                                        <div>
+                                                            <p><?= $u['hoten'] ?></p>
+
+                                                            <div class="flex">
+                                                                <div class="stars">
+                                                                    <form action="">
+                                                                        <div id="rating2">
+
+
+
+                                                                            <input type="radio" id="star5" name="rating" value="5" <?php if (isset($u['so_sao']) && $u['so_sao'] >= 5) {
+                                                                                                                                        echo "checked='checked'";
+                                                                                                                                    } ?> />
+                                                                            <label class="full" for="star5" title="Pretty good - 4 stars"></label>
+                                                                            <input type="radio" id="star4" name="rating" value="4" <?php if (isset($u['so_sao']) && $u['so_sao'] == 4) {
+                                                                                                                                        echo "checked='checked'";
+                                                                                                                                    } ?> />
+                                                                            <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+
+                                                                            <input type="radio" id="star3" name="rating" value="3" <?php if (isset($u['so_sao']) && $u['so_sao'] == 3) {
+                                                                                                                                        echo "checked='checked'";
+                                                                                                                                    } ?> />
+                                                                            <label class="full" for="star3" title="Meh - 3 stars"></label>
+
+                                                                            <input type="radio" id="star2" name="rating" value="2" <?php if (isset($u['so_sao']) && $u['so_sao'] == 2) {
+                                                                                                                                        echo "checked='checked'";
+                                                                                                                                    } ?> />
+                                                                            <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                                                                            <input type="radio" id="star1" name="rating" value="1" <?php if (isset($u['so_sao']) && $u['so_sao'] == 1) {
+                                                                                                                                        echo "checked='checked'";
+                                                                                                                                    } ?> />
+                                                                            <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+
+                                                                        </div>
+                                                                    </form>
+
+                                                                </div>
+                                                                <span class="ml-3 font-normal my-auto " > <b>- </b> <?= $u['ngay_bl'] ?></span>
+                                                            </div>
+                                                            <p><?= $u['noidung'] ?></p>
+                                                        </div>
+                                                    </div>
+
+                                                </li>
+                                        <?php endforeach;
+                                        } ?>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+
+                            <th>
+                                <?php
+                                if (isset($_SESSION['ma_kh'])) {
+
+                                ?>
+
+                                    <input type="text" name="binhluan" class="w-full p-1 outline-none">
+                                    <!-- <button type="submit" name="binhluan">Bình luận</button> -->
+
+                                <?php
+                                } else {
+                                    echo " <p style='color: red;'>Đăng nhập để bình luận về sản phẩm này</p>";
+                                }
+                                ?>
+                            </th>
+
+                        </tfoot>
+                    </table>
+
+
+                </div>
+                <!-- end bình luận -->
+                <div class="relate">
+                    <p class="text-4xl">Sản phẩm cùng loại</p>
+                    <div class="slider_detail grid grid-cols-4 gap-8 ">
+                        <?php
+
+                        if (!empty($result_list_hh)) {
+                            foreach ($result_list_hh as $u) :
+                                $list_so_sao = Product::so_binh_luan($u['ma_sp']);
+                                $tong_so_sao = 0;
+                                foreach ($list_so_sao as $value) {
+                                    $tong_so_sao += $value['so_sao'];
+                                }
+                                $so_luong = count($list_so_sao);
+                                // var_dump($tong_so_sao);
+                                if ($so_luong > 0) {
+                                    $tb_so_sao = ceil($tong_so_sao / $so_luong);
+                                    // var_dump($tb_so_sao);
+                                }
+                        ?>
+                                <div style="padding: 10px; ">
+
+                                    <div class="tong_product">
+                                        <div id="img_product">
+                                            <img class="anh1" src="../../../../Du_An_1/mvc/storage/image/<?= $u['hinh'] ?>" alt="" style="max-width: 100%;height: 200px; width: 100%; ">
+                                            <div class="text-center icon_product">
+                                                <ul>
+                                                    <li class="inline-block p-3 bg-white"><a href="cart?act=add_to_cart_shop&id_addtoCart=<?php echo $u['ma_sp'] ?>" class="add_cart "><i class="fas fa-shopping-cart text-mb"></i></a></li>
+
+                                                    <li class="inline-block p-3 bg-white"><i class="fas fa-heart text-mb"></i></li>
+                                                    <li class="inline-block p-3 bg-white"><a href="detail?act=chi_tiet_sp&ma_sp=<?php echo $u['ma_sp'] ?>"><i class="fas fa-eye text-mb"></i></a></li>
+                                                </ul>
                                             </div>
                                         </div>
-
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-
-                        <th>
-                            <?php
-                            if (isset($_SESSION['id_kh'])) {
-
-                            ?>
-                                <form action="" method="POST">
-                                    <input type="text" name="binhluan" class="w-full p-1 outline-none">
-                                </form>
-                            <?php
-                            } else {
-                                echo " <p style='color: red;'>Đăng nhập để bình luận về sản phẩm này</p>";
-                            }
-                            ?>
-                        </th>
-
-                    </tfoot>
-                </table>
+                                        <div class="text-center mt-2">
+                                            <div>
+                                                <a href="detail?act=chi_tiet_sp&ma_sp=<?php echo $u['ma_sp'] ?>">
+                                                    <p class="text-2xl "><?= $u['ten_sp'] ?></p>
+                                                </a>
+                                                <div>
+                                                    <span class="text-2xl " style="color: #F4A851; font-weight: 600;">$<?= $u['gia'] ?></span>
+                                                    <span class="text-2xl ml-2" style="color: gray; text-decoration: line-through; ">$<?= $u['giamgia'] ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="stars">
+                                                <form action="">
+                                                    <div id="rating">
 
 
-            </div>
-            <!-- end bình luận -->
-            <div class="relate">
-                <p class="text-4xl">Sản phẩm cùng loại</p>
-                <div class="slider_detail grid grid-cols-4 gap-8 ">
-                    <?php
 
-                    if (!empty($result_list_hh)) {
-                        foreach ($result_list_hh as $u) :
-                    ?>
-                            <div class="col-span-1">
-                                <div>
+                                                        <input type="radio" id="star5" name="rating" value="5" <?php if (isset($tb_so_sao) && $tb_so_sao >= 5) {
+                                                                                                                    echo "checked='checked'";
+                                                                                                                } ?> />
+                                                        <label class="full" for="star5" title="Pretty good - 4 stars"></label>
+                                                        <input type="radio" id="star4" name="rating" value="4" <?php if (isset($tb_so_sao) && $tb_so_sao == 4) {
+                                                                                                                    echo "checked='checked'";
+                                                                                                                } ?> />
+                                                        <label class="full" for="star4" title="Pretty good - 4 stars"></label>
 
-                                    <div class="img_hover">
-                                        <a href="detail?ma_sp=<?php echo $u['ma_sp'] ?>">
-                                            <img class="anh1" src="../../../../Du_An_1/mvc/storage/image/<?php echo $u['hinh'] ?>" alt="" style="max-width: 100%;height: 380px; width: 100%;">
-                                            <img class="anh2" src="../../../../Du_An_1/mvc/storage/image/messi.jpg" alt="" style="max-width: 100%;height: 380px;width: 100%;">
-                                        </a>
-                                    </div>
+                                                        <input type="radio" id="star3" name="rating" value="3" <?php if (isset($tb_so_sao) && $tb_so_sao == 3) {
+                                                                                                                    echo "checked='checked'";
+                                                                                                                } ?> />
+                                                        <label class="full" for="star3" title="Meh - 3 stars"></label>
 
+                                                        <input type="radio" id="star2" name="rating" value="2" <?php if (isset($tb_so_sao) && $tb_so_sao == 2) {
+                                                                                                                    echo "checked='checked'";
+                                                                                                                } ?> />
+                                                        <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
 
-                                    <div class="flex justify-between ">
-                                        <div>
-                                            <p class="text-3xl ">Yello tea</p>
-                                            <span class="text-2xl " style="color: #F4A851; font-weight: 600;">$21.00</span>
-                                        </div>
-                                        <div>
-                                            <a href="cart?act=add_to_cart&id_addtoCart=<?php echo $u['ma_sp'] ?>" class="add_cart text-xl">Add to cart</a>
+                                                        <input type="radio" id="star1" name="rating" value="1" <?php if (isset($tb_so_sao) && $tb_so_sao == 1) {
+                                                                                                                    echo "checked='checked'";
+                                                                                                                } ?> />
+                                                        <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+
+                                                    </div>
+                                                </form>
+
+                                            </div>
                                         </div>
                                     </div>
+
+
                                 </div>
+                        <?php
+                                unset($tb_so_sao);
+                            endforeach;
+                        } ?>
 
-
-
-                            </div>
-                    <?php endforeach;
-                    } ?>
-
+                    </div>
                 </div>
-            </div>
 
-        </section>
-
+            </section>
+        </form>
 
 
 
@@ -240,133 +363,7 @@
 
 
 
-    <script>
-        //mỗi slide có 1 chỉ số riêng của nó ,để đơn giản chúng ta sẽ gán chỉ số mảng cho các slide
-        var slideIndex = 0;
-        var slideArray = [];
-        // mảng lưu trữ các slide của chúng ta
-        var currentSlideIndex = 0;
-        //hàm dưới đây sẽ giúp ta tạo ra các đối tượng slide
-        // bao gồm: tiêu đề, mô tả , ảnh, đường dẫn khi nhấp vào button trên slide, và id của mỗi slide
-        function Slide(title, subtitle, img, textSpan) {
-            this.title = title;
-            this.subtitle = subtitle;
-            this.img = img;
-            this.textSpan = textSpan;
-            //    chúng ta cần một id để nhắm mục tiêu sau này bằng cách sử dụng getElementById
-            this.id2 = "slide" + slideIndex;
-            //tăng dần id lên
-            slideIndex++;
-            // add slide to array
-            slideArray.push(this);
-        }
 
-
-        //tạo các đối tượng slide
-
-        var clientsSay = new Slide(
-            "CLIENTS SAY",
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the when an unknown printer took a galley of type.",
-            "../../../../Du_An_1/mvc/storage/image/logo_banner2.jpg",
-            "Andrela"
-
-        );
-
-        var longChanh = new Slide(
-            "Vũ Tiến Long",
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the when an unknown printer took a galley of type.",
-            "../../../../Du_An_1/mvc/storage/image/logo_banner2.jpg",
-            "Andrela"
-
-        );
-
-        // Từ mảng slide đã tạo, ta tiến hành đưa nó vào source HTML
-        function buildSiver() {
-            //  Tạo một biến để giữ tất cả HTML của chúng ta
-            var myHtml = "";
-            // bắt đầu thêm
-
-            for (var j = 0; j < slideArray.length; j++) {
-                myHtml +=
-                    "<div id='" + slideArray[j].id2 + "' class='singleSlide'>" +
-                    "<div class='slideOverlay' style= '  padding-top: 23px;'>" +
-                    "<h1 style='padding: 30px;font-weight: 600;font-size: 55px; '>" +
-                    slideArray[j].title +
-                    "</h1>" +
-                    "<h6 style = ' width: 783px;margin: auto;font-size: 14px; '>" +
-                    slideArray[j].subtitle +
-                    "</h6>" +
-                    "<img  src='" +
-                    slideArray[j].img +
-                    "'  style=' margin: auto;  padding: 21px; border-radius: 100%'>" +
-                    "<span>" +
-                    slideArray[j].textSpan +
-                    "</span>" +
-                    "</div>" +
-                    "</div>";
-
-            }
-
-            // Đưa HTML chúng ta vừa tạo vào id #mySlider
-            document.getElementById("mySlider").innerHTML = myHtml;
-
-            // Đồng thời hiển thị slide đầu tiên
-            document.getElementById("slide" + currentSlideIndex).style.left = 0;
-        }
-
-        buildSiver();
-
-        // Xử lý bấm nút chuyển slide trước đó
-        function prevSlide() {
-            // Tìm slide trước đó
-            var nextSlideIndex;
-            // Nếu chỉ số slide là 0, về slide cuối
-            if (currentSlideIndex == 0) {
-                nextSlideIndex = slideArray.length - 1;
-            } else {
-                // Nếu không thì giảm chỉ số đi 1
-                nextSlideIndex = currentSlideIndex - 1;
-            }
-
-            // Ẩn slide hiện tại, hiện slide "currentSlideIndex"
-            document.getElementById("slide" + nextSlideIndex).style.left = "-100%";
-            document.getElementById("slide" + currentSlideIndex).style.left = 0;
-
-            // Thêm class để chuyển slide có animation đã định nghĩa ở bước 3
-            document
-                .getElementById("slide" + nextSlideIndex)
-                .setAttribute("class", "singleSlide slideInLeft");
-            document
-                .getElementById("slide" + currentSlideIndex)
-                .setAttribute("class", "singleSlide slideOutRight");
-
-            // Cập nhật giá trị slide hiện tại
-            currentSlideIndex = nextSlideIndex;
-        }
-
-        // Xử lý bấm nút chuyển slide tiếp theo
-        // Cách xử lý tương tự như prevSlide đã trình bày ở trên
-        function nextSlide() {
-            var nextSlideIndex;
-            if (currentSlideIndex == slideArray.length - 1) {
-                nextSlideIndex = 0;
-            } else {
-                nextSlideIndex = currentSlideIndex + 1;
-            }
-
-            document.getElementById("slide" + nextSlideIndex).style.left = "100%";
-            document.getElementById("slide" + currentSlideIndex).style.left = 0;
-
-            document
-                .getElementById("slide" + nextSlideIndex)
-                .setAttribute("class", "singleSlide slideInRight");
-            document
-                .getElementById("slide" + currentSlideIndex)
-                .setAttribute("class", "singleSlide slideOutLeft");
-
-            currentSlideIndex = nextSlideIndex;
-        }
-    </script>
     <!--slick slider -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>

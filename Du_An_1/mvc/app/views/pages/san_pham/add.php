@@ -45,10 +45,7 @@
                 <p>ĐƠN GIÁ</p>
                 <input type="number" name="dongia" style="border:1px solid black; width: 100%;height: 30px;">
             </div>
-            <div class="mb-4">
-                <p>HÌNH ẢNH 2</p>
-                <input type="file" name="productImage2" id="input" style="border:1px solid black; width: 100%;height: 32px;" placeholder="Product Image">
-            </div>
+            
             <div class="mb-4">
                 <p>LOẠI HÀNG</p>
                 <select name="loaihang" id="" class="border border-black" style=" width: 100%;height: 30px;">

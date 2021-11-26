@@ -23,44 +23,69 @@ class HomeController
                 case 'add_to_cart':
                     include_once './app/views/pages/gio_hang/add_to_cart.php';
 
-                    $ma_sp = $_GET['id_addtoCart'];
+
+
                     echo "<script> alert('Thêm vào giỏ hàng thành công !')</script>";
-                    header("refresh:0.1;url=detail?act=chi_tiet_sp&ma_sp=$ma_sp");
+                    header("refresh:0.1;url=detail?act=chi_tiet_sp&ma_sp=$id");
+
                     break;
                 case 'chi_tiet_sp':
                     // tăng số lượt xem
                     $ma_sp = $_GET['ma_sp'];
                     Product::tang_so_luot_Xem($_GET['ma_sp']);
                     $result = Product::list_hang_hoa_theo_id($_GET['ma_sp']);
-
+                    if (isset($_POST['rating'])) {
+                        $star = $_POST['rating'];
+                    } else {
+                        $star = 0;
+                    }
                     foreach ($result as $u) {
                         extract($u);
+                        $list_so_sao = Product::so_binh_luan($ma_sp);
+                        $tong_so_sao = 0;
+                        foreach ($list_so_sao as $value) {
+                            $tong_so_sao += $value['so_sao'];
+                        }
                     }
+
+                    $so_luong = count($list_so_sao);
+                    // var_dump($tong_so_sao);
+                    if ($so_luong > 0) {
+                        $tb_so_sao = ceil($tong_so_sao / $so_luong);
+                        // var_dump($tb_so_sao);
+                    }
+
 
                     // var_dump($_SESSION['name']);
                     if (isset($_POST['binhluan']) && !empty($_POST['binhluan'])) {
                         $binh_luan = $_POST['binhluan'];
-                        $ma_kh = $_SESSION['id_kh'];
-
-                        $ngay_bl = date_format(date_create(), 'Y-m-d');
-                        $add_bl = $pdo_binh_luan->add_binh_luan($ma_kh, $_GET['ma_sp'], $_POST['binh_luan'], $ngay_bl);
+                        $ma_kh = $_SESSION['ma_kh'];
+                        // var_dump($star)
+                        $ngay_bl = date_format(date_create(), 'Y-m-d H:i:s');
+                        $add_bl = BinhLuan::add_binh_luan($ma_kh, $_GET['ma_sp'], $binh_luan, $ngay_bl, $star);
                     }
                     $result_bl = BinhLuan::list_bl_by_ma_hh($_GET['ma_sp']);
-                    if (!empty($result_bl)) {
-                        foreach ($result_bl as $value) {
-                            extract($value);
-                        }
+
+                    // thêm vào giỏ hàng
+                    if (isset($_POST['add_to_cart'])) {
+                        $quantity = $_POST['quantity'];
+                        $ma_sp = $_GET['ma_sp'];
+                        header("refresh: 0.1;url=detail?act=add_to_cart&id_addtoCart=$ma_sp&quantity=$quantity");
                     }
+
+
+
+
                     // sản phẩm cùng loại
                     $result_list_hh = Product::list_hang_hoa_theo_loai($maloai);
-
+                    include_once './app/views/chi_tiet_sp.php';
                     break;
+
                 default:
                     # code...
                     break;
             }
         }
-        include_once './app/views/chi_tiet_sp.php';
     }
 
     public function shop()
@@ -76,6 +101,7 @@ class HomeController
         // var_dump($so_trang);
 
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
+
 
 
 
@@ -131,7 +157,7 @@ class HomeController
             switch ($act) {
                 case 'add_to_cart':
                     include_once './app/views/pages/gio_hang/add_to_cart.php';
-                    header("location:../mvc/");
+                    // header("location:../mvc/");
 
                     break;
                 case 'add_to_cart_shop':
@@ -151,13 +177,109 @@ class HomeController
                             header("refresh:0.2;url=../mvc/cart?act=cart");
                         }
                     }
+                    if (isset($_POST['btn_thanh_toan'])) {
+                        if (isset($_POST['check_sp'])) {
+
+                            include_once './app/views/thanh_toan.php';
+                        } else {
+                            echo "<script> alert('Vui lòng chọn sản phẩm muốn thanh toán')</script>";
+                            header("refresh:0.2;url=../mvc/cart?act=cart");
+                        }
+                    }
+
+
                     include_once './app/views/cart.php';
+                    break;
+
+                case 'thanh_toan':
+
+                    if (isset($_POST['thanh_toan'])) {
+                        // var_dump("Thanh toán thành c");
+
+                        $ho_ten = $_POST['ho_ten'];
+                        $phone = $_POST['phone'];
+                        $diachi = $_POST['diachi'];
+                        $diachi_cu_the = $_POST['diachi_cu_the'];
+                        $ngay_mua = date_format(date_create(), 'Y-m-d H:i:s');
+                
+                        $noi_nhan = $_POST['noi_nhan'];
+                        // var_dump($noi_nhan);
+                        
+                      
+                        if ($loai_diachi == "Nhà riêng") {
+                            $loai_diachi = 1;
+                           
+                        } else {
+                            $loai_diachi = 0;
+                        }
+
+                        if ($noi_nhan == "Nội thành") {
+                            $noi_nhan = 1;
+                            $phi_vc = 10;
+                        } else if ($noi_nhan == "Ngoại thành") {
+                            $noi_nhan = 2;
+                            $phi_vc = 20;
+                        }else {
+                            $noi_nhan == "";
+                        }
+
+                        if ($ho_ten == "" || $phone == "" || $diachi == "" || $diachi_cu_the == "")  {
+                            $error = "Không được để trống thông tin";
+                        }else if ($noi_nhan == "") {
+                            $error = "Bạn chưa chọn nơi nhận";
+                        }   else {
+            
+                            $tong_tien = 0;
+                            foreach ($_SESSION['cart'] as $key => $value) {  
+                                $dem = (int)$value['qtity'] *  (int)$value['gia'];
+                                $tong_tien += $dem;    
+                            }
+                            $tong_tien = $tong_tien + $phi_vc;
+                            // var_dump("tổng tiền = ".$tong_tien);
+                            // die;
+                            $add_don_hang = DonHang::add_don_hang($_SESSION['ma_kh'], $ngay_mua, $tong_tien);
+                            $ma_don_hang = DonHang::don_hang_new();
+
+                            foreach ($_SESSION['cart'] as $key => $value) {
+                                $ma_sp = $key;
+                                $ten_sp = $value['ten_sp'];
+                                $hinh_sp = $value['hinh'];
+                                $so_luong = $value['qtity'];
+                                $gia_tien_sp = $value['gia'];
+                                // var_dump($diachi_cu_the);
+                                // die;
+                              
+                                $add_chi_tiet_don_hang = DonHang::add_don_hang_chi_tiet($ma_don_hang, $ho_ten, $phone, $diachi, $diachi_cu_the, $loai_diachi, $noi_nhan, $ten_sp, $phi_vc, $so_luong, $hinh_sp, $gia_tien_sp, $ma_sp );
+                               
+                            }
+                           
+                            if (isset($add_chi_tiet_don_hang)) {
+                                echo "<script> alert('$add_don_hang')</script>";
+                                // unset($result_del_sp);
+                                // header("refresh:0.5;url=khach_hang?act=list");
+                            }
+                        }
+                        
+                    }
+                    include_once './app/views/thanh_toan.php';
+
 
                     break;
+
                 default:
                     # code...
                     break;
             }
         }
+        // else {
+        //     include_once './app/views/cart.php';
+        // }
+
+
+    }
+
+    public function gioi_thieu()
+    {
+        include_once './app/views/gioi_thieu.php';
     }
 }

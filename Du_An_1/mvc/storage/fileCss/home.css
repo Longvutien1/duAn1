@@ -3,9 +3,232 @@ img {vertical-align: middle;}
 
 body{
     font-family: "Cormorant Garamond",sans-serif;
+    
 }
+/* ----------------------------------banner------------------------------ */
+
+
+.banner{
+  
+
+    min-height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+    /* padding-top: 3rem; */
+    background: url(../../../../Du_An_1/mvc/storage/image/bg.png) no-repeat ;
+    background-position: center bottom 90px;
+    background-size: cover;
+  
+}
+ .banner .row{
+  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+ 
+
+}
+
+ .banner .row .content{
+  
+  text-align: left;
+}
+
+ .banner .row .image{
+  
+  padding-top: 7rem;
+  text-align: center;
+  margin: auto;
+}
+ .banner .row .image img{
+  height: 25rem;
+  animation: float 4s linear infinite;
+}
+
+@keyframes float{
+  0%, 100%{
+    transform: translateY(0rem);
+  }
+
+  50%{
+    transform: translateY(-4rem);
+  }
+}
+
+ .banner .row .content p{
+  font-size: 4.5rem;
+  font-weight: 600;
+    color: #F4A851;
+    text-transform: uppercase;
+   
+}
+
+ .banner .image-slider{
+  
+    display: flex;
+    justify-content: center;
+    padding:3rem 0;
+   
+}
+
+ .banner .image-slider img{
+    height:6rem;
+    margin:0 .5rem;
+    cursor: pointer;
+    transition: all linear 0.2s;
+}
+ .banner .image-slider img:hover{
+  transform: translateY(-1rem);
+  transition: all linear 0.2s;
+}
+
+.btn{
+  display: inline-block;
+  padding:.9rem 1.5rem;
+  border-radius: 95% 4% 97% 5%/4% 94% 3% 95%;
+  color:#443;
+  background: none;
+  border:.2rem solid #443;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 1.7rem;
+  transition: all ease-in-out 0.2s;
+}
+
+.btn:hover{
+  border-radius: 4% 95% 6% 95%/95% 4% 92% 5%;
+  transition: all ease-in-out 0.2s;
+  border:.2rem dashed  #F4A851;
+  color: #F4A851;
+}
+
+
+/* --------------------------------text about us--------------------- */
+.heading{
+  font-size: 6rem;
+  text-transform: uppercase;
+  color:transparent;
+  -webkit-text-stroke: .05rem #443;
+  letter-spacing: .2rem;
+  text-align: center;
+  pointer-events: none;
+  position: relative;
+  line-height: 0;
+}
+
+.heading span{
+  font-weight:600 ;
+  position: absolute;
+  top:50%; left:50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  color:#443;
+  font-size: 2rem;
+}
+
+
+/* -----------------------about us---------------------------- */
+.about .row{
+  display: grid;
+  grid-template-columns: 4fr 5fr;
+  grid-gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap:1.5rem;
+}
+
+.about .row .image{
+  flex:1 1 42rem;
+}
+
+.about .row .image img{
+  width: 100%;
+  animation:aboutImage 4s linear infinite;
+}
+
+@keyframes aboutImage {
+  0%, 100%{ 
+      transform: scale(.9);
+      border-radius: 4% 95% 6% 95%/95% 4% 92% 5%;
+  }
+  50%{
+      transform: scale(.8);
+      border-radius: 95% 4% 97% 5%/4% 94% 3% 95%;
+  }
+}
+
+.about .row .content{
+  flex:1 1 42rem;
+}
+
+.about .row .content .title{
+  color:#F4A851;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.about .row .content p{
+  color:#443;
+  font-size: 1.5rem;
+  line-height: 1.8;
+  padding:1rem 0;
+}
+
+.about .row .content .icons-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap:1rem;
+  padding-top: 3rem;
+}
+
+.about .row .content .icons-container .icons{
+  flex:1 1 7rem;
+  padding:1rem;
+  text-align: center;
+  border:.2rem solid #443;
+
+  border-radius: 95% 4% 97% 5%/4% 94% 3% 95%;
+}
+
+.about .row .content .icons-container .icons:hover img{
+  transition: all ease-in-out 0.2s;
+  transform: scale(1.3);
+}
+
+.about .row .content .icons-container .icons img{
+  height: 3rem;
+  margin: auto;
+  transition: all ease-in-out 0.2s;
+}
+
+.about .row .content .icons-container .icons h3{
+  font-size: 1.7rem;
+  padding-top: 1rem;
+  color:#443;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------------- */
 .hoverVang:hover{
   color: #F4A851;
+  
 }
 .slideshow-container {
     max-width: 100%;
@@ -99,6 +322,63 @@ body{
   @media only screen and (max-width: 300px) {
     .prev, .next,.text {font-size: 11px}
   }
+/* ---------------------menu-------------------------- */
+.bg_menu{
+  background: url(../../../../Du_An_1/mvc/storage/image/menu-bg.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.menu .box-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap:2rem;
+  justify-content: center;
+}
+
+.menu .box-container .box{
+  flex:1 1 34rem;
+  padding:1rem;
+  border:.2rem solid #443;
+  border-radius: 95% 4% 97% 5%/4% 94% 3% 95%;
+  display: flex;
+  align-items: center;
+  gap:1.5rem;
+  margin-left: 6rem;
+  transition: all ease-in-out 0.3s;
+}
+
+.menu .box-container .box:hover{
+  border:.2rem dashed #443;
+  border-radius: 4% 95% 6% 95%/95% 4% 92% 5%;
+  transition: all ease-in-out 0.3s;
+}
+
+.menu .box-container .box img{
+  height: 7rem;
+  margin-left: -3.5rem;
+}
+
+
+.menu .box-container .box .content h3{
+  font-size: 1.5rem;
+  color:#443;
+  line-height: 1.8;
+  font-weight: 600;
+}
+
+.menu .box-container .box .content p{
+  font-size: 1.3rem;
+  color:#443;
+  line-height: 1.2;
+  padding:0.5rem 0;
+}
+
+.menu .box-container .box .content span{
+  font-size: 1.5rem;
+  color:#443;
+  line-height: 1.8;
+}
 
 
 
@@ -132,6 +412,7 @@ body{
 
 
   /* ---------------------list product--------------------- */
+
   .add_cart:hover{
     color: red;
     text-decoration: underline;
@@ -140,38 +421,43 @@ body{
   .add_cart{
     color: #F4A851;
   }
-
-  .img_hover{
-    position: relative;
-    height: 400px;
-  }
- 
-   .anh2{
-    position: absolute;
-    opacity: 0;
-    transition: all 0.5s ease-out;
-  }
-
-   .anh1{
-  
-      position: absolute;
-      display: block;
-      opacity: 100;
-      transition: all 0.5s ease-out;
-  }
-  .img_hover:hover .anh1{
-    display: none;
-    opacity: 0;
-    display: none;
-    transition: all 0.5s ease-out;
+  .tong_product{
+    /* border: 1px solid #cccbcb; */
+    background-color: rgb(255, 255, 255); 
+     box-shadow: #cccbcb;
+    padding: 15px 20px;
+    box-shadow: 3px 3px 4px 4px #cccbcb;
+    border-radius: 8px;
     
-  
   }
-  .img_hover:hover .anh2{
-    opacity: 1;
-    transition: all 0.5s ease-out;
+
+
+  #img_product{
+    position: relative;
   }
-  
+  #img_product .icon_product{
+    position: absolute;
+    top: 1%;
+    left: 22%;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all ease-in-out 0.2s;
+  }
+  #img_product:hover .icon_product{
+    top: 43%;
+    left: 22%;
+    transform: scaleY(1);
+    transition: all ease-in-out 0.2s;
+    transform-origin: top;
+  }
+  #img_product:hover .anh1{
+    opacity: 0.5;
+  }
+
+
+  .hover_icon_sp:hover a{
+    color: #F4A851;
+  }
   
  /* --------------------------------banner 2-------------------------------- */
  .banner2 {
@@ -345,18 +631,29 @@ body{
 
 .slick-prev {
   position: absolute;
-  top: -10%;
-  right: 5%;
-  /* transform: translateY(-50%); */
+  top: 40%;
+  left: -2%;
+  /* background-color: #3f3f3f; */
+  padding: 5px 10px;
+  transform: translateY(-50%);
+  border-radius: 5px 0px 0px 5px;
   z-index: 2;
 }
-
+.slick-prev:hover {
+  background-color: rgba(0,0,0,0.3);
+}
 .slick-next {
   position: absolute;
-  top: -10%;
-  right: 2%;
-  /* transform: translateY(-50%); */
+  top: 40%;
+  right: -2%;
+  /* background-color: #3f3f3f; */
+  padding: 5px 10px;
+  transform: translateY(-50%);
+  border-radius: 0px 5px 5px 0px;
   z-index: 2;
+}
+.slick-next:hover {
+  background-color: rgba(0,0,0,0.3);
 }
 
 .slick-prev_banner{
@@ -371,4 +668,84 @@ body{
   transform: translateY(-50%);
   z-index: 2;
 }
+
+
+/* -------------header--------------------- */
+
+.userHover:hover .menuUser{
+  display: block;
+}
+.userHover {
+  position: relative;
+}
+
+.menuUser{
+ 
+  float: right;
+  z-index: 2;
+  width: 145px;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 8px 0 0 0 ;
+  padding: 5px;
+ 
+}
+
+
+/* ----------------------header---------------- */
+/* -------------search---------------------- */
+#icon1{
+  position: relative;
+}
+
+#icon1 #search_form{
+  position: absolute;
+  top: 110%;
+  right: 0%;
+  background-color: #fff;
+  width: 26rem; 
+  height: 3rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  transform: scaleY(0);
+  transition:  all ease-in-out 0.2s;
+  transform-origin: top;
+  /* display: none; */
+}
+#icon1 #search_form input{
+  height: 100%;
+  width: 100%;
+  font-size: 1.6rem;
+  padding: 1rem;
+  text-transform: none;
+  outline: none;
+}
+#icon1 #search_form label{
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-right: 15px;
+  margin-left: 15px;
+  
+}
+#icon1 #search_form label:hover{
+ color: #F4A851;
+  
+}
+#check_search:checked~.icon1 #search_form{
+  transform: scaleY(1);
+  transition:  all ease-in-out 0.2s;
+}
+
+.aaa12:hover{
+  cursor: pointer;
+}
+#check_search{
+  display: none;
+}
+
+
+
+
 

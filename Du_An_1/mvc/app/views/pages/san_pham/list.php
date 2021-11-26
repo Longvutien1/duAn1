@@ -112,7 +112,6 @@
                 <th>Mã HH</th>
                 <th>Tên HH</th>
                 <th>Hình ảnh</th>
-                <th>Hình ảnh 2</th>
                 <th>Đơn giá</th>
                 <th>Giảm giá</th>
                 <th>Hàng đặc biệt</th>
@@ -137,7 +136,7 @@
                         <td><?php echo $u['ma_sp'] ?></td>
                         <td><?php echo $u['ten_sp'] ?></td>
                         <td> <img src="../../../../../../Du_An_1/mvc/storage/image/<?php echo $u['hinh']?>" alt="" width="120">    </td>
-                        <td> <img src="../../../../../../Du_An_1/mvc/storage/image/<?php echo $u['hinh2']?>" alt="" width="120">    </td>
+                       
                         <td><?php echo $u['gia'] ?></td>
                         <td><?php echo $u['giamgia'] ?></td>
                         <td><?php echo $u['dacbiet'] == 1 ? 'Đặc biệt' : 'Bình thường' ?></td>

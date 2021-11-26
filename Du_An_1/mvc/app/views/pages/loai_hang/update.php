@@ -12,18 +12,38 @@
                                                                                                                 echo $ten_loai;
                                                                                                             } ?>">
     </div>
+    <div class="mb-4">
+        <p>Status</p>
 
+        <div class="p-1 border text-left border-black mb-8">
+            <input type="radio" name="status" id="su_dung" value="Sử dụng" <?php
+                                                                    if (isset($status)) {
+                                                                        if ($status == 1) {
+                                                                            echo "checked='checked'";
+                                                                        }
+                                                                    }
+                                                                    ?>>
+            <label for="su_dung">Sử dụng</label>
+            <input class="ml-4" type="radio" name="status" id="k_du_dung" value="Không sử dụng" <?php
+                                                                                        if (isset($status)) {
+                                                                                            if ($status == 0) {
+                                                                                                echo "checked='checked'";
+                                                                                            }
+                                                                                        }
+                                                                                        ?>>
+            <label for="k_du_dung">Không sử dụng</label>
+        </div>
+    </div>
     <p style="color: red;">
-            <?php
-            if ($error != "") {
-                echo $error;
-            }
-            ?>
-        </p>
+        <?php
+        if ($error != "") {
+            echo $error;
+        }
+        ?>
+    </p>
     <div class="mb-4">
         <button name="btn_update" class="px-4 py-1 border border-black mr-3" type="submit">Cập nhật</button>
         <button name="btn_rs" class="px-4 py-1 border border-black mr-3">Nhập lại</button>
         <a href="?act=list" style="border-radius: 4px; border: 1px solid #3f3f3f; padding: 4px 16px; text-decoration: none;" class=" py-1 px-4 ">Danh sách</a>
     </div>
 </form>
-

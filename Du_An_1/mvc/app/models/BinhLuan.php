@@ -3,10 +3,10 @@
 class BinhLuan
 {
 
-    function add_binh_luan($ma_kh, $ma_sp, $noidung, $ngay_bl)
+    function add_binh_luan($ma_kh, $ma_sp, $noidung, $ngay_bl, $so_sao)
     {
-        $sql = "INSERT into binhluan(ma_kh, ma_sp, noidung, ngay_bl) values(?,?,?,?)";
-        $new_binh_luan = pdo_execute($sql, $ma_kh, $ma_sp, $noidung, $ngay_bl);
+        $sql = "INSERT into binhluan(ma_kh, ma_sp, noidung, ngay_bl, so_sao) values(?,?,?,?,?)";
+        $new_binh_luan = pdo_execute($sql, $ma_kh, $ma_sp, $noidung, $ngay_bl, $so_sao);
 
         if ($new_binh_luan) {
             return "Thêm bình luận " . $new_binh_luan;
@@ -36,17 +36,26 @@ class BinhLuan
         $sql = "SELECT b.ten_sp, count(a.ma_sp) as 'so_bl', a.ma_bl, a.ngay_bl, a.ma_sp, MAX(a.ngay_bl) as 'bl_moi_nhat', MIN(a.ngay_bl) as 'bl_cu_nhat'
              FROM binhluan a
             join sanpham b on a.ma_sp = b.ma_sp
-            group by b.ten_sp
-            order by ma_bl desc limit $start, $limit";
+            group by b.ma_sp
+            order by so_bl desc limit $start, $limit";
         $row = pdo_query($sql);
         return $row;
     }
  
 
-    function list__count_binh_luan()
+    function list__count_hh()
     {
-        $sql = "SELECT count(ma_bl) as 'count_bl' FROM binhluan order by ma_bl desc";
+        $sql = "SELECT count(ma_sp) as 'count_bl' FROM binhluan order by ma_sp desc";
         $value = pdo_query_value($sql);
+        return $value;
+    }
+
+    function list_count_binh_luan_by_id_masp( $ma_sp)
+    {
+        $sql = "SELECT count(ma_bl) as 'count_bl' FROM binhluan
+        where  ma_sp=?
+        order by ma_bl desc";
+        $value = pdo_query_value($sql, $ma_sp);
         return $value;
     }
 
@@ -109,11 +118,15 @@ class BinhLuan
     }
 
     function list_bl_by_ma_hh($ma_sp){
-        $sql = "SELECT *, c.hoten FROM binhluan a
+        $limit = 10;
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $start = ($page - 1) * $limit;
+
+        $sql = "SELECT *, c.hoten, c.hinh FROM binhluan a
             join sanpham b on a.ma_sp = b.ma_sp
             join khachhang c on a.ma_kh = c.ma_kh
         where a.ma_sp=?
-        order by ma_bl desc";
+        order by ma_bl desc limit $start, $limit";
         $row = pdo_query($sql, $ma_sp);
         return $row;
     }

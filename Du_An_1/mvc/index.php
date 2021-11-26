@@ -5,7 +5,7 @@ $url = isset($_GET['url']) ? $_GET['url'] : "/";
 
 
 require_once './app/controllers/HomeController.php';
-require_once './app/controllers/ProductController.php';
+require_once './app/controllers/UserController.php';
 require_once './app/controllers/AdminController.php';
 require_once './app/models/BaseModel.php';
 require_once './app/models/Product.php';
@@ -15,6 +15,8 @@ require_once './app/models/BinhLuan.php';
 require_once './app/models/ThongKe.php';
 require_once './app/models/GopY.php';
 require_once './app/models/Banner.php';
+require_once './app/models/User.php';
+require_once './app/models/DonHang.php';
 switch ($url) {
     case '/':
         $page = new HomeController();
@@ -23,6 +25,10 @@ switch ($url) {
     case 'tim_cua_hang':
         $page = new HomeController();
         echo $page->tim_cua_hang();
+        break;
+    case 'gioi_thieu':
+        $page = new HomeController();
+        echo $page->gioi_thieu();
         break;
     case 'cart':
         $page = new HomeController();
@@ -67,9 +73,14 @@ switch ($url) {
         $page = new AdminController();
         echo $page->thong_ke();
         break;
-    case 'addForm':
-        $page = new ProductController();
-        echo $page->addForm();
+
+    case 'admin/don_hang':
+        $page = new AdminController();
+        echo $page->don_hang();
+        break;
+    case 'login':
+        $page = new UserController();
+        echo $page->login();
         break;
 
     default:

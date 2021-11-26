@@ -201,3 +201,41 @@ div.stars {
 .slick-next:hover {
     background-color: rgba(0,0,0,0.3);
 }
+
+
+
+/* ----------------------------------------- */
+
+/* -------binh_luan----------------- */
+#rating2{border:none;float:left;}
+#rating2>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating2>label:before{margin:2px;font-size:1em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+#rating2>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
+#rating2>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+/*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
+#rating2>input:checked~label,
+#rating2:not(:checked)>label:hover, 
+#rating2:not(:checked)>label:hover~label{color:#FFD700;}
+/* Hover vào các sao phía trước ngôi sao đã chọn*/
+#rating2>input:checked+label:hover,
+#rating2>input:checked~label:hover,
+#rating2>label:hover~input:checked~label,
+#rating2>input:checked~label:hover~label{color:#FFED85;}
+
+/* ----------------san_pham cùng loại-------------- */
+#rating{border:none;float:left;}
+#rating>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+#rating>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
+#rating>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+/*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
+#rating>input:checked~label,
+#rating:not(:checked)>label:hover, 
+#rating:not(:checked)>label:hover~label{color:#FFD700;}
+/* Hover vào các sao phía trước ngôi sao đã chọn*/
+#rating>input:checked+label:hover,
+#rating>input:checked~label:hover,
+#rating>label:hover~input:checked~label,
+#rating>input:checked~label:hover~label{color:#FFED85;}
+
+

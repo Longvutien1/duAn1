@@ -130,6 +130,13 @@
 
         </tbody>
     </table>
+    <p style="color: red;margin-top: 15px;">
+        <?php
+        if ($error != "") {
+            echo $error;
+        }
+        ?>
+    </p>
     <div class="row mt-4">
         <button class=" py-1 px-4 " style="border-radius: 4px; border: 1px solid #3f3f3f" name="click_all">Chọn tất cả</button>
         <button class=" py-1 px-4 " style="border-radius: 4px; border: 1px solid #3f3f3f">Bỏ chọn tất cả</button>

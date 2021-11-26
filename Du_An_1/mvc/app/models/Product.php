@@ -5,10 +5,10 @@ class Product {
     
 
    
-    function add_hang_hoa($ten_sp, $gia, $giamgia, $hinh, $hinh2,  $ngaynhap, $mota, $dacbiet, $maloai)
+    function add_hang_hoa($ten_sp, $gia, $giamgia, $hinh,  $ngaynhap, $mota, $dacbiet, $maloai)
     {
-        $sql = "INSERT into sanpham(ten_sp, gia, giamgia, hinh, hinh2, ngaynhap, mota, dacbiet, maloai) values(?,?,?,?,?,?,?,?,?)";
-        $new_loai_hang = pdo_execute($sql, $ten_sp, $gia, $giamgia, $hinh, $hinh2,  $ngaynhap, $mota, $dacbiet, $maloai);
+        $sql = "INSERT into sanpham(ten_sp, gia, giamgia, hinh,  ngaynhap, mota, dacbiet, maloai) values(?,?,?,?,?,?,?,?)";
+        $new_loai_hang = pdo_execute($sql, $ten_sp, $gia, $giamgia, $hinh,  $ngaynhap, $mota, $dacbiet, $maloai);
 
         if ($new_loai_hang) {
             return "Thêm hàng hóa " . $new_loai_hang;
@@ -17,10 +17,10 @@ class Product {
         }
     }
 
-    function update_hang_hoa($ten_sp, $gia, $giamgia, $hinh, $hinh2,  $ngaynhap, $mota, $dacbiet, $maloai, $ma_sp)
+    function update_hang_hoa($ten_sp, $gia, $giamgia, $hinh,  $ngaynhap, $mota, $dacbiet, $maloai, $ma_sp)
     {
-        $sql = "UPDATE sanpham SET ten_sp=?, gia=?, giamgia=?, hinh=?, hinh2=?, ngaynhap=?, mota=?, dacbiet=?, maloai=? WHERE ma_sp=?";
-        $new_loai_hang = pdo_execute($sql, $ten_sp, $gia, $giamgia, $hinh, $hinh2,  $ngaynhap, $mota, $dacbiet, $maloai, $ma_sp);
+        $sql = "UPDATE sanpham SET ten_sp=?, gia=?, giamgia=?, hinh=?, ngaynhap=?, mota=?, dacbiet=?, maloai=? WHERE ma_sp=?";
+        $new_loai_hang = pdo_execute($sql, $ten_sp, $gia, $giamgia, $hinh,  $ngaynhap, $mota, $dacbiet, $maloai, $ma_sp);
 
         if ($new_loai_hang) {
             return "Sửa hàng hóa " . $new_loai_hang;
@@ -74,8 +74,20 @@ class Product {
 
         $start = ($page - 1) * $limit;
 
-        $sql = "SELECT * FROM sanpham order by ma_sp desc limit $start, $limit";
+        $sql = "SELECT * FROM sanpham        order by ma_sp desc  limit $start, $limit ";
         $row = pdo_query($sql);
+        return $row;
+    }
+
+    function so_binh_luan($ma_sp)
+    {
+      
+
+        $sql = "SELECT b.so_sao FROM sanpham a
+        join binhluan b on a.ma_sp = b.ma_sp
+        where a.ma_sp = ?
+         order by a.ma_sp desc  ";
+        $row = pdo_query($sql,$ma_sp);
         return $row;
     }
 

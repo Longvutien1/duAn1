@@ -90,6 +90,13 @@
         </tbody>
     </table>
 
+    <p style="color: red;">
+        <?php
+        if ($error != "") {
+            echo $error;
+        }
+        ?>
+    </p>
     <div class="row mt-4" style="margin-top: 16px;">
         <button class=" py-1 px-4 " style="border-radius: 4px; border: 1px solid #3f3f3f; padding: 4px 16px;background-color: #fff;" name="click_all" type="submit">Chọn tất cả</button>
         <button class=" py-1 px-4 " style="border-radius: 4px; border: 1px solid #3f3f3f; padding: 4px 16px;background-color: #fff;">Bỏ chọn tất cả</button>

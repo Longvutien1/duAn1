@@ -1,5 +1,8 @@
 <h2 class="text-center p-3 mb-8 text-xl" style="background-color:#3F3F3F ; color: #fff; border-radius: 8px;"> QUẢN LÝ BÌNH LUẬN</h2>
 <div class="my-8 text-center">
+
+  
+
     <div class="w3-container">
         <div class="w3-bar">
             <ul>
@@ -44,7 +47,7 @@
     <table>
         <thead>
             <tr>
-                <th>MÃ BL</th>
+                <th>MÃ HH</th>
                 <th>TÊN HÀNG HÓA</th>
                 <th>SỐ BÌNH LUẬN</th>
                 <th>MỚI NHẤT</th>
@@ -73,25 +76,17 @@
 
             if (!empty($result)) {
                 foreach ($result as $u) :
+                    // var_dump($u);
+                    // die;
             ?>
                     <tr>
-                        <td><?php echo $u['ma_bl'] ?></td>
-                        <td>
-                            <?php
-                            
-                            $result_product_name = BinhLuan::list_product_by_id($u['ma_sp']);
-                            if (!empty($result_product_name)) {
-                                foreach ($result_product_name as $value) {
-                                    echo $value['ten_sp'];
-                                }
-                            }
-                            ?>
-                        </td>
+                        <td><?php echo $u['ma_sp'] ?></td>
+                        <td><?php echo $u['ten_sp'] ?> </td>
                         <td><?php echo $u['so_bl'] ?></td>
                         <td><?php echo $u['bl_moi_nhat'] ?></td>
                         <td><?php echo $u['bl_cu_nhat'] ?></td>
                         <td>
-                            <a href="?act=chi_tiet&ma_bl=<?php echo $u['ma_bl'] ?>&ma_sp=<?php echo $u['ma_sp'] ?>"><i class="fas fa-address-book"></i></a>
+                            <a href="?act=chi_tiet&ma_sp=<?php echo $u['ma_sp'] ?>"><i class="fas fa-address-book"></i></a>
                         </td>
                     </tr>
             <?php endforeach;

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://cdn.tiny.cloud/1/hqu7rkbua1f9yiw4o0umokh5blx2hry628dd0p6banxt3z84/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/css/all.min.css">
+    <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/fileCss/thanh_toan.css">
     
     <style>
         table {
@@ -43,6 +44,7 @@
         <a href="../../../../Du_An_1/mvc/admin/gop_y" class="w3-bar-item w3-button">Đánh giá (Góp í)</a>
         <a href="../../../../Du_An_1/mvc/admin/banner" class="w3-bar-item w3-button">Banner</a>
         <a href="../../../../Du_An_1/mvc/admin/thong_ke" class="w3-bar-item w3-button">Thống kê</a>
+        <a href="../../../../Du_An_1/mvc/admin/don_hang" class="w3-bar-item w3-button">Đơn hàng</a>
         
     </div>
 

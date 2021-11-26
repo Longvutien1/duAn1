@@ -26,22 +26,34 @@
             <div class="mb-4">
                 <p>KÍCH HOẠT</p>
                 <div class="p-1 border text-center border-black">
-                    <input type="radio" name="kick_hoat" id="" value="Chưa kích hoạt" checked="checked">
+                    <input type="radio" name="kick_hoat" id="" value="Chưa kích hoạt" <?php
+                                                                                        if (isset($kichhoat)) {
+                                                                                            if ($kichhoat == 0) {
+                                                                                                echo "checked='checked'";
+                                                                                            }
+                                                                                        }
+                                                                                        ?>>
                     <label for="Chưa kích hoạt">Chưa kích hoạt</label>
-                    <input class="ml-4" type="radio" name="kick_hoat" id="" value="Kích hoạt">
+                    <input class="ml-4" type="radio" name="kick_hoat" id="" value="Kích hoạt" <?php
+                                                                                                if (isset($kichhoat)) {
+                                                                                                    if ($kichhoat == 1) {
+                                                                                                        echo "checked='checked'";
+                                                                                                    }
+                                                                                                }
+                                                                                                ?>>
                     <label for="Kích hoạt">Kích hoạt</label>
                 </div>
             </div>
-           
-        </div>
-        <!-- end cột 1 -->
-        <div class="col-span-1">
-            <div class="mb-4">
+
+        </div> 
+        <!-- end cột 1 --> 
+        <div class="col-span-1"> 
+            <div class="mb-4"> 
                 <p>HỌ VÀ TÊN</p>
                 <input type="text" name="ho_va_ten" style="border:1px solid black; width: 100%;height: 30px; padding: 4px;" value="<?php if (isset($hoten)) echo $hoten; ?>">
             </div>
 
-           
+
 
             <div class="mb-4">
                 <p>HÌNH ẢNH</p>
@@ -51,9 +63,21 @@
             <div class="mb-4">
                 <p>VAI TRÒ</p>
                 <div class="p-1 border text-center border-black">
-                    <input type="radio" name="vai_tro" id="" value="Khách hàng" checked="checked">
+                    <input type="radio" name="vai_tro" id="" value="Khách hàng" <?php
+                                                                                if (isset($vaitro)) {
+                                                                                    if ($vaitro == 0) {
+                                                                                        echo "checked='checked'";
+                                                                                    }
+                                                                                }
+                                                                                ?>>
                     <label for="Khách hàng">Khách hàng</label>
-                    <input class="ml-4" type="radio" name="vai_tro" id="" value="Nhân viên">
+                    <input class="ml-4" type="radio" name="vai_tro" id="" value="Nhân viên" <?php
+                                                                                            if (isset($vaitro)) {
+                                                                                                if ($vaitro == 1) {
+                                                                                                    echo "checked='checked'";
+                                                                                                }
+                                                                                            }
+                                                                                            ?>>
                     <label for="Nhân viên">Nhân viên</label>
                 </div>
             </div>

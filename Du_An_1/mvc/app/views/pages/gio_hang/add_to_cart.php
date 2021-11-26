@@ -3,16 +3,31 @@
 
         $product = Product::add_to_cart($id);
         echo "<pre>";
-       
+    if (isset($_GET['quantity'])) {
+        $sl = $_GET['quantity'];
+        var_dump($sl); 
+    }
         // var_dump($product);
         // nếu mà tồn tại product thì check giỏ hàng
         if ($product) {
             if (isset($_SESSION['cart'])) {
                 // var_dump("đã tồn tại giỏ hàng");
                 if (isset($_SESSION['cart'][$id])) {
-                    $_SESSION['cart'][$id]['qtity'] += 1;  // số lượng
+
+                    if (isset($_GET['quantity'])) {
+                        $sl = $_GET['quantity'];
+                        $_SESSION['cart'][$id]['qtity'] += $sl;
+                    }else {
+                        $_SESSION['cart'][$id]['qtity'] += 1;  // số lượng
+                    }
                 }else{
-                    $_SESSION['cart'][$id]['qtity'] = 1;  // số lượng
+                    if (isset($_GET['quantity'])) {
+                        $sl = $_GET['quantity'];
+                        $_SESSION['cart'][$id]['qtity'] = $sl;
+                    }else {
+                        $_SESSION['cart'][$id]['qtity'] = 1;  // số lượng
+                    }
+                    
                 } 
                 $_SESSION['cart'][$id]['ten_sp'] = $product[0]['ten_sp']; //name
                 $_SESSION['cart'][$id]['gia'] = $product[0]['gia']; //giá
@@ -37,6 +52,7 @@
                 
             } else {
                 // var_dump("chưa tồn tại");
+                
                 $_SESSION['cart'][$id]['ten_sp'] = $product[0]['ten_sp']; //name
                 $_SESSION['cart'][$id]['gia'] = $product[0]['gia']; //giá
                 $_SESSION['cart'][$id]['giamgia'] = $product[0]['giamgia']; //giảm giá
@@ -47,8 +63,12 @@
                 $_SESSION['cart'][$id]['luotxem'] = $product[0]['luotxem']; //số lượt xem
                 $_SESSION['cart'][$id]['maloai'] = $product[0]['maloai']; //mã loại
     
-    
-                $_SESSION['cart'][$id]['qtity'] = 1;  // số lượng
+                if (isset($_GET['quantity'])) {
+                    $sl = $_GET['quantity'];
+                    $_SESSION['cart'][$id]['qtity'] = $sl;
+                }else {
+                    $_SESSION['cart'][$id]['qtity'] = 1;  // số lượng
+                }
     
                 $_SESSION['count_product'] =0;
                 foreach ($_SESSION['cart'] as $key => $value) {
