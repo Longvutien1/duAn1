@@ -28,12 +28,80 @@
     <header>
         <?php require_once './app/views/blocks/header.php'; ?>
     </header>
-    <div class="container">
+    <section class="mb-14" style="background-color: #F4F5F5;">
+        <div class=" text-center py-16">
+            <p class="text-6xl text-gray-600 font-normal pb-3">SHOP</p>
+            <span class="text-sm font-semibold">Home</span>
+            <span class="text-lg px-3 font-semibold">&gt;</span>
+            <span class="text-lg text-yellow-600 font-semibold">Shop</span>
+        </div>
+    </section>
+    <div>
         <section class="w-10/12 m-auto">
             <div id="fullProduct" class="grid grid-cols-7 gap-16 pt-5">
-                <div id="BGproduct" class="col-span-5">
+
+                <div id="right" class="col-span-7 xl:col-span-2">
+                    <div class="mb-8">
+                        <p class="text-3xl mb-2">Sreach</p>
+                        <form action="" method="GET" class="w-5/12 xl:w-full border flex justify-between">
+                            <input class="w-10/12 p-1 outline-none " type="text" placeholder="Tìm kiếm" name="search">
+                            <button class="w-2/12  mx-auto btn_search" type="submit" name="submitSearch"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                    <ul>
+                        <li class="border text-white pl-4 text-xl py-2" style="background-color: #F4A851;color: #000;">CATEGORY</li>
+
+                        <div style="height: 250px; overflow: scroll;">
+                            <?php
+
+
+                            // $result = $pdo_loai_hang->list_loai_hang();
+                            if (!empty($list_loai_hang)) {
+                                foreach ($list_loai_hang as $u) :
+                            ?>
+                                    <li class="xam border px-4  py-2"><a href="?name_category=<?php echo $u['ten_loai'] ?>"><?php echo $u['ten_loai'] ?></a></li>
+                            <?php endforeach;
+                            } ?>
+
+                        </div>
+                        <li class="border px-4  py-2" style="background-color: #F4A851;color: #000;">
+                            <form action="" method="GET">
+                                <input class="w-full p-1 outline-none" type="text" name="search_loai" placeholder="Từ khóa tìm kiếm">
+                            </form>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="border text-white pl-4 text-xl py-2 mt-8" style="background-color: #F4A851;color: #000;">TOPS 10 FAVORITE</li>
+                        <?php
+
+
+
+                        // $result = $pdo_top10->select_hh_top_10();
+                        if (!empty($sp_top_10)) {
+                            foreach ($sp_top_10 as $u) :
+                        ?>
+                                <li class="border px-4  py-2 flex gap-4">
+                                    <a href="detail?act=chi_tiet_sp&ma_sp=<?php echo $u['ma_sp'] ?>"><img src="../../../../Du_An_1/mvc/storage/image/<?php echo $u['hinh'] ?>" alt="" width="120"></a>
+
+                                    <div>
+                                        <a class="text-xl" href="detail?act=chi_tiet_sp&ma_sp=<?php echo $u['ma_sp'] ?>"><?php echo $u['ten_sp'] ?></a>
+                                        <p class="text-gray-400 text-xl font-semibold line-through">$<?php echo $u['gia'] ?>.00</p>
+                                        <p class="text-yellow-500 text-xl font-semibold">$<?php echo $u['gia'] - ($u['gia'] * $u['giamgia'] / 100) ?>.00</p>
+                                    </div>
+                                </li>
+                        <?php endforeach;
+                        } ?>
+
+                        <li class="border px-4  py-2" style="background-color: #F4A851;">
+                            <p class="p-3"></p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="BGproduct" class="col-span-7 xl:col-span-5">
                     <H4 class="italic text-3xl text-center text-red-200">Sản Phẩm Của Chúng Tôi</H4>
-                    <div id="product" class=" grid grid-cols-3 gap-8 mt-8 ">
+                    <p><?php if(isset($so_sp)) echo $so_sp?></p>
+                    <div id="product" class="sm:grid sm:grid-cols-1 sm:grid sm:grid-cols-2 lg:grid lg:grid-cols-3 gap-8 mt-8 ">
                         <?php
                         if (!empty($products)) {
                             foreach ($products as $u) :
@@ -51,14 +119,13 @@
                                 }
 
                         ?>
-                                <div style="padding: 10px; ">
-
-                                    <div class="tong_product">
+                                <div>
+                                    <div class="tong_product mt-8">
                                         <div id="img_product">
                                             <img class="anh1" src="../../../../Du_An_1/mvc/storage/image/<?= $u['hinh'] ?>" alt="" style="max-width: 100%;height: 200px; width: 100%; ">
                                             <div class="text-center icon_product">
                                                 <ul>
-                                                    <li class="inline-block p-3 bg-white hover_icon_sp"><a href="cart?act=add_to_cart_shop&id_addtoCart=<?php echo $u['ma_sp'] ?>" ><i class="fas fa-shopping-cart text-mb"></i></a></li>
+                                                    <li class="inline-block p-3 bg-white hover_icon_sp"><a href="cart?act=add_to_cart_shop&id_addtoCart=<?php echo $u['ma_sp'] ?>"><i class="fas fa-shopping-cart text-mb"></i></a></li>
 
                                                     <li class="inline-block p-3 bg-white hover_icon_sp"><a href=""><i class="fas fa-heart text-mb"></i></a></li>
                                                     <li class="inline-block p-3 bg-white hover_icon_sp"><a href="detail?act=chi_tiet_sp&ma_sp=<?php echo $u['ma_sp'] ?>"><i class="fas fa-eye text-mb"></i></a></li>
@@ -71,7 +138,7 @@
                                                     <p class="text-2xl "><?= $u['ten_sp'] ?></p>
                                                 </a>
                                                 <div>
-                                                    <span class="text-2xl " style="color: #F4A851; font-weight: 600;">$ </span>
+                                                    <span class="text-2xl " style="color: #F4A851; font-weight: 600;">$<?php echo $u['gia'] - ($u['gia'] * $u['giamgia'] / 100) ?> </span>
                                                     <span class="text-2xl ml-2" style="color: gray; text-decoration: line-through; ">$<?= $u['gia'] ?></span>
                                                 </div>
                                             </div>
@@ -158,72 +225,15 @@
 
                     </div>
                 </div>
-                <div id="right" class="col-span-2">
-                    <div class="mb-8">
-                        <p class="text-3xl mb-2">Sreach</p>
-                        <form action="" method="GET" class="w-full border flex justify-between">
-                            <input class="w-10/12 p-1 outline-none " type="text" placeholder="Tìm kiếm" name="search">
-                            <button class="w-2/12  mx-auto btn_search" type="submit" name="submitSearch"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-                    <ul>
-                        <li class="border text-white pl-4 text-xl py-2" style="background-color: #F4A851;color: #000;">CATEGORY</li>
-                        <?php
 
-
-                        // $result = $pdo_loai_hang->list_loai_hang();
-                        if (!empty($list_loai_hang)) {
-                            foreach ($list_loai_hang as $u) :
-                        ?>
-                                <li class="xam border px-4  py-2"><a href="?name_category=<?php echo $u['ten_loai'] ?>"><?php echo $u['ten_loai'] ?></a></li>
-                        <?php endforeach;
-                        } ?>
-
-                        <li class="border px-4  py-2" style="background-color: #F4A851;color: #000;">
-                            <form action="" method="GET">
-                                <input class="w-full p-1 outline-none" type="text" name="search_loai" placeholder="Từ khóa tìm kiếm">
-                            </form>
-                        </li>
-                    </ul>
-
-
-                    <ul>
-                        <li class="border text-white pl-4 text-xl py-2 mt-8" style="background-color: #F4A851;color: #000;">TOPS 10 FAVORITE</li>
-                        <?php
-
-
-
-                        // $result = $pdo_top10->select_hh_top_10();
-                        if (!empty($sp_top_10)) {
-                            foreach ($sp_top_10 as $u) :
-                        ?>
-                                <li class="border px-4  py-2 flex gap-4">
-                                    <a href="detail?act=chi_tiet_sp&ma_sp=<?php echo $u['ma_sp'] ?>"><img src="../../../../Du_An_1/mvc/storage/image/<?php echo $u['hinh'] ?>" alt="" width="120"></a>
-
-                                    <div>
-                                        <a class="text-xl" href="detail?act=chi_tiet_sp&ma_sp=<?php echo $u['ma_sp'] ?>"><?php echo $u['ten_sp'] ?></a>
-                                        <p class="text-gray-400 text-xl font-semibold line-through">$<?php echo $u['gia'] ?>.00</p>
-                                        <p class="text-yellow-500 text-xl font-semibold">$<?php echo $u['gia'] - ($u['gia'] * $u['giamgia'] / 100) ?>.00</p>
-                                    </div>
-                                </li>
-                        <?php endforeach;
-                        } ?>
-
-                        <li class="border px-4  py-2" style="background-color: #F4A851;">
-                            <p class="p-3"></p>
-                        </li>
-                    </ul>
-
-
-
-                </div>
 
             </div>
         </section>
     </div>
 </body>
-<footer>
+<footer class="mt-16">
     <?php require_once './app/views/blocks/footer.php'; ?>
 </footer>
+<script src="../../../../Du_An_1/mvc/storage/js/home.js"></script>
 
 </html>

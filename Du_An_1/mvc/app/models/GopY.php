@@ -17,13 +17,13 @@ class GopY {
         return $row;
     }
 
-    function add_gop_y($noidung, $ma_kh, $ngay_nhap)
+    function add_gop_y($noidung, $ngay_nhap, $ten_kh, $email)
     {
-        $sql = "INSERT into gopy(noidung,ma_kh,ngay_nhap) values(?,?,?)";
-        $new_loai_hang = pdo_execute($sql, $noidung, $ma_kh, $ngay_nhap);
+        $sql = "INSERT into gopy(noidung, ngay_nhap, ten_kh, email) values(?,?,?,?)";
+        $new_loai_hang = pdo_execute($sql, $noidung, $ngay_nhap, $ten_kh, $email);
 
         if ($new_loai_hang) {
-            return "Thêm góp ý" . $new_loai_hang;
+            return "Thêm góp ý " . $new_loai_hang;
         } else {
             return "Thêm góp ý " . $new_loai_hang;
         }
@@ -52,6 +52,12 @@ class GopY {
         }
     }
 
+    function list__count_gop_y()
+    {
+        $sql = "SELECT count(ma_dg) as 'count_dg' FROM gopy order by ma_dg desc";
+        $value = pdo_query_value($sql);
+        return $value;
+    }
 
 }
 

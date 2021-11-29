@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://cdn.tiny.cloud/1/hqu7rkbua1f9yiw4o0umokh5blx2hry628dd0p6banxt3z84/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/css/all.min.css">
-    <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/fileCss/thanh_toan.css">
+    <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/fileCss/admin.css">
     
     <style>
         table {
@@ -53,7 +53,7 @@
         <div class="w3-teal" style="background-color: #EAF1E1;">
             <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
             <div class="w3-container">
-                <h1>My Page</h1>
+                <h1 class="text-center">My Admin</h1>
             </div>
         </div>
 

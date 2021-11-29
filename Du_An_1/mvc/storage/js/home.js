@@ -1,3 +1,32 @@
+
+// --------menu header---------------------
+let menu = document.querySelector('#menu-btn');
+let navbar = document.querySelector('.navbar');
+
+menu.onclick = () => {
+    menu.classList.toggle('fa-times');
+    navbar.classList.toggle('active');
+}
+
+window.onscroll = () => {
+    menu.classList.remove('fa-times');
+    navbar.classList.remove('active');
+};
+
+
+// -----------search-form header---------------
+
+let searchForm = document.querySelector('.search_form');
+
+document.querySelector('#icon_search').onclick = () => {
+    searchForm.classList.add('active2');
+}
+
+document.querySelector('#close_search').onclick = () => {
+    searchForm.classList.remove('active2');
+}
+
+
 document.querySelectorAll('.image-slider img').forEach(images => {
     images.onclick = () => {
         var src = images.getAttribute('src');
@@ -18,23 +47,30 @@ $('.slider').slick({
     nextArrow: '<button type="button" class="slick-next"><span class="text-2xl">&#10095;</span></button>',
     responsive: [{
 
-        breakpoint: 1025,
+        breakpoint: 1400,
         settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
+            slidesToShow: 4,
+            slidesToScroll: 4,
             infinite: true,
             dots: true
         }
     },
-    {
-        breakpoint: 600,
+    { 
+        breakpoint: 1300,
+        settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3
+        }
+    },
+     {
+        breakpoint: 1024,
         settings: {
             slidesToShow: 2,
-            slidesToScroll: 2
+            slidesToScroll:2
         }
     },
     {
-        breakpoint: 480,
+        breakpoint: 660,
         settings: {
             slidesToShow: 1,
             slidesToScroll: 1
@@ -62,35 +98,35 @@ $('.slider_banner').slick({
 
 
 // ------------------------------------------------------------
-var slideIndex = 1;
-showSlides(slideIndex);
+// var slideIndex = 1;
+// showSlides(slideIndex);
 
-function plusSlides(n) {
-    showSlides(slideIndex += n);
-}
+// function plusSlides(n) {
+//     showSlides(slideIndex += n);
+// }
 
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
+// function currentSlide(n) {
+//     showSlides(slideIndex = n);
+// }
 
-function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {
-        slideIndex = 1
-    }
-    if (n < 1) {
-        slideIndex = slides.length
-    }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-}
+// function showSlides(n) {
+//     var i;
+//     var slides = document.getElementsByClassName("mySlides");
+//     var dots = document.getElementsByClassName("dot");
+//     if (n > slides.length) {
+//         slideIndex = 1
+//     }
+//     if (n < 1) {
+//         slideIndex = slides.length
+//     }
+//     for (i = 0; i < slides.length; i++) {
+//         slides[i].style.display = "none";
+//     }
+//     for (i = 0; i < dots.length; i++) {
+//         dots[i].className = dots[i].className.replace(" active", "");
+//     }
+//     slides[slideIndex - 1].style.display = "block";
+//     dots[slideIndex - 1].className += " active";
+// }
 
 

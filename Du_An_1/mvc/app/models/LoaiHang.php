@@ -17,6 +17,14 @@ class LoaiHang {
         return $row;
     }
 
+    function list_loai_hang_shop()
+    {
+       
+        $sql = "SELECT * FROM loaihang order by ma_loai desc ";
+        $row = pdo_query($sql);
+        return $row;
+    }
+
     function add_loai_hang($ten_loai)
     {
         $sql = "INSERT into loaihang(ten_loai) values(?)";

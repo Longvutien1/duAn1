@@ -7,7 +7,15 @@ class HomeController
     {
         $result = Product::select_hh_top_10();
         $banner = Banner::list_banner_by_status();
+      
         $hh_by_loai = LoaiHang::list_hang_hoa_theo_loai_home();
+
+         // kiểm tra search
+        //  if (isset($_GET['submitSearch']) && !empty($_GET['search'])) {
+        //     $search = $_GET['search'];
+        //     $products = Product::search_product($_GET['search']);
+        //     header("refresh:0.5;url=shop?act=list");
+        // }
         include_once './app/views/home.php';
     }
 
@@ -80,7 +88,7 @@ class HomeController
                     $result_list_hh = Product::list_hang_hoa_theo_loai($maloai);
                     include_once './app/views/chi_tiet_sp.php';
                     break;
-
+                    
                 default:
                     # code...
                     break;
@@ -90,7 +98,7 @@ class HomeController
 
     public function shop()
     {
-        $list_loai_hang = LoaiHang::list_loai_hang();
+        $list_loai_hang = LoaiHang::list_loai_hang_shop();
         $sp_top_10 = Product::select_hh_top_10();
 
 
@@ -101,8 +109,6 @@ class HomeController
         // var_dump($so_trang);
 
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-
 
 
         // -----------------hiển thị sản phẩm----------------------
@@ -117,9 +123,9 @@ class HomeController
             $search = $_GET['search'];
             $products = Product::search_product($_GET['search']);
             if ($products) {
-                echo "<h3 class=' m-1' style='color: green;font-weight: 600;'> Tìm thấy " . count($products) . " sản phẩm </h3>";
+                $so_sp =  "<h3 class=' m-1' style='color: green;font-weight: 600;'> Tìm thấy " . count($products) . " sản phẩm </h3>";
             } else {
-                echo "<h3 class=' m-1' style='color:red;font-weight: 600;'> Không tìm thấy sản phẩm nào !</h3>";
+                $so_sp = "<h3 class=' m-1' style='color:red;font-weight: 600;'> Không tìm thấy sản phẩm nào !</h3>";
             }
         } else if (isset($_GET['name_category'])) {
             $name_category = $_GET['name_category'];
@@ -141,6 +147,24 @@ class HomeController
 
     public function tim_cua_hang()
     {
+        $error = "";
+        if (isset($_POST['gui_ngay'])) {
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $cmt = $_POST['cmt'];
+            $ngay_nhap = date_format(date_create(), 'Y-m-d H:i:s');
+            if ($name == "" || $email == "" || $cmt == "") {
+                $error = "Không được để trống thông tin";
+            }else{
+                $add = GopY::add_gop_y($cmt, $ngay_nhap, $name, $email);
+            }
+            if (isset($add)) {
+                echo "<script> alert('$add')</script>";
+
+                // header("refresh:0.2;url=./app/views/pages/loai_hang/list.php");
+            }
+        }
+
         include_once './app/views/tim_cua_hang.php';
     }
 
@@ -281,5 +305,10 @@ class HomeController
     public function gioi_thieu()
     {
         include_once './app/views/gioi_thieu.php';
+    }
+
+    public function menu()
+    {
+        include_once './app/views/menu.php';
     }
 }

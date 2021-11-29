@@ -31,7 +31,7 @@
 
             <form action="" method="POST">
                 <div class="grid grid-cols-12 gap-8 ">
-                    <div class="col-span-6 ">
+                    <div class="col-span-12 lg:col-span-6 ">
                         <form action="" method="POST">
                             <div class="mb-4">
                                 <p class="text-3xl font-bold">Địa Chỉ Mới</p>
@@ -39,23 +39,23 @@
                             </div>
                             <div class="mb-4">
 
-                                <input type="text" name="ho_ten" style="border:1px solid black; width: 60%;height: 30px; padding: 8px;" placeholder="Họ và tên">
+                                <input type="text" name="ho_ten" style="border:1px solid black; width: 80%;height: 30px; padding: 8px;" placeholder="Họ và tên">
                             </div>
                             <div class="mb-4">
 
-                                <input type="text" name="phone" style="border:1px solid black; width: 60%;height: 30px; padding: 8px;" placeholder="Số điện thoại">
+                                <input type="text" name="phone" style="border:1px solid black; width: 80%;height: 30px; padding: 8px;" placeholder="Số điện thoại">
                             </div>
                             <div class="mb-4">
 
-                                <input type="text" name="diachi" style="border:1px solid black; width: 60%;height: 30px; padding: 8px;" placeholder="Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã">
+                                <input type="text" name="diachi" style="border:1px solid black; width: 80%;height: 30px; padding: 8px;" placeholder="Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã">
                             </div>
                             <div class="mb-4">
 
-                                <input type="text" name="diachi_cu_the" style="border:1px solid black; width: 60%;height: 30px; padding: 8px;" placeholder="Địa chỉ cụ thể">
+                                <input type="text" name="diachi_cu_the" style="border:1px solid black; width: 80%;height: 30px; padding: 8px;" placeholder="Địa chỉ cụ thể">
                             </div>
                             <div class="mb-4">
                                 <p>Loại địa chỉ: </p>
-                                <div class="p-1" id="loai_dia_chi" style="width: 60%;">
+                                <div class="p-1" id="loai_dia_chi" style="width: 80%;">
 
                                     <input type="radio" name="loai_diachi" id="c1" value="Nhà riêng" checked="checked">
                                     <label for="c1">Nhà riêng</label>
@@ -79,7 +79,7 @@
 
                         </form>
                     </div>
-                    <div class="col-span-6 p-8 don_hang">
+                    <div class="col-span-12 lg:col-span-6 p-8 don_hang">
                         <p class="text-3xl font-bold">Đơn Hàng Của Bạn</p>
                         <div>
                             <div class="flex justify-between py-2">
@@ -125,7 +125,7 @@
                             <div class="flex justify-between py-2 font-bold" style="border-bottom: 1px solid #ddd;">
                                 <p>Tổng</p>
                                 <input id="tong2" type="text" value="<?= $tong ?>" style="display: none;">
-                           
+
                                 <p>$<span id="tongDonHang"></span>.00</p>
 
                             </div>
@@ -158,8 +158,8 @@
             var phiVC = document.getElementById("phi_vc");
             var tongDonHang = document.getElementById("tongDonHang");
             if (noi_nhan == "Ngoại thành") {
-                
-                
+
+
                 phiVC.innerHTML = 20;
                 phiVC = 20;
                 // tong22 =  
@@ -175,4 +175,5 @@
 
         }
     </script>
+    <script src="../../../../Du_An_1/mvc/storage/js/home.js"></script>
 </body>

@@ -26,12 +26,12 @@
     </header>
 
     <section id="home">
-        <div class="banner">
-            <div class="row w-10/12 m-auto">
+        <div class="banner py-32">
+            <div class="row w-10/12 m-auto ">
 
                 <div class="content">
-                    <p>fresh tea in the morning</p>
-                    <a href="../../../../Du_An_1/mvc/shop" class="btn">Buy One Now</a>
+                    <p class="text-5xl sm:text-6xl md:text-6xl    xl:text-7xl xl:leading-tight font-bold uppercase text-yellow-500">trà tươi vào buổi sáng</p>
+                    <a href="../../../../Du_An_1/mvc/shop" class="btn">Đặt ngay</a>
                 </div>
 
                 <div class="image">
@@ -59,7 +59,7 @@
 
     <body>
         <section class="w-10/12 m-auto mb-8">
-            <p class="heading"> about us <span>why choose us</span> </p>
+            <p class="heading"> Giới thiệu <span>Lí do chọn chúng tôi</span> </p>
         </section>
         <section class=" w-10/12 mx-auto mt-16 about " id="about">
             <div class="row">
@@ -69,21 +69,21 @@
                 </div>
 
                 <div class="content">
-                    <h3 class="title">What's Make Our Coffee Special!</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse et commodi, ad, doloremque obcaecati maxime quam minima dolore mollitia saepe quos, debitis incidunt. Itaque possimus adipisci ipsam harum at autem.</p>
-                    <a href=".../../../../Du_An_1/mvc/gioi_thieu" class="btn">Read More</a>
+                    <h3 class="title">Điều gì làm cho trà xanh của chúng tôi trở nên đặc biệt!</h3>
+                    <p>Uống trà xanh vào buổi sáng sẽ giúp bạn tỉnh táo, làm việc hiệu quả, nâng cao sức đề kháng của cơ thể, tăng cường sinh lực và phòng chống bệnh tật. Sau khi ăn nhiều dầu mỡ, nên uống trà sẽ giúp tiêu hóa tốt hơn.</p>
+                    <a href=".../../../../Du_An_1/mvc/gioi_thieu" class="btn">Đọc thêm</a>
                     <div class="icons-container">
                         <div class="icons">
                             <img src="../../../../Du_An_1/mvc/storage/image/about-icon-1.png" alt="">
-                            <h3>Quality Tea</h3>
+                            <p >Trà chất lượng</p>
                         </div>
                         <div class="icons">
                             <img src="../../../../Du_An_1/mvc/storage/image/about-icon-2.png" alt="">
-                            <h3>Our Branches</h3>
+                            <p >Chi nhánh</p>
                         </div>
                         <div class="icons">
                             <img src="../../../../Du_An_1/mvc/storage/image/about-icon-3.png" alt="">
-                            <h3>Free Delivery</h3>
+                            <p >Giao hàng miễn phí</p>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
         <section class=" w-10/12 mx-auto mt-16">
             <div class="text-center mb-20 mt-8">
                 <div>
-                    <p class="heading"> PRODUCT <span>Hot products</span> </p>
+                    <p class="heading"> SẢN PHẨM <span>Sản phẩm HOT</span> </p>
                 </div>
             </div>
             <!-- end title  -->
@@ -183,43 +183,15 @@
 
             </div>
             <div class="text-center mt-16">
-                <a href=".../../../../Du_An_1/mvc/shop" class="btn my-16 ">View More</a>
+                <a href=".../../../../Du_An_1/mvc/shop" class="btn my-16 ">Xem thêm</a>
             </div>
         </section>
         <!-- end product -->
 
-        <!-- <section class="w-full mx-auto mt-16">
-            <div class="flex justify-between ml-32">
-                <div>
-                    <h1 class="title_h1_2">Popular Offers</h1>
-                    <ul>
-                        <li class="py-2">
-                            <p class="text-2xl">Oolong Tea ____________________________$19.00</p>
-                            <p>Theme nullam quis ante velit</p>
-                        </li>
-                        <li class="py-2">
-                            <p class="text-2xl">Oolong Tea ____________________________$19.00</p>
-                            <p>Theme nullam quis ante velit</p>
-                        </li>
-                        <li class="py-2">
-                            <p class="text-2xl">Oolong Tea ____________________________$19.00</p>
-                            <p>Theme nullam quis ante velit</p>
-                        </li>
-                        <li class="py-2">
-                            <p class="text-2xl">Oolong Tea ____________________________$19.00</p>
-                            <p>Theme nullam quis ante velit</p>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <img src="../../../../Du_An_1/mvc/storage/image/h1-img2-1.jpg" alt="" width="800">
-                </div>
-            </div>
-        </section> -->
         <section class="bg_menu my-8">
 
             <div class="menu w-10/12 m-auto mb-8 pt-8 pb-24" id="menu">
-                <p class="heading my-16 mb-28"> our menu <span>popular menu</span> </p>
+                <p class="heading my-16 mb-28"> our menu <span> menu phổ biến</span> </p>
 
                 <div class="box-container">
 
@@ -284,13 +256,11 @@
 
         <!-- menu section ends -->
         <!-- end title 2 -->
-        <section class=" w-10/12 mx-auto my-28">
-            <h1 class="title_h1_2 text-center ">Discover The Magic Of Tea,</h1>
-            <h1 class="title_h1_2 text-center " style="line-height: 0;"> Learn About Our Signature Flavors</h1>
-
+        <section class="w-10/12 m-auto my-28 mb-16">
+            <p class="heading"> LOẠI HÀNG <span>Sản phẩm theo loại </span> </p>
         </section>
 
-        <section class=" w-9/12 mx-auto my-16">
+        <section class=" w-10/12 mx-auto my-16 ">
             <!-- <?php
                     foreach ($hh_by_loai as $u) {
                         var_dump($u['ma_loai']);
@@ -298,8 +268,8 @@
                     var_dump($hh_by_loai[0]['ten_loai']);
                     ?> -->
 
-            <div class="grid grid-cols-12 gap-8 ">
-                <div class="col-span-4 gap-8 item">
+            <div class="w-7/12 m-auto lg:grid lg:grid-cols-12 lg:gap-8 lg:w-full ">
+                <div class="col-span-4 gap-8 item mt-8">
                     <a href="shop?name_category=<?php if (isset($hh_by_loai[0]['ten_loai'])) {
                                                     echo $hh_by_loai[0]['ten_loai'];
                                                 } ?>">
@@ -314,9 +284,9 @@
                     </a>
                 </div>
                 <!--End ảnh cột 1 -->
-                <div class="col-span-4 gap-8 hidden sm:block">
-                    <div class="div ">
-                        <div class="item mb-8">
+                <div class="col-span-4 gap-8 ">
+                    <div class="div    ">
+                        <div class="mt-8 item ">
                             <a href="shop?name_category=<?php if (isset($hh_by_loai[1]['ten_loai'])) {
                                                             echo $hh_by_loai[1]['ten_loai'];
                                                         } ?>">
@@ -330,7 +300,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="item">
+                        <div class="mt-8 item">
                             <a href="shop?name_category=<?php if (isset($hh_by_loai[2]['ten_loai'])) {
                                                             echo $hh_by_loai[2]['ten_loai'];
                                                         } ?>">
@@ -347,7 +317,7 @@
                     </div>
                 </div>
                 <!--End ảnh cột 2 -->
-                <div class="col-span-4 gap-8 item">
+                <div class="mt-8 col-span-4 gap-8 item">
                     <a href="shop?name_category=<?php if (isset($hh_by_loai[3]['ten_loai'])) {
                                                     echo $hh_by_loai[3]['ten_loai'];
                                                 } ?>">
@@ -366,7 +336,7 @@
         </section>
         <!-- End-maketing -->
 
-        <section class="w-9/12 mx-auto">
+        <section class="w-10/12 mx-auto">
             <div class="text-center ">
                 <video autobuffer autoplay loop muted style="object-fit: cover; background-size: cover; opacity: 1; margin: auto;  width: 100%;  display: block;" loop="" preload="auto">
                     <source src="https://chaai.qodeinteractive.com/wp-content/uploads/2021/08/video.mp4" type="video/mp4">
@@ -378,7 +348,7 @@
 
     </body>
 
-    <footer>
+    <footer class="mt-16">
         <?php require_once './app/views/blocks/footer.php'; ?>
     </footer>
 

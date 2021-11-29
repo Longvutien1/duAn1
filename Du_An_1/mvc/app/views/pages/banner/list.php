@@ -80,7 +80,7 @@
                         <td><?=  ($u['status'] == 1) ? "Đang sử dụng" : "Chưa sử dụng"?></td>
                         <td>
                             <a href="?act=update&ma_banner=<?php echo $u['ma_banner'] ?>"><i class="material-icons " style="color: #FFC107;">&#xE254;</i></a>
-                            <a onclick="return confirm('Bạn có chắc muốn xóa loại hàng này không ?')" href="?act=delete&id_delete=<?php echo $u['ma_banner'] ?>"><i class="material-icons" style="color: #E34724;">&#xE872;</i></a>
+                            <a onclick="return confirm('Bạn có chắc muốn xóa banner này không ?')" href="?act=delete&id_delete=<?php echo $u['ma_banner'] ?>"><i class="material-icons" style="color: #E34724;">&#xE872;</i></a>
                         </td>
                     </tr>
             <?php endforeach;

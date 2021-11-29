@@ -47,7 +47,8 @@
                 <th></th>
                 <th>Mã đánh giá</th>
                 <th>Nội dung</th>
-                <th>Mã khách hàng</th>
+                <th>Tên khách hàng</th>
+                <th>Email</th>
                 <th>Ngày nhập</th>
                 <th>Actions</th>
             </tr>
@@ -76,7 +77,8 @@
                                                                                                             } ?>></td>
                         <td><?= $u['ma_dg'] ?></td>
                         <td><?= $u['noidung'] ?></td>
-                        <td><?= $u['ma_kh'] ?></td>
+                        <td><?= $u['ten_kh'] ?></td>
+                        <td><?= $u['email'] ?></td>
                         <td><?= $u['ngay_nhap'] ?></td>
                         <td>
                             <a onclick="return confirm('Bạn có chắc muốn xóa loại hàng này không ?')" href="?act=delete&id_delete=<?php echo $u['ma_dg'] ?>"><i class="material-icons" style="color: #E34724;">&#xE872;</i></a>

@@ -41,6 +41,17 @@
         background-color: #F59E0B;
         color: #fff;
     }
+
+    @media(max-width:640px) {
+
+        .container {
+            width: 300px;
+            margin: auto;
+            margin-top: 100px;
+
+        }
+
+    }
 </style>
 
 <body>
@@ -50,7 +61,7 @@
             <div class="col border p-8 col-span-6 bg-white">
                 <h1 class="text-3xl font-bold  my-2">Quên mật khẩu</h1>
                 <p class=" my-2">Nhập thông tin tài khoản</p>
-              
+
                 <input class="border my-2 p-1 w-full" type="text" name="username" placeholder="Tên đăng nhập" value="<?php if (isset($username_kh)) echo $username_kh ?>">
                 <input class="border my-2 p-1 w-full" type="email" name="email" placeholder="Email" value="<?php if (isset($email_kh)) echo $email_kh ?>">
                 <input class="border my-2 p-1 w-full" type="password" name="pass" placeholder="Mật khẩu mới">

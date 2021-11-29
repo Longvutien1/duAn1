@@ -4,7 +4,7 @@
 
 
 <form action="" method="POST" class="grid grid-cols-12">
-    <div class="mt-8 col-span-7 p-8 " style="border-right: 1px solid #ddd;">
+    <div class="mt-8 col-span-12 md:col-span-7 p-8 " style="border-right: 1px solid #ddd;">
         <table class="w-full">
             <tr >
                 <td>Mật khẩu cũ: </td>
@@ -32,7 +32,7 @@
     </div>
 
 
-    <div class="col-span-5 p-16">
+    <!-- <div class="col-span-12 md:col-span-5 p-16">
         
-    </div>
+    </div> -->
 </form>

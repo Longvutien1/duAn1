@@ -19,6 +19,8 @@ class UserController
                     if (isset($_POST['btn_login'])) {
                         $username = $_POST['username'];
                         $pass = $_POST['pass'];
+                        // $check = $_POST['check'];
+
                         if ($username == "" || $pass == "") {
                             $error = "Không được để trống thông tin ! ";
                         } else {
@@ -53,6 +55,16 @@ class UserController
                             } else {
                                 $error = "Tên đăng nhập không chính xác";
                             }
+                        }
+
+
+                        // tạo cookie
+                        if (isset($_POST['check'])) {
+                            setcookie("username", $username, time() + (86400 * 1));
+                            setcookie("pass", $pass, time() + (86400 * 1));
+                            //  var_dump($_COOKIE['pass']);
+                            //  die;
+
                         }
                     }
 
@@ -166,7 +178,7 @@ class UserController
                     }
 
                     if (isset($_POST['btn_update_user'])) {
-                        
+
                         $hoten = $_POST['hoten'];
                         // var_dump($hoten);
                         // die;
@@ -186,9 +198,9 @@ class UserController
                         }
                         if ($hoten == "" || $email == "" || $phone == "" || $diachi == "") {
                             $error = "Không được để trống thông tin";
-                        }elseif (mb_strlen($hoten, 'UTF-8') < 10) {
+                        } elseif (mb_strlen($hoten, 'UTF-8') < 10) {
                             $error = "Họ tên phải lớn hơn 10 kí tự";
-                        }else {
+                        } else {
                             $result_update_user = User::update_khach_hang($_SESSION['ma_kh'], $hoten, $hinh_anh, $email, $phone, $diachi, $gioi_tinh);
                             move_uploaded_file($hinh_anh_tmp, '../../Du_An_1/mvc/storage/image/' . $hinh_anh);
 
@@ -216,13 +228,13 @@ class UserController
                             $error = "Không được để trống thông tin";
                         } elseif ($pass != $ma_hoa_mk) {
                             $error = "Mật khẩu cũ không chính xác";
-                        }elseif ($pass_new2 != $pass_new) {
+                        } elseif ($pass_new2 != $pass_new) {
                             $error = "Mật khẩu mới không trùng khớp";
-                        }elseif (mb_strlen($pass_new, 'UTF-8') < 6) {
+                        } elseif (mb_strlen($pass_new, 'UTF-8') < 6) {
                             $error = "Mật khẩu mới phải lớn hơn 6 kí tự";
-                        }else {
+                        } else {
                             $pass_hash = password_hash($pass_new, PASSWORD_DEFAULT);
-                            $result_mk = User::update_mk($_SESSION['ma_kh'],$pass_hash);
+                            $result_mk = User::update_mk($_SESSION['ma_kh'], $pass_hash);
 
                             if (isset($result_mk)) {
                                 echo "<script> alert('$result_mk')</script>";

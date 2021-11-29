@@ -11,7 +11,7 @@
  Target Server Version : 100421
  File Encoding         : 65001
 
- Date: 26/11/2021 11:41:48
+ Date: 29/11/2021 12:20:21
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,7 @@ CREATE TABLE `banner`  (
   `hinh` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `status` int NOT NULL,
   PRIMARY KEY (`ma_banner`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of banner
@@ -35,6 +35,7 @@ INSERT INTO `banner` VALUES (9, 'home-img-5.png', 1);
 INSERT INTO `banner` VALUES (10, 'home-img-6.png', 1);
 INSERT INTO `banner` VALUES (11, 'home-img-3.png', 1);
 INSERT INTO `banner` VALUES (17, '521712f217e8b627b11933f8e61d7313.jpg', 0);
+INSERT INTO `banner` VALUES (19, '8bedb2410bf7580b171e42d7e8983cdf.jpg', 0);
 
 -- ----------------------------
 -- Table structure for binhluan
@@ -151,17 +152,16 @@ DROP TABLE IF EXISTS `gopy`;
 CREATE TABLE `gopy`  (
   `ma_dg` int NOT NULL AUTO_INCREMENT,
   `noidung` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `ma_kh` int NOT NULL,
   `ngay_nhap` datetime(0) NOT NULL,
-  PRIMARY KEY (`ma_dg`) USING BTREE,
-  INDEX `ma_kh_dg`(`ma_kh`) USING BTREE,
-  CONSTRAINT `ma_kh_dg` FOREIGN KEY (`ma_kh`) REFERENCES `khachhang` (`ma_kh`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
+  `ten_kh` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ma_dg`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of gopy
 -- ----------------------------
-INSERT INTO `gopy` VALUES (3, 'hay', 2, '2021-11-02 22:58:41');
+INSERT INTO `gopy` VALUES (5, 'Sáng tạo', '2021-11-28 05:50:13', 'Vũ Tiến Long', 'longvtph14046@fpt.edu.vn');
 
 -- ----------------------------
 -- Table structure for khachhang
@@ -202,7 +202,7 @@ CREATE TABLE `loaihang`  (
   `ten_loai` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `status` int NOT NULL,
   PRIMARY KEY (`ma_loai`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of loaihang
@@ -211,6 +211,12 @@ INSERT INTO `loaihang` VALUES (1, 'Ô tô', 1);
 INSERT INTO `loaihang` VALUES (2, 'Xe máy z', 1);
 INSERT INTO `loaihang` VALUES (23, 'Xiaomi 2', 1);
 INSERT INTO `loaihang` VALUES (24, 'xu hào', 1);
+INSERT INTO `loaihang` VALUES (37, 'Xe máy', 0);
+INSERT INTO `loaihang` VALUES (38, 'Súng lục', 0);
+INSERT INTO `loaihang` VALUES (39, 'Ab', 0);
+INSERT INTO `loaihang` VALUES (40, 'Đồ ăn kèm', 0);
+INSERT INTO `loaihang` VALUES (41, 'Xiaomi', 0);
+INSERT INTO `loaihang` VALUES (42, 'Xe máy', 0);
 
 -- ----------------------------
 -- Table structure for sanpham
@@ -253,6 +259,6 @@ INSERT INTO `sanpham` VALUES (24, 'aaa', 'chuatamchuc2.jpg', 0, 123, 1, '2021-11
 INSERT INTO `sanpham` VALUES (25, 'long1221', 'glx11-15511546129102068765592.jpg', 0, 12, 1, '2021-11-12', '  You are welcome !  ', 0, 172, 1);
 INSERT INTO `sanpham` VALUES (26, 'long1221', 'lamborghini.jpeg', 0, 123, 11, '2021-11-12', '  You are welcome !  ', 0, 95, 1);
 INSERT INTO `sanpham` VALUES (27, 'Trà chanh truyền thống', 'photo-1472591339360-3d2c23f5a619.jpeg', 0, 123, 12, '2021-11-12', ' You are welcome ! ', 0, 429, 1);
-INSERT INTO `sanpham` VALUES (28, 'long1221', '13.jpg', 0, 123, 1, '2021-11-18', '  You are welcome !  ', 0, 20, 1);
+INSERT INTO `sanpham` VALUES (28, 'long1221', '13.jpg', 0, 123, 1, '2021-11-18', '  You are welcome !  ', 0, 21, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;

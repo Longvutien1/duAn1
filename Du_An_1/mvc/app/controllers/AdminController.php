@@ -722,9 +722,9 @@ class AdminController
 
     public function gop_y()
     {
-        $tong_so_hh = Product::list__count_hang_hoa();
+        $tong_so_gop_y = GopY::list__count_gop_y();
         // var_dump($tong_so_hh);
-        $so_trang = ceil($tong_so_hh / 3);
+        $so_trang = ceil($tong_so_gop_y / 5);
         // var_dump($so_trang);
         if (isset($_GET['search'])) {
             $search = $_GET['search'];

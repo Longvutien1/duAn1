@@ -26,6 +26,10 @@ switch ($url) {
         $page = new HomeController();
         echo $page->tim_cua_hang();
         break;
+    case 'menu':
+        $page = new HomeController();
+        echo $page->menu();
+        break;
     case 'gioi_thieu':
         $page = new HomeController();
         echo $page->gioi_thieu();
