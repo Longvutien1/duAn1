@@ -37,7 +37,7 @@
     }
 </style>
 
-<body style="background-color: #FAF8F5; font-family:'Cormorant Garamond',sans-serif ;">
+<body style=" font-family:'Cormorant Garamond',sans-serif ;">
     <header>
         <?php require_once './app/views/blocks/header.php'; ?>
     </header>
@@ -51,7 +51,7 @@
                     <div class="image">
                         <div class="imgbig">
                             
-                            <img class="imgtotal" src="../../../../Du_An_1/mvc/storage/image/<?= $hinh ?>" alt="" width="800">
+                            <img class="imgtotal" src="../../../../Du_An_1/mvc/storage/image/<?= $hinh ?>" alt="" >
                         </div>
                         <div class="imgsmall">
                             <div style="margin-bottom: 5px;">

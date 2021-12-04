@@ -678,20 +678,6 @@ class AdminController
     public function thong_ke()
     {
 
-        $tong_so_lh = ThongKe::list__count_loai_hang();
-        // var_dump($tong_so_hh);
-        $so_trang = ceil($tong_so_lh / 10);
-        // var_dump($so_trang);
-        if (isset($_POST['all_product'])) {
-            unset($_GET['search']);
-            unset($search);
-            header("refresh:0.5;url=thong_ke?act=list");
-        }
-        if (isset($_GET['search'])) {
-            $search = $_GET['search'];
-        }
-        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-
         $error = "";
         extract($_REQUEST);
 
@@ -995,13 +981,36 @@ class AdminController
                         extract($tt_kh);
                     }
 
+                    if (isset($_POST['btn_duyet'])) {
+                        $thoi_gian_duyet = date_format(date_create(), 'Y-m-d H:i:s');
+                        $noi_dung = "Đơn hàng có mã $ma_don_hang đã được duyệt";
+                        $duyet = DonHang::duyet_don_hang($ma_don_hang);
+                        $add_thong_bao = DonHang::add_thong_bao($thoi_gian_duyet, $ma_don_hang,$noi_dung );
+                        if (isset($duyet)) {
+                            echo "<script> alert('Đơn hàng đã được duyệt')</script>";
+
+                        }
+                    }
+                    
+                    if (isset($_POST['giao_hang'])) {
+                        $thoi_gian_giao= date_format(date_create(), 'Y-m-d H:i:s');
+                        $noi_dung = "Đơn hàng có mã $ma_don_hang đang giao";
+                        $giao_hang = DonHang::giao_hang($ma_don_hang);
+                        $add_thong_bao = DonHang::add_thong_bao($thoi_gian_giao, $ma_don_hang, $noi_dung);
+                        if (isset($giao_hang)) {
+                            echo "<script> alert('Đơn hàng bắt đầu giao !')</script>";
+
+                        }
+                    }
+                    
+
                     $VIEWPAGE = "./app/views/pages/don_hang/chi_tiet.php";
                     break;
 
                 case 'list':
                     $VIEWPAGE = "./app/views/pages/don_hang/list.php";
                     break;
-
+               
                 case 'delete':
                     $ma_bl = $_GET['id_delete'];
 

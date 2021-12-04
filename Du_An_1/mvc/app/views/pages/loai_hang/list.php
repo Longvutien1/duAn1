@@ -1,4 +1,4 @@
-<h1>List loại hàng</h1>
+<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#3F3F3F ; color: #fff; border-radius: 8px;"> QUẢN LÝ LOẠI HÀNG</h2>
 <style>
     ul li {
         display: inline-block;

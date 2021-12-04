@@ -34,7 +34,7 @@
 
 <body>
 
-    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none; width: 20%; background-color: #EAF1E1;" id="mySidebar">
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none; width: 20%; background-color: #fff;" id="mySidebar">
         <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
         <a href="../../../../Du_An_1/mvc/" class="w3-bar-item w3-button">Home</a>
         <a href="../../../../Du_An_1/mvc/admin/san_pham" class="w3-bar-item w3-button">Sản phẩm</a>
@@ -50,10 +50,10 @@
 
     <div id="main">
 
-        <div class="w3-teal" style="background-color: #EAF1E1;">
-            <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+        <div class="" style="background-color: #3f3f3f;">
+            <button id="openNav" class="w3-button  w3-xlarge text-white" onclick="w3_open()">&#9776;</button>
             <div class="w3-container">
-                <h1 class="text-center">My Admin</h1>
+                <!-- <h1 class="text-center text-white">My Admin</h1> -->
             </div>
         </div>
 

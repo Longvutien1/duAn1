@@ -17,6 +17,19 @@ class DonHang {
         return $row;
     }
 
+    function list_don_hang_thong_bao()
+    {
+        $sql = "SELECT * FROM thongbao a
+        join donhang b on a.ma_don_hang = b.ma_don_hang
+        join chitietdonhang c on b.ma_don_hang = c.ma_don_hang
+        group by a.ma_thong_bao
+        order by a.ma_thong_bao desc";
+        $row = pdo_query($sql);
+        return $row;
+    }
+
+    
+
     function don_hang_new()
     {
 
@@ -88,14 +101,57 @@ class DonHang {
         return $value;
     }
 
-    // // danh sách sản phẩm by loại hàng
-    // function list_hang_hoa_theo_loai_home()
-    // {
+    //   duyệt đơn hàng
+    function duyet_don_hang($ma_don_hang){
+            $sql = "UPDATE donhang set duyet=1 where ma_don_hang=?";
+            $result = pdo_execute($sql, $ma_don_hang );
+            if ($result) {
+                return "Update loại hàng " . $result;
+            } else {
+                return "Update loại hàng " . $result;
+            }
+    }
 
-    //     $sql = "SELECT * FROM loaihang  where `status` = 1 ";
-    //     $row = pdo_query($sql);
-    //     return $row;
-    // }
+    //   giao hàng đơn hàng
+    function giao_hang($ma_don_hang){
+        $sql = "UPDATE donhang set giao_hang=1 where ma_don_hang=?";
+        $result = pdo_execute($sql, $ma_don_hang);
+        if ($result) {
+            return "Update loại hàng " . $result;
+        } else {
+            return "Update loại hàng " . $result;
+        }
+    }   
+
+    // thêm thông báo
+    function add_thong_bao($thoi_gian, $ma_don_hang, $noi_dung)
+    {
+        $sql = "INSERT into thongbao(thoi_gian, ma_don_hang, noi_dung) values(?,?,?)";
+        $new_loai_hang = pdo_execute($sql, $thoi_gian, $ma_don_hang, $noi_dung);
+
+        if ($new_loai_hang) {
+            return "Thêm thông báo " . $new_loai_hang;
+        } else {
+            return "Thêm thông báo " . $new_loai_hang;
+        }
+    }
+       //   cập nhật trạng thái (đã xem / chưa xem)
+       function da_xem_thong_bao($ma_thong_bao){
+        $sql = "UPDATE thongbao set trang_thai=1 where ma_thong_bao=?";
+        $result = pdo_execute($sql, $ma_thong_bao);
+        
+    }   
+
+    // số thông báo chưa xem
+    function so_thong_bao_chua_xem()
+    {
+        $sql = "SELECT * FROM thongbao 
+        where trang_thai = 0
+        order by ma_thong_bao desc";
+        $row = pdo_query($sql);
+        return $row;
+    }
+        
 
     //  // tìm sản phẩm
      public function search_product($search)
@@ -112,5 +168,3 @@ class DonHang {
 
 
 }
-
-?>

@@ -122,7 +122,7 @@
                                 <div>
                                     <div class="tong_product mt-8">
                                         <div id="img_product">
-                                            <img class="anh1" src="../../../../Du_An_1/mvc/storage/image/<?= $u['hinh'] ?>" alt="" style="max-width: 100%;height: 200px; width: 100%; ">
+                                            <img class="anh1" src="../../../../Du_An_1/mvc/storage/image/<?= $u['hinh'] ?>" alt="" style="max-width: 100%;height: 250px; width: 100%; ">
                                             <div class="text-center icon_product">
                                                 <ul>
                                                     <li class="inline-block p-3 bg-white hover_icon_sp"><a href="cart?act=add_to_cart_shop&id_addtoCart=<?php echo $u['ma_sp'] ?>"><i class="fas fa-shopping-cart text-mb"></i></a></li>

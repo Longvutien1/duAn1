@@ -13,6 +13,7 @@
     <script src="https://cdn.tiny.cloud/1/hqu7rkbua1f9yiw4o0umokh5blx2hry628dd0p6banxt3z84/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/css/all.min.css">
     <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/fileCss/home.css">
+    <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/fileCss/thanh_toan.css">
     <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/fileCss/myAccount.css">
     <link rel="stylesheet" href="../../../../Du_An_1/mvc/storage/fileCss/shop.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +29,7 @@
         <?php require_once './app/views/blocks/header.php'; ?>
     </header>
     <div class="" style="background-color: #EBEDF5;">
-        <section class="md:w-10/12 m-auto py-12 md:p-8">
+        <section class="md:w-10/12 m-auto py-12 ">
             <div class="row grid grid-cols-12">
                 <div class="col hidden xl:block  col-span-12 xl:col-span-2 ">
                     <div class="flex">
@@ -44,7 +45,7 @@
                         <p class="ml-4"><?php if (isset($_SESSION['ho_ten'])) echo $_SESSION['ho_ten']; ?></p>
                     </div>
                     <div class="flex mt-8">
-                        <span><i class="far fa-user"></i></span>
+                        <span><i class="far fa-user" style="color: #467EC3;"></i></span>
                         <div class="ml-2">
                             <ul>
                                 <li class="hoverVang"><a href="login?act=myAccount">Tài khoản của tôi</a></li>
@@ -58,7 +59,7 @@
 
                         <div>
                             <ul>
-                                <li class="hoverVang"><span><i class="far fa-calendar-minus"></i></span><a class="ml-2" href="">Đơn mua</a></li>
+                                <li class="hoverVang"><span><i class="far fa-calendar-minus" style="color: #467EC3;"></i></span><a class="ml-2" href="">Đơn mua</a></li>
                             </ul>
                         </div>
                     </div>
@@ -66,7 +67,7 @@
 
                         <div>
                             <ul>
-                                <li class="hoverVang"><i class="far fa-bell"></i><a class="ml-2" href="">Thông báo</a></li>
+                            <li class="hoverVang"><i class="far fa-bell" style="color: #F4A851;"></i><span style="color:#F4A851 ;font-weight: 600;" ><?= $so_thong_bao?></span><a class="ml-2" href="login?act=thong_bao">Thông báo</a></li>
                             </ul>
                         </div>
                     </div>
@@ -91,7 +92,7 @@
                             <p class="ml-2"><?php if (isset($_SESSION['ho_ten'])) echo $_SESSION['ho_ten']; ?></p>
                         </div>
                         <div class="flex py-3 sm:py-0">
-                            <span><i class="far fa-user"></i></span>
+                            <span><i class="far fa-user" style="color: #467EC3;"></i></span>
                             <div class="ml-2">
                                 <ul>
                                     <li class="hoverVang "><a href="login?act=myAccount">Tài khoản của tôi</a></li>
@@ -105,7 +106,7 @@
 
                             <div>
                                 <ul>
-                                    <li class="hoverVang"><span><i class="far fa-calendar-minus"></i></span><a class="ml-2" href="">Đơn mua</a></li>
+                                    <li class="hoverVang"><span><i class="far fa-calendar-minus" style="color: #467EC3;"></i></span><a class="ml-2" href="">Đơn mua</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -113,7 +114,7 @@
 
                             <div>
                                 <ul>
-                                    <li class="hoverVang"><i class="far fa-bell"></i><a class="ml-2" href="">Thông báo</a></li>
+                                <li class="hoverVang"><i class="far fa-bell" style="color: #F4A851;"></i><span style="color:#F4A851 ;font-weight: 600;" ><?= $so_thong_bao?></span><a class="ml-2" href="login?act=thong_bao">Thông báo</a></li>
                                 </ul>
                             </div>
                         </div>

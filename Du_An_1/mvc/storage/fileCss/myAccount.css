@@ -14,7 +14,7 @@
   }
 .menuAccount .navbar2{
     position: absolute;
-    top:15%; left:0; right:0;
+    top:85px; left:0; right:0;
     background:#fff;
     transition: all ease-in-out 0.3s;
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);

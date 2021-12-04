@@ -53,10 +53,13 @@
                     <p><?= $ngay_mua ?></p>
                 </div>
 
+                <div class="flex justify-end gap-8">
                 <div class=" py-4">
-                    <button type="submit" class="btn_thanh_toan" name="thanh_toan">Giao hàng</button>
-
-
+                    <button type="submit" class="btn_thanh_toan" name="btn_duyet">Duyệt</button>
+                </div>
+                <div class=" py-4">
+                    <button type="submit" class="btn_thanh_toan" name="giao_hang">Giao hàng</button>
+                </div>
                 </div>
             </div>
 

@@ -73,7 +73,7 @@
                     <h1 class="text-3xl font-bold  my-2">Đăng nhập</h1>
                     <p class=" my-2">Nhập thông tin tài khoản</p>
 
-                    <input class="border my-2 p-1 px-2 w-full" type="text" name="username" placeholder="Tên đăng nhập" value="<?php if(isset($_COOKIE['user'])) echo $_COOKIE['username'];?>">
+                    <input class="border my-2 p-1 px-2 w-full" type="text" name="username" placeholder="Tên đăng nhập" value="<?php if(isset($_COOKIE['username'])) echo $_COOKIE['username'];?>">
                     <input class="border my-2 p-1 px-2 w-full" type="password" name="pass" id="" placeholder="Password" value="<?php if(isset($_COOKIE['pass'])) echo $_COOKIE['pass'];?>">
                     <div>
                     <input type="checkbox" name="check" id="" >

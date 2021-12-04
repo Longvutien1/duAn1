@@ -2,7 +2,8 @@
 session_start();
 
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
-
+// phpinfo();
+// die;
 
 require_once './app/controllers/HomeController.php';
 require_once './app/controllers/UserController.php';

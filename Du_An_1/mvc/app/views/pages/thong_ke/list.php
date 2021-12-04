@@ -1,69 +1,158 @@
-<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#3F3F3F ; color: #fff; border-radius: 8px;">THỐNG KÊ HÀNG HÓA TỪNG LOẠI</h2>
+<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#3F3F3F ; color: #fff; border-radius: 8px;">THỐNG KÊ </h2>
 <form action="index.php" method="POST">
-    <div class="my-8 text-center">
-        <?php
-        
-        
-
-        ?>
-        <div class="w3-container">
-            <div class="w3-bar">
-                <ul>
-                    <?php if ($page > 1) {
-                    ?>
-                        <li class="inline-block"> <a href="?page=<?php echo $page - 1 ?><?php echo isset($search) ? "&search=$search" : '' ?>" class='w3-button'>&laquo;</a> </li>
-                    <?php } ?>
-
-                    <?php
-                    for ($i = 1; $i <= $so_trang; $i++) { ?>
-                        <li class="inline-block" <?php echo $i == $page ? 'style="background-color: #3F3F3F;color:#fff; border-radius: 8px;"' : '' ?>><a href="index.php?page=<?php echo $i ?><?php echo isset($search) ? "&search=$search" : '' ?>" class='w3-button'><?php echo $i ?></a> </li>
-                    <?php } ?>
-
-                    <?php if ($page < $so_trang) {
-                    ?>
-                        <li class="inline-block"><a href="?page=<?php echo $page + 1 ?><?php echo isset($search) ? "&search=$search" : '' ?>" class='w3-button'>&raquo;</a></li>
-                    <?php } ?>
-
-                </ul>
-
-            </div>
-
+    <div>
+        <div>
+            <p class="text-center py-2 font-bold">Hàng hóa theo loại</p>
         </div>
+        <table class="mb-4">
+            <thead>
+                <tr>
+                    <th>LOẠI HÀNG</th>
+                    <th>SỐ LƯỢNG</th>
+                    <th>GIÁ CAO NHẤT</th>
+                    <th>GIÁ THẤP NHẤT</th>
+                    <th  style="border-right: 1px solid #3f3f3f;">GIÁ TRUNG BÌNH</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <?php
+
+                $result = ThongKe::list_thong_ke_so_luong_hang_hoa();
+                if (!empty($result)) {
+
+                    foreach ($result as $u) :
+                        // var_dump($u['ten_loai']);
+                ?>
+                        <tr>
+                            <td><?php echo $u['ten_loai'] ?></td>
+                            <td><?php echo $u['so_luong'] ?></td>
+                            <td><?php echo isset($u['gia_max']) ? $u["gia_max"] : 0 ?></td>
+                            <td><?php echo isset($u['gia_min']) ? $u["gia_min"] : 0 ?></td>
+                            <td><?php echo isset($u['gia_tb']) ? $u["gia_tb"] : 0 ?></td>
+                        </tr>
+                <?php endforeach;
+                } ?>
+
+
+            </tbody>
+        </table>
+    </div>
+    <!-- end hàng hóa theo loại -->
+
+    <div class="flex gap-16">
+        <div>
+            <div>
+                <p class="text-center py-2 font-bold">Số lượng hàng hóa trong đơn hàng</p>
+            </div>
+            <table class="mb-4">
+                <thead>
+                    <tr>
+                        <th>TÊN SẢN PHẨM</th>
+                        <th style="border-right: 1px solid #3f3f3f;">SỐ LƯỢNG</th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <?php
+
+                    $result2 = ThongKe::list_thong_ke_so_luong_don_hang();
+                    if (!empty($result2)) {
+
+                        foreach ($result2 as $u2) :
+                            // var_dump($u['ten_loai']);
+                    ?>
+                            <tr>
+                                <td><?php echo $u2['ten_sp'] ?></td>
+                                <td><?php echo $u2['so_luong'] ?></td>
+
+                            </tr>
+                    <?php endforeach;
+                    } ?>
+
+
+                </tbody>
+            </table>
+        </div>
+        <!-- end số lượng hàng hóa trong đơn hàng -->
+
+        <div>
+            <div>
+                <p class="text-center py-2 font-bold">Người dùng theo vai trò</p>
+            </div>
+            <table class="mb-4">
+                <thead>
+                    <tr>
+                        <th>Vai trò</th>
+                        <th  style="border-right: 1px solid #3f3f3f;">SỐ LƯỢNG</th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <?php
+
+                    $result2 = ThongKe::list_thong_ke_kh_by_vai_tro();
+                    if (!empty($result2)) {
+
+                        foreach ($result2 as $u2) :
+                            // var_dump($u['ten_loai']);
+                    ?>
+                            <tr>
+                                <td><?php echo $u2['vaitro'] == 1 ? "Admin" : "Khách hàng" ?></td>
+                                <td><?php echo $u2['so_luong'] ?></td>
+
+                            </tr>
+                    <?php endforeach;
+                    } ?>
+
+
+                </tbody>
+            </table>
+        </div>
+        <!-- end người dùng theo vai trò -->
+
+        <div>
+            <div>
+                <p class="text-center py-2 font-bold">Số sản phẩm đã bán trong tháng này</p>
+            </div>
+            <table class="mb-4">
+                <thead>
+                    <tr>
+                        <th>MÃ SẢN PHẨM</th>
+                        <th>TÊN SẢN PHẨM</th>
+                        <th style="border-right: 1px solid #3f3f3f;">SỐ LƯỢNG</th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <?php
+
+                    $result4 = ThongKe::so_sp_ban_in_1_month();
+                    if (!empty($result4)) {
+
+                        foreach ($result4 as $u4) :
+                            // var_dump($u['ten_loai']);
+                    ?>
+                            <tr>
+                                <td><?php echo $u4['ma_sp'] ?></td>
+                                <td><?php echo $u4['ten_sp'] ?></td>
+                                <td><?php echo $u4['so_luong'] ?></td>
+
+                            </tr>
+                    <?php endforeach;
+                    } ?>
+
+
+                </tbody>
+            </table>
+        </div>
+        <!-- end số sp đã bán trong tháng này -->
 
     </div>
-    <table class="mb-4">
-        <thead>
-            <tr>
-                <th>LOẠI HÀNG</th>
-                <th>SỐ LƯỢNG</th>
-                <th>GIÁ CAO NHẤT</th>
-                <th>GIÁ THẤP NHẤT</th>
-                <th>GIÁ TRUNG BÌNH</th>
-            </tr>
 
-        </thead>
-        <tbody>
-            <?php
-            
-            $result = ThongKe::list_thong_ke();
-            if (!empty($result)) {
-
-                foreach ($result as $u) :
-                    // var_dump($u['ten_loai']);
-            ?>
-                    <tr>
-                        <td><?php echo $u['ten_loai'] ?></td>
-                        <td><?php echo $u['so_luong'] ?></td>
-                        <td><?php echo isset($u['gia_max']) ? $u["gia_max"] : 0 ?></td>
-                        <td><?php echo isset($u['gia_min']) ? $u["gia_min"] : 0 ?></td>
-                        <td><?php echo isset($u['gia_tb']) ? $u["gia_tb"] : 0 ?></td>
-                    </tr>
-            <?php endforeach;
-            } ?>
-
-
-        </tbody>
-    </table>
     <a href="?act=bieu_do" class="px-4 py-1 border border-black">Xem biểu đồ</a>
 
 </form>

@@ -118,7 +118,7 @@
 
                             <div class="tong_product">
                                 <div id="img_product">
-                                    <img class="anh1" src="../../../../Du_An_1/mvc/storage/image/<?= $u['hinh'] ?>" alt="" style="max-width: 100%;height: 200px; width: 100%; ">
+                                    <img class="anh1" src="../../../../Du_An_1/mvc/storage/image/<?= $u['hinh'] ?>" alt="" style="max-width: 100%;height: 250px; width: 100%; ">
                                     <div class="text-center icon_product">
                                         <ul>
                                             <li class="inline-block p-3 bg-white hover_icon_sp"><a href="cart?act=add_to_cart_shop&id_addtoCart=<?php echo $u['ma_sp'] ?>"><i class="fas fa-shopping-cart text-mb"></i></a></li>
@@ -196,7 +196,7 @@
                 <div class="box-container">
 
                     <a href="#" class="box">
-                        <img src="../../../../Du_An_1/mvc/storage/image/8bedb2410bf7580b171e42d7e8983cdf.jpg" alt="">
+                        <img src="../../../../Du_An_1/mvc/storage/image/sp_3.png" alt="">
                         <div class="content">
                             <h3>Our Special Tea</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, id.</p>
@@ -205,7 +205,7 @@
                     </a>
 
                     <a href="#" class="box">
-                        <img src="../../../../Du_An_1/mvc/storage/image/menu-1.png" alt="">
+                        <img src="../../../../Du_An_1/mvc/storage/image/sp_4.png" alt="">
                         <div class="content">
                             <h3>Our Special Tea</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, id.</p>
@@ -214,7 +214,7 @@
                     </a>
 
                     <a href="#" class="box">
-                        <img src="../../../../Du_An_1/mvc/storage/image/menu-1.png" alt="">
+                        <img src="../../../../Du_An_1/mvc/storage/image/sp_5.png" alt="">
                         <div class="content">
                             <h3>Our Special Tea</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, id.</p>
@@ -223,7 +223,7 @@
                     </a>
 
                     <a href="#" class="box">
-                        <img src="../../../../Du_An_1/mvc/storage/image/menu-1.png" alt="">
+                        <img src="../../../../Du_An_1/mvc/storage/image/sp_7.png" alt="" >
                         <div class="content">
                             <h3>Our Special Tea</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, id.</p>
@@ -232,7 +232,7 @@
                     </a>
 
                     <a href="#" class="box">
-                        <img src="../../../../Du_An_1/mvc/storage/image/menu-1.png" alt="">
+                        <img src="../../../../Du_An_1/mvc/storage/image/sp_10.png" alt="">
                         <div class="content">
                             <h3>Our Special Tea</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, id.</p>
@@ -241,7 +241,7 @@
                     </a>
 
                     <a href="#" class="box">
-                        <img src="../../../../Du_An_1/mvc/storage/image/menu-1.png" alt="">
+                        <img src="../../../../Du_An_1/mvc/storage/image/sp_9.png" alt="">
                         <div class="content">
                             <h3>Our Special Tea</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, id.</p>

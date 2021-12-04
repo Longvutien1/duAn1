@@ -7,6 +7,7 @@ class UserController
     {
         $error = "";
         extract($_REQUEST);
+        $so_thong_bao = count(DonHang::so_thong_bao_chua_xem());
 
         if (isset($_GET['act'])) {
             $act = $_GET['act'];
@@ -244,6 +245,28 @@ class UserController
                     }
 
                     $myPage = "./app/views/pages/user/changePassword.php";
+                    include_once './app/views/pages/user/layout.php';
+                    break;
+
+                case 'thong_bao':
+                    $myPage = "./app/views/pages/user/thong_bao.php";
+                    $list_don_hang = DonHang::list_don_hang_thong_bao();
+
+                    include_once './app/views/pages/user/layout.php';
+                    break;
+                case 'chi_tiet_don_hang':
+                    $myPage = "./app/views/pages/user/chi_tiet_don_hang.php";
+                    $ma_don_hang = $_GET['ma_don_hang'];
+                    
+                    // $ten_hh = BinhLuan::name_hh_by_id($ma_hh);
+                    // var_dump($ten_hh);
+
+                    $result = DonHang::list_don_hang_by_id($ma_don_hang);
+                    foreach ($result as $tt_kh) {
+                        extract($tt_kh);
+                    }
+                 
+                    DonHang::da_xem_thong_bao($_GET['ma_thong_bao']);
                     include_once './app/views/pages/user/layout.php';
                     break;
                 case 'logout':

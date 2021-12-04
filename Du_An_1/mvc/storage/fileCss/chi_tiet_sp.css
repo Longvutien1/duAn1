@@ -7,22 +7,26 @@ body{
 .product{
     display: grid;
     grid-template-columns: 600px 1fr;
-    grid-gap: 30px;
+    /* grid-gap: 30px; */
 }
 .image{
     display: flex;
 }
 .imgtotal{
     width: 400px;
-    height: 545px;
+    /* height: 545px; */
     max-width: 100%;
-    
+    transition: all ease-in-out 0.3s;
+}
+.imgtotal:hover{
+    transform: scale(1.2);
+    transition: all ease-in-out 0.3s;
 }
 .imgbig{
     margin: 0 5px 0 0;
 }
 .imgcon{
-    width: 180px;
+    width: 150px;
    
 }
 div.stars {

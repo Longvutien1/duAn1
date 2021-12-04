@@ -104,7 +104,7 @@
 
         <div class="text-intro my-8 text-center">
             <p class="text-4xl mb-4">OUR STORY</p>
-            <p>Nằm tại Thị Trấn Phú Minh quán trà chanh Bee Tea nổi tiếng với những loại nước uống giải khát với mục tiêu giải trí trải nghiệm và thư giãn quán trà chanh luôn kĩ càng trong các loại đồ uống và dịch vụ khách hàng có thể tới trải nghiệm với chỗ ngoài thoáng mát thoải mái không gian rộng rãi nhân viên thân thiện. 
+            <p>Nằm tại Thị Trấn Phú Minh quán trà chanh Bee Tea nổi tiếng với những loại nước uống giải khát với mục tiêu giải trí trải nghiệm và thư giãn quán trà chanh luôn kĩ càng trong các loại đồ uống và dịch vụ khách hàng có thể tới trải nghiệm với chỗ ngoài thoáng mát thoải mái không gian rộng rãi nhân viên thân thiện.
             </p>
             <p> Các sản phẩm đồ uống hoàn toàn bảo đảm an toàn cho sức khỏe với tiêu chí vui lòng khách đến vừa lòng khách đi trà chanh Bee Tea hứa hẹn sẽ giúp cho khách hàng những loại đồ uống ngon nhất và một không gian giải trí tự nhiên thoải mái nhất</p>
         </div>
@@ -172,19 +172,23 @@
             <img src="../../../../../Du_An_1/mvc/storage/image/home-2-img-1.jpg" alt="">
         </div>
         <div class="text-footer pr-16">
-            <div class="mt-8"> 
+            <div class="mt-8">
                 <span>HOUSE OF TEA</span>
                 <p class="text-4xl md:text-6xl">Explore The Magic Of Tea. Drink Of Health</p>
-                <span >Theme natoque penatibus et magnis dis parturient lo ntes, aug uevelit cursus. Nullam quis ante.
+                <span>Theme natoque penatibus et magnis dis parturient lo ntes, aug uevelit cursus. Nullam quis ante.
                     Sed fringi lla mauris sit amet nibhdonec sodales sagittis mlga. Tellus eget, sem quam semper libero,
                     sit amet.</span>
             </div>
         </div>
     </div>
     </div>
+    <footer class="mt-16">
+        <?php require_once './app/views/blocks/footer.php'; ?>
+    </footer>
+    <script src="../../../../Du_An_1/mvc/storage/js/home.js"></script>
 </body>
-<footer>
-    <?php require_once './app/views/blocks/footer.php'; ?>
-</footer>
+
+
+
 
 </html>
