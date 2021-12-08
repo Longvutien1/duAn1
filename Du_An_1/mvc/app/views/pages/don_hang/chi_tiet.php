@@ -1,4 +1,4 @@
-<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#3F3F3F ; color: #fff; border-radius: 8px;"> CHI TIẾT ĐƠN HÀNG</h2>
+<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#343A40 ; color: #fff; border-radius: 8px;"> CHI TIẾT ĐƠN HÀNG</h2>
 <div class="my-8 text-center"></div>
 <h2 class="text-center p-3 mb-2 text-xl">Đơn hàng: <?php
                                                     // var_dump($result);
@@ -53,13 +53,16 @@
                     <p><?= $ngay_mua ?></p>
                 </div>
 
-                <div class="flex justify-end gap-8">
-                <div class=" py-4">
-                    <button type="submit" class="btn_thanh_toan" name="btn_duyet">Duyệt</button>
-                </div>
-                <div class=" py-4">
-                    <button type="submit" class="btn_thanh_toan" name="giao_hang">Giao hàng</button>
-                </div>
+                <div>
+                    <div class="float-right py-4 ">
+                        <select name="trang_thai" id="" class="mr-4 h-9 my-auto" style="border: 1px solid #000;">
+                            <option value="1">Duyệt</option>
+                            <option value="2">Giao hàng</option>
+                            <option value="3">Giao hàng thành công</option>
+                            <option value="4">Hủy đơn</option>
+                        </select>
+                        <button type="submit" class="btn_thanh_toan" name="cap_nhat">Cập nhật</button>
+                    </div>
                 </div>
             </div>
 
@@ -89,8 +92,8 @@
                 <div class="flex justify-between py-2" style="border-bottom: 1px solid #ddd;">
                     <p>Mã sản phẩm</p>
                     <p><?php foreach ($result as $key2) {
-                        echo $key2['ma_sp']. "  ";
-                    } ?></p>
+                            echo $key2['ma_sp'] . "  ";
+                        } ?></p>
 
                 </div>
 

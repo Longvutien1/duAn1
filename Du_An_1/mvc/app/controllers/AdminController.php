@@ -3,10 +3,17 @@
 class AdminController
 {
 
-
+   
+       
+       
+   
+    
     public function loai_hang()
     {
-
+        $tong_don_hang = DonHang::list__count_don_hang();
+        $tong_san_pham = Product::list__count_hang_hoa();
+        $tong_khach_hang = KhachHang::list__count_khach_hang();
+        $tong_loai_hang = LoaiHang::list__count_loai_hang(); 
         // $tong_so_lh = $pdo_loai_hang->list__count_loai_hang();
         $tong_so_lh = LoaiHang::list__count_loai_hang();
         // var_dump($tong_so_hh);
@@ -24,7 +31,7 @@ class AdminController
         if (isset($_POST['all_product'])) {
             unset($_GET['search']);
             unset($search);
-            header("refresh:0.5;url=loai_hang?act=list");
+            header("refresh:0.5;url=admin?act=list");
         }
 
         $error = "";
@@ -124,7 +131,7 @@ class AdminController
 
                         // hiển thị lại ds
                         $categorys = LoaiHang::list_loai_hang();
-                        header("refresh:0.5;url=admin?act=list");
+                        header("refresh:0.5;url=loai_hang?act=list");
                     }
                     $categorys = LoaiHang::list_loai_hang();
                     $VIEWPAGE = "./app/views/pages/loai_hang/list.php";
@@ -169,13 +176,18 @@ class AdminController
             $VIEWPAGE = "./app/views/pages/loai_hang/list.php";
         }
 
-        include_once './app/views/admin.php';
+        include_once './app/views/admin/index.php';
     }
 
 
 
     public function san_pham()
     {
+        $tong_don_hang = DonHang::list__count_don_hang();
+        $tong_san_pham = Product::list__count_hang_hoa();
+        $tong_khach_hang = KhachHang::list__count_khach_hang();
+        $tong_loai_hang = LoaiHang::list__count_loai_hang(); 
+
         $tong_so_hh = Product::list__count_hang_hoa();
         // var_dump($tong_so_hh);
         $so_trang = ceil($tong_so_hh / 3);
@@ -203,7 +215,7 @@ class AdminController
                     $don_gia = $_POST['dongia'];
                     $giam_gia = $_POST['giamgia'];
                     $loai_hang = $_POST['loaihang'];
-
+                    $so_luong = $_POST['soluong'];
                     $hinh_anh = $_FILES['productImage']['name'];
                     $hinh_anh_tmp = $_FILES['productImage']['tmp_name'];
 
@@ -225,12 +237,14 @@ class AdminController
                         $error = "Đơn giá không được để trống";
                     } else if ($giam_gia == "") {
                         $error = "Giảm giá không được để trống";
+                    } else if ($so_luong == "") {
+                        $error = "Số lượng không được để trống";
                     } else if ($hinh_anh == "") {
                         $error = "Hình ảnh không được để trống";
                     } else if ($ngay_nhap == "") {
                         $error = "Ngày nhập không được để trống";
                     } else {
-                        $result_add = Product::add_hang_hoa($ten_hang_hoa, $don_gia, $giam_gia, $hinh_anh, $ngay_nhap, $mo_ta, $hangDacBiet, $loai_hang);
+                        $result_add = Product::add_hang_hoa($ten_hang_hoa, $hinh_anh, $so_luong, $don_gia, $giam_gia, $ngay_nhap, $mo_ta, $hangDacBiet, $loai_hang);
                         move_uploaded_file($hinh_anh_tmp, '../../Du_An_1/mvc/storage/image/' . $hinh_anh);
                     }
 
@@ -268,6 +282,7 @@ class AdminController
                     $don_gia2 = $_POST['dongia'];
                     $giam_gia2 = $_POST['giamgia'];
                     $loai_hang2 = $_POST['loaihang'];
+                    $so_luong2 = $_POST['soluong'];
                     $productImage = $_FILES['productImage']['name'];
                     $hinh_anh_tmp = $_FILES['productImage']['tmp_name'];
 
@@ -293,11 +308,13 @@ class AdminController
                         $error = "Đơn giá không được để trống";
                     } else if ($giam_gia2 == "") {
                         $error = "Giảm giá không được để trống";
+                    } else if ($so_luong2 == "") {
+                        $error = "Số lượng không được để trống";
                     } else if ($ngay_nhap2 == "") {
                         $error = "Ngày nhập không được để trống";
                     } else {
 
-                        $result_update = Product::update_hang_hoa($ten_hang_hoa, $don_gia2, $giam_gia2, $productImage, $ngay_nhap2, $mo_ta2, $hangDacBiet, $loai_hang2, $ma_sp);
+                        $result_update = Product::update_hang_hoa($ten_hang_hoa, $don_gia2, $giam_gia2,$so_luong2, $productImage, $ngay_nhap2, $mo_ta2, $hangDacBiet, $loai_hang2, $ma_sp);
                         move_uploaded_file($hinh_anh_tmp, '../../Du_An_1/mvc/storage/image/' . $productImage);
                     }
 
@@ -348,15 +365,21 @@ class AdminController
             $VIEWPAGE = "./app/views/pages/san_pham/list.php";
         }
 
-        include_once './app/views/admin.php';
+        // include_once './app/views/admin.php';
+        include_once './app/views/admin/index.php';
         // return "Trang admin";
     }
 
     public function khach_hang()
     {
+        $tong_don_hang = DonHang::list__count_don_hang();
+        $tong_san_pham = Product::list__count_hang_hoa();
+        $tong_khach_hang = KhachHang::list__count_khach_hang();
+        $tong_loai_hang = LoaiHang::list__count_loai_hang(); 
+
         $tong_so_lh = KhachHang::list__count_khach_hang();
         // var_dump($tong_so_hh);
-        $so_trang = ceil($tong_so_lh / 3);
+        $so_trang = ceil($tong_so_lh / 10);
         // var_dump($so_trang);
         if (isset($_POST['all_product'])) {
             unset($_GET['search']);
@@ -403,7 +426,7 @@ class AdminController
                     }
                     $list_kh = KhachHang::list_khach_hang();
                     foreach ($list_kh as $u) {
-                        if ($username == $u['ma_kh']) {
+                        if ($username == $u['username']) {
                             $ma_kh_tt = "Đã tồn tại";
                         }
                     }
@@ -504,10 +527,6 @@ class AdminController
                         $error = "Mật khẩu không được nhỏ hơn 6 kí tự !";
                     } else if ($xac_nhan_mat_khau != $mat_khau) {
                         $error = 'Mật khẩu không trùng khớp';
-                    } else if ($diachi == "") {
-                        $error = "Địa chỉ không được để trống !";
-                    } else if ($phone == "") {
-                        $error = "Số điện thoại không được để trống !";
                     } else {
 
                         $result = KhachHang::update_khach_hang($ma_kh, $username, $mat_khau, $ho_ten, $kick_hoat, $hinh_anh, $email, $vai_tro, $diachi, $phone);
@@ -567,7 +586,7 @@ class AdminController
             $VIEWPAGE = "./app/views/pages/khach_hang/list.php";
         }
 
-        include_once './app/views/admin.php';
+        include_once './app/views/admin/index.php';
         // return "Trang admin";
 
     }
@@ -576,6 +595,11 @@ class AdminController
     //  bình luận
     public function binh_luan()
     {
+        $tong_don_hang = DonHang::list__count_don_hang();
+        $tong_san_pham = Product::list__count_hang_hoa();
+        $tong_khach_hang = KhachHang::list__count_khach_hang();
+        $tong_loai_hang = LoaiHang::list__count_loai_hang(); 
+
         $tong_so_lh = BinhLuan::list_binh_luan();
         // var_dump(count($tong_so_lh));
         // die;
@@ -671,12 +695,16 @@ class AdminController
             $VIEWPAGE = "./app/views/pages/binh_luan/list.php";
         }
 
-        include_once './app/views/admin.php';
+        include_once './app/views/admin/index.php';
         // return "Trang admin";
     }
 
     public function thong_ke()
     {
+        $tong_don_hang = DonHang::list__count_don_hang();
+        $tong_san_pham = Product::list__count_hang_hoa();
+        $tong_khach_hang = KhachHang::list__count_khach_hang();
+        $tong_loai_hang = LoaiHang::list__count_loai_hang(); 
 
         $error = "";
         extract($_REQUEST);
@@ -703,11 +731,16 @@ class AdminController
         }
 
 
-        include_once './app/views/admin.php';
+        include_once './app/views/admin/index.php';
     }
 
     public function gop_y()
     {
+        $tong_don_hang = DonHang::list__count_don_hang();
+        $tong_san_pham = Product::list__count_hang_hoa();
+        $tong_khach_hang = KhachHang::list__count_khach_hang();
+        $tong_loai_hang = LoaiHang::list__count_loai_hang(); 
+
         $tong_so_gop_y = GopY::list__count_gop_y();
         // var_dump($tong_so_hh);
         $so_trang = ceil($tong_so_gop_y / 5);
@@ -778,13 +811,17 @@ class AdminController
             $VIEWPAGE = "./app/views/pages/gop_y/list.php";
         }
 
-        include_once './app/views/admin.php';
+        include_once './app/views/admin/index.php';
         // return "Trang admin";
     }
 
 
     public function banner()
     {
+        $tong_don_hang = DonHang::list__count_don_hang();
+        $tong_san_pham = Product::list__count_hang_hoa();
+        $tong_khach_hang = KhachHang::list__count_khach_hang();
+        $tong_loai_hang = LoaiHang::list__count_loai_hang(); 
 
         // $tong_so_lh = $pdo_loai_hang->list__count_loai_hang();
         $tong_so_lh = Banner::list__count_banner();
@@ -944,11 +981,16 @@ class AdminController
             $VIEWPAGE = "./app/views/pages/banner/list.php";
         }
 
-        include_once './app/views/admin.php';
+        include_once './app/views/admin/index.php';
     }
 
     public function don_hang()
     {
+        $tong_don_hang = DonHang::list__count_don_hang();
+        $tong_san_pham = Product::list__count_hang_hoa();
+        $tong_khach_hang = KhachHang::list__count_khach_hang();
+        $tong_loai_hang = LoaiHang::list__count_loai_hang();    
+
         $tong_so_lh = DonHang::list__count_don_hang();
         // var_dump($tong_so_hh);
         $so_trang = ceil($tong_so_lh / 10);
@@ -960,6 +1002,7 @@ class AdminController
         }
         if (isset($_GET['search'])) {
             $search = $_GET['search'];
+            
         }
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
@@ -980,25 +1023,29 @@ class AdminController
                     foreach ($result as $tt_kh) {
                         extract($tt_kh);
                     }
-
-                    if (isset($_POST['btn_duyet'])) {
-                        $thoi_gian_duyet = date_format(date_create(), 'Y-m-d H:i:s');
-                        $noi_dung = "Đơn hàng có mã $ma_don_hang đã được duyệt";
-                        $duyet = DonHang::duyet_don_hang($ma_don_hang);
-                        $add_thong_bao = DonHang::add_thong_bao($thoi_gian_duyet, $ma_don_hang,$noi_dung );
-                        if (isset($duyet)) {
-                            echo "<script> alert('Đơn hàng đã được duyệt')</script>";
-
-                        }
-                    }
+                //    var_dump( $result[0]['ma_kh']);
+                //    die;
                     
-                    if (isset($_POST['giao_hang'])) {
+                    if (isset($_POST['cap_nhat'])) {
+
+                        $trang_thai = $_POST['trang_thai'];
+
+                        if ($trang_thai == 1) {
+                            $noi_dung = "Đơn hàng có mã $ma_don_hang đã được duyệt";
+                        }elseif ($trang_thai == 2) {
+                            $noi_dung = "Đơn hàng có mã $ma_don_hang đang được giao";
+                        }elseif ($trang_thai == 3) {
+                            $noi_dung = "Đơn hàng có mã $ma_don_hang đã giao thành công";
+                        }elseif ($trang_thai == 4) {
+                            $noi_dung = "Đơn hàng có mã $ma_don_hang đã hủy";
+                        }
                         $thoi_gian_giao= date_format(date_create(), 'Y-m-d H:i:s');
-                        $noi_dung = "Đơn hàng có mã $ma_don_hang đang giao";
-                        $giao_hang = DonHang::giao_hang($ma_don_hang);
-                        $add_thong_bao = DonHang::add_thong_bao($thoi_gian_giao, $ma_don_hang, $noi_dung);
+
+                        
+                        $giao_hang = DonHang::giao_hang($trang_thai, $ma_don_hang);
+                        $add_thong_bao = DonHang::add_thong_bao($thoi_gian_giao, $ma_don_hang, $noi_dung ,$result[0]['ma_kh']);
                         if (isset($giao_hang)) {
-                            echo "<script> alert('Đơn hàng bắt đầu giao !')</script>";
+                            echo "<script> alert('Cập nhật thông tin đơn hàng thành công !')</script>";
 
                         }
                     }
@@ -1052,7 +1099,7 @@ class AdminController
             $VIEWPAGE = "./app/views/pages/don_hang/list.php";
         }
 
-        include_once './app/views/admin.php';
+        include_once './app/views/admin/index.php';
         // return "Trang admin";
     }
 }

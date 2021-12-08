@@ -1,4 +1,4 @@
-<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#3F3F3F ; color: #fff; border-radius: 8px;">THỐNG KÊ </h2>
+<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#343A40 ; color: #fff; border-radius: 8px;">THỐNG KÊ </h2>
 <form action="index.php" method="POST">
     <div>
         <div>
@@ -11,7 +11,7 @@
                     <th>SỐ LƯỢNG</th>
                     <th>GIÁ CAO NHẤT</th>
                     <th>GIÁ THẤP NHẤT</th>
-                    <th  style="border-right: 1px solid #3f3f3f;">GIÁ TRUNG BÌNH</th>
+                    <th style="border-right: 1px solid #343A40;">GIÁ TRUNG BÌNH</th>
                 </tr>
 
             </thead>
@@ -43,14 +43,13 @@
     <div class="flex gap-16">
         <div>
             <div>
-                <p class="text-center py-2 font-bold">Số lượng hàng hóa trong đơn hàng</p>
+                <p class="text-center py-2 font-bold">Số đơn hàng đã bán trong tháng</p>
             </div>
             <table class="mb-4">
                 <thead>
                     <tr>
-                        <th>TÊN SẢN PHẨM</th>
-                        <th style="border-right: 1px solid #3f3f3f;">SỐ LƯỢNG</th>
-
+                        <th>Số lượng</th>
+                       
                     </tr>
 
                 </thead>
@@ -64,7 +63,7 @@
                             // var_dump($u['ten_loai']);
                     ?>
                             <tr>
-                                <td><?php echo $u2['ten_sp'] ?></td>
+                               
                                 <td><?php echo $u2['so_luong'] ?></td>
 
                             </tr>
@@ -85,7 +84,7 @@
                 <thead>
                     <tr>
                         <th>Vai trò</th>
-                        <th  style="border-right: 1px solid #3f3f3f;">SỐ LƯỢNG</th>
+                        <th style="border-right: 1px solid #3f3f3f;">SỐ LƯỢNG</th>
 
                     </tr>
 
@@ -153,6 +152,8 @@
 
     </div>
 
-    <a href="?act=bieu_do" class="px-4 py-1 border border-black">Xem biểu đồ</a>
+    <div class="my-4">
+        <a href="?act=bieu_do" style="border-radius: 4px; border: 1px solid #3f3f3f; padding: 4px 16px;background-color: #fff;">Xem biểu đồ</a>
+    </div>
 
 </form>

@@ -1,4 +1,4 @@
-<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#3F3F3F ; color: #fff; border-radius: 8px;"> QUẢN LÝ LOẠI HÀNG</h2>
+<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#343A40 ; color: #fff; border-radius: 8px;"> QUẢN LÝ LOẠI HÀNG</h2>
 <style>
     ul li {
         display: inline-block;
@@ -11,17 +11,17 @@
             <ul>
                 <?php if ($page > 1) {
                 ?>
-                    <li class="inline-block"> <a href="?page=<?php echo $page - 1 ?><?php echo isset($search) ? "&search=$search" : '' ?>" class='w3-button'>&laquo;</a> </li>
+                   <li class="inline-block"> <a href="?page=<?php echo $page - 1 ?><?php echo isset($search) ? "&search=$search" : '' ?>" class='w3-button'>&laquo;</a> </li>
                 <?php } ?>
 
                 <?php
                 for ($i = 1; $i <= $so_trang; $i++) { ?>
-                    <li class="inline-block" <?php echo $i == $page ? 'style="background-color: #3F3F3F;color:#fff; border-radius: 8px;"' : '' ?>><a href="admin?page=<?php echo $i ?><?php echo isset($search) ? "&search=$search" : '' ?>" class='w3-button'><?php echo $i ?></a> </li>
+                    <li class="inline-block" <?php echo $i == $page ? 'style="background-color: #343A40;color:#fff; border-radius: 8px;"' : '' ?>><a href="?page=<?php echo $i ?><?php echo isset($search) ? "&search=$search" : '' ?><?php echo isset($loai_hang) ? "&loai_hang=$loai_hang&submitCheckLoai=$submitCheckLoai" : '';   ?>" class='w3-button'><?php echo $i ?></a> </li>
                 <?php } ?>
 
                 <?php if ($page < $so_trang) {
                 ?>
-                    <li class="inline-block"><a href="?page=<?php echo $page + 1 ?><?php echo isset($search) ? "&search=$search" : '' ?>" class='w3-button'>&raquo;</a></li>
+                 <li class="inline-block"><a href="?page=<?php echo $page + 1 ?><?php echo isset($search) ? "&search=$search" : '' ?>" class='w3-button'>&raquo;</a></li>
                 <?php } ?>
 
             </ul>
@@ -34,10 +34,10 @@
 <div class="float-right mb-2">
 
     <form action="" method="GET">
-        <input class="w-52 h-8 p-4 font-bold border rounded-md" name="search" type="text" placeholder="Search" value="<?php if (isset($_GET['search'])) {
+        <input class="w-52 h-8 p-3 font-bold border rounded-md" name="search" type="text" placeholder="Search" value="<?php if (isset($_GET['search'])) {
                                                                                                                             echo $_GET['search'];
                                                                                                                         } ?>">
-        <input style="background: #3F3F3F; color: #fff;" class="p-1 px-3 rounded-md" type="submit" value="Submit">
+        <input style="background: #343A40; color: #fff;" class="p-1 px-3 rounded-md" type="submit" value="Submit">
     </form>
     <!-- end search -->
 
@@ -97,7 +97,7 @@
         }
         ?>
     </p>
-    <div class="row mt-4" style="margin-top: 16px;">
+    <div class="row mt-4 gap-3" style="margin-top: 16px;">
         <button class=" py-1 px-4 " style="border-radius: 4px; border: 1px solid #3f3f3f; padding: 4px 16px;background-color: #fff;" name="click_all" type="submit">Chọn tất cả</button>
         <button class=" py-1 px-4 " style="border-radius: 4px; border: 1px solid #3f3f3f; padding: 4px 16px;background-color: #fff;">Bỏ chọn tất cả</button>
 

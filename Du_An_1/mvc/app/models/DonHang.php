@@ -17,18 +17,39 @@ class DonHang {
         return $row;
     }
 
-    function list_don_hang_thong_bao()
+    function list_don_hang_thong_bao($ma_kh)
     {
-        $sql = "SELECT * FROM thongbao a
+        $sql = "SELECT a.trang_thai, a.*, c.hinh_sp, c.so_luong_sp, c.gia_tien_sp, c.ten_sp FROM thongbao a
         join donhang b on a.ma_don_hang = b.ma_don_hang
         join chitietdonhang c on b.ma_don_hang = c.ma_don_hang
+        where a.ma_kh=?
         group by a.ma_thong_bao
         order by a.ma_thong_bao desc";
-        $row = pdo_query($sql);
+        $row = pdo_query($sql, $ma_kh);
         return $row;
     }
 
+    function thong_tin_don_hang($ma_kh)
+    {
+        $sql = "SELECT a.*, b.ten_sp, b.so_luong_sp, b.hinh_sp FROM donhang a
+        join chitietdonhang b on b.ma_don_hang = b.ma_don_hang
+--         join thongbao c on a.ma_don_hang = c.ma_don_hang 
+        where a.ma_kh=?
+        group by a.ma_don_hang
+        order by a.ma_don_hang desc";
+        $row = pdo_query($sql, $ma_kh);
+        return $row;
     
+    }
+
+    
+    function list_don_hang_moi()
+    {
+        $sql = "SELECT count(ma_don_hang) as 'so_don' FROM donhang 
+          where trang_thai = 0 ";
+        $value = pdo_query_value($sql);
+        return $value;
+    }
 
     function don_hang_new()
     {
@@ -38,10 +59,11 @@ class DonHang {
         return $row;
     }
 
-    function add_don_hang( $ma_kh, $ngay_mua, $tong_tien)
+    function add_don_hang( $ma_kh, $ngay_mua, $tong_tien, $trang_thai)
     {
-        $sql = "INSERT into donhang(ma_kh, ngay_mua, tong_tien) values(?,?,?)";
-        $new_loai_hang = pdo_execute($sql, $ma_kh, $ngay_mua, $tong_tien);
+        
+        $sql = "INSERT into donhang(ma_kh, ngay_mua, tong_tien, trang_thai) values(?,?,?,?)";
+        $new_loai_hang = pdo_execute($sql, $ma_kh, $ngay_mua, $tong_tien, $trang_thai);
 
         if ($new_loai_hang) {
             return "Thanh toán đơn hàng " . $new_loai_hang;
@@ -106,28 +128,40 @@ class DonHang {
             $sql = "UPDATE donhang set duyet=1 where ma_don_hang=?";
             $result = pdo_execute($sql, $ma_don_hang );
             if ($result) {
-                return "Update loại hàng " . $result;
+                return "Update đơn hàng " . $result;
             } else {
-                return "Update loại hàng " . $result;
+                return "Update đơn hàng " . $result;
             }
     }
 
     //   giao hàng đơn hàng
-    function giao_hang($ma_don_hang){
-        $sql = "UPDATE donhang set giao_hang=1 where ma_don_hang=?";
+    function giao_hang( $trang_thai, $ma_don_hang){
+        $sql = "UPDATE donhang set trang_thai=? where ma_don_hang=?";
+        $result = pdo_execute($sql, $trang_thai, $ma_don_hang);
+        if ($result) {
+            return "Update đơn hàng " . $result;
+        } else {
+            return "Update đơn hàng " . $result;
+        }
+    }   
+
+    // hủy đơn hàng
+    function huy_don( $ma_don_hang){
+        $sql = "UPDATE donhang set trang_thai=4 where ma_don_hang=?";
         $result = pdo_execute($sql, $ma_don_hang);
         if ($result) {
-            return "Update loại hàng " . $result;
+            return "Hủy đơn hàng " . $result;
         } else {
-            return "Update loại hàng " . $result;
+            return "Hủy đơn hàng " . $result;
         }
     }   
 
     // thêm thông báo
-    function add_thong_bao($thoi_gian, $ma_don_hang, $noi_dung)
+    function add_thong_bao($thoi_gian, $ma_don_hang, $noi_dung, $ma_kh)
     {
-        $sql = "INSERT into thongbao(thoi_gian, ma_don_hang, noi_dung) values(?,?,?)";
-        $new_loai_hang = pdo_execute($sql, $thoi_gian, $ma_don_hang, $noi_dung);
+        $trang_thai = 0;
+        $sql = "INSERT into thongbao(thoi_gian, ma_don_hang, noi_dung, trang_thai, ma_kh) values(?,?,?,?,?)";
+        $new_loai_hang = pdo_execute($sql, $thoi_gian, $ma_don_hang, $noi_dung, $trang_thai, $ma_kh);
 
         if ($new_loai_hang) {
             return "Thêm thông báo " . $new_loai_hang;
@@ -143,12 +177,13 @@ class DonHang {
     }   
 
     // số thông báo chưa xem
-    function so_thong_bao_chua_xem()
+    function so_thong_bao_chua_xem($ma_kh)
     {
-        $sql = "SELECT * FROM thongbao 
-        where trang_thai = 0
+        $sql = "SELECT * FROM thongbao a
+        join khachhang b on a.ma_kh = b.ma_kh 
+        where a.trang_thai = 0 and a.ma_kh = ? 
         order by ma_thong_bao desc";
-        $row = pdo_query($sql);
+        $row = pdo_query($sql, $ma_kh);
         return $row;
     }
         
@@ -156,12 +191,8 @@ class DonHang {
     //  // tìm sản phẩm
      public function search_product($search)
      {
-         $limit = 5;
-         $page = isset($_GET['page']) ? $_GET['page'] : 1;
-         
-         $start = ($page - 1) * $limit;
-         $sql = "SELECT * FROM donhang where ten_sp LIKE '%$search%' order by ma_don_hang desc limit  $start, $limit";
-         $row = pdo_query($sql);
+         $sql = "SELECT * FROM donhang where ma_don_hang =? order by ma_don_hang desc ";
+         $row = pdo_query($sql, $search);
          return $row;                                                                                                                            
      }
 

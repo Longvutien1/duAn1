@@ -89,9 +89,9 @@
                 </div>
                 <div class="col   my-auto text-center col-span-6 py-8 px-8 md:px-4 md:py-16 md:col-span-5 text-white bg-yellow-400">
                     <h1 class="text-3xl font-bold  my-6 ">Đăng kí</h1>
-                    <p class=" my-2 mb-8">Đăng kí để làm thành viên của trang web bán hàng. Bạn sẽ được 1 số quyền lợi nhất định khi làm thành viên của chúng tôi.</p>
+                    <p class=" my-2 mb-8 md:mb-14">Đăng kí để làm thành viên của trang web bán hàng. Bạn sẽ được 1 số quyền lợi nhất định khi làm thành viên của chúng tôi.</p>
 
-                    <a href="login?act=register" class="py-1 px-4  bg-white text-yellow-500 dangKy">Đăng kí</a>
+                    <a href="login?act=register" class="py-1 px-4   bg-white text-yellow-500 dangKy">Đăng kí</a>
                 </div>
             </div>
         </form>

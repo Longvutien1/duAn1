@@ -43,15 +43,15 @@
     </header>
 
     <body>
-    
+
         <form action="" method="POST">
             <section class=" w-10/12 mx-auto mt-16">
 
                 <div class="product">
                     <div class="image">
                         <div class="imgbig">
-                            
-                            <img class="imgtotal" src="../../../../Du_An_1/mvc/storage/image/<?= $hinh ?>" alt="" >
+
+                            <img class="imgtotal" src="../../../../Du_An_1/mvc/storage/image/<?= $hinh ?>" alt="">
                         </div>
                         <div class="imgsmall">
                             <div style="margin-bottom: 5px;">
@@ -105,7 +105,7 @@
                         </div>
                         <div class="price">
                             <span style="font-size: 24px;margin: 0 10px 0 0;color: #F4A851;">$<?php echo $gia - ($gia * $giamgia / 100) ?></span>
-                            
+
                             <strike style="font-size: 24px;">$<?= $gia ?></strike>
                         </div>
                         <div class="infor_pr"><?= $mota ?> </div>
@@ -182,7 +182,7 @@
                                                 <li style="border-bottom: 1px solid #ddd; padding: 15px 0;">
                                                     <div style="display: grid; grid-template-columns: 40px 1fr;">
                                                         <div>
-                                                            <img style="border-radius: 100%;" src="../../../../Du_An_1/mvc/storage/image/<?= $u['hinh']?>" alt="" width="30">
+                                                            <img style="border-radius: 100%;" src="../../../../Du_An_1/mvc/storage/image/<?= $u['hinh'] ?>" alt="" width="30">
                                                         </div>
                                                         <div>
                                                             <p><?= $u['hoten'] ?></p>
@@ -222,7 +222,7 @@
                                                                     </form>
 
                                                                 </div>
-                                                                <span class="ml-3 font-normal my-auto " > <b>- </b> <?= $u['ngay_bl'] ?></span>
+                                                                <span class="ml-3 font-normal my-auto "> <b>- </b> <?= $u['ngay_bl'] ?></span>
                                                             </div>
                                                             <p><?= $u['noidung'] ?></p>
                                                         </div>
@@ -379,23 +379,30 @@
             nextArrow: '<button type="button" class="slick-next"><span class="text-2xl">&#10095;</span></button>',
             responsive: [{
 
-                    breakpoint: 1025,
+                    breakpoint: 1400,
                     settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
+                        slidesToShow: 4,
+                        slidesToScroll: 4,
                         infinite: true,
                         dots: true
                     }
                 },
                 {
-                    breakpoint: 600,
+                    breakpoint: 1300,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 1024,
                     settings: {
                         slidesToShow: 2,
                         slidesToScroll: 2
                     }
                 },
                 {
-                    breakpoint: 480,
+                    breakpoint: 660,
                     settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1

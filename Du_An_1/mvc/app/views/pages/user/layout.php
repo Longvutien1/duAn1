@@ -23,6 +23,19 @@
     <link rel="stylesheet prefetch" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
 
 </head>
+<style>
+    .sidebar_account {
+        display: block;
+    }
+
+    @media(max-width:1280px) {
+        .sidebar_account {
+            display: none;
+        }
+    }
+
+    
+</style>
 
 <body>
     <header>
@@ -31,7 +44,7 @@
     <div class="" style="background-color: #EBEDF5;">
         <section class="md:w-10/12 m-auto py-12 ">
             <div class="row grid grid-cols-12">
-                <div class="col hidden xl:block  col-span-12 xl:col-span-2 ">
+                <div class="sidebar_account col   col-span-12 xl:col-span-2 ">
                     <div class="flex">
                         <?php if (isset($hinh)) {
                         ?>
@@ -42,7 +55,7 @@
                         <?php } ?>
 
 
-                        <p class="ml-4"><?php if (isset($_SESSION['ho_ten'])) echo $_SESSION['ho_ten']; ?></p>
+                        <p class="ml-4"><?= $hoten ?></p>
                     </div>
                     <div class="flex mt-8">
                         <span><i class="far fa-user" style="color: #467EC3;"></i></span>
@@ -59,7 +72,7 @@
 
                         <div>
                             <ul>
-                                <li class="hoverVang"><span><i class="far fa-calendar-minus" style="color: #467EC3;"></i></span><a class="ml-2" href="">Đơn mua</a></li>
+                                <li class="hoverVang"><span><i class="far fa-calendar-minus" style="color: #467EC3;"></i></span><a class="ml-2" href="login?act=don_mua">Đơn mua</a></li>
                             </ul>
                         </div>
                     </div>
@@ -67,7 +80,7 @@
 
                         <div>
                             <ul>
-                            <li class="hoverVang"><i class="far fa-bell" style="color: #F4A851;"></i><span style="color:#F4A851 ;font-weight: 600;" ><?= $so_thong_bao?></span><a class="ml-2" href="login?act=thong_bao">Thông báo</a></li>
+                                <li class="hoverVang"><i class="far fa-bell" style="color: #F4A851;"></i><span style="color:#F4A851 ;font-weight: 600;"><?= $so_thong_bao ?></span><a class="ml-2" href="login?act=thong_bao">Thông báo</a></li>
                             </ul>
                         </div>
                     </div>
@@ -114,7 +127,7 @@
 
                             <div>
                                 <ul>
-                                <li class="hoverVang"><i class="far fa-bell" style="color: #F4A851;"></i><span style="color:#F4A851 ;font-weight: 600;" ><?= $so_thong_bao?></span><a class="ml-2" href="login?act=thong_bao">Thông báo</a></li>
+                                    <li class="hoverVang"><i class="far fa-bell" style="color: #F4A851;"></i><span style="color:#F4A851 ;font-weight: 600;"><?= $so_thong_bao ?></span><a class="ml-2" href="login?act=thong_bao">Thông báo</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -132,25 +145,24 @@
     </footer>
     <script src="../../../../../../Du_An_1/mvc/storage/js/home.js"></script>
     <script>
-      // --------menu myAccount---------------------
-// --------menu myAccount---------------------
-let menu2 = document.querySelector('#menu-btn2');
-let navbar2 = document.querySelector('.navbar2');
+        // --------menu myAccount---------------------
+        // --------menu myAccount---------------------
+        let menu2 = document.querySelector('#menu-btn2');
+        let navbar2 = document.querySelector('.navbar2');
 
-menu2.onclick = () => {
-    menu2.classList.toggle('fa-times');
-    navbar2.classList.toggle('active2');
-}
+        menu2.onclick = () => {
+            menu2.classList.toggle('fa-times');
+            navbar2.classList.toggle('active2');
+        }
 
-menu2.onscroll = () => {
-    menu2.classList.remove('fa-times');
-    navbar2.classList.remove('active2');
-};
-
+        menu2.onscroll = () => {
+            menu2.classList.remove('fa-times');
+            navbar2.classList.remove('active2');
+        };
     </script>
-    
 
-   
+
+
 </body>
 
 </html>

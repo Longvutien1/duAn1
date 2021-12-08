@@ -3,7 +3,7 @@ body{
     padding: 0;
     box-sizing: border-box;
 }
-.banner3{
+/* .banner3{
     max-width: 100%; 
     background: url(../../../../../Du_An_1/mvc/storage/image/menu-title-img-1.jpg) no-repeat center;
     display: flex;
@@ -13,7 +13,7 @@ body{
     font-size: 30px;
     align-items: center;
     justify-content: center;
-}
+} */
 
 .inf-pr{
     display: flex;

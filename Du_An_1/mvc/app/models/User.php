@@ -28,7 +28,7 @@ class User
         $result = pdo_query($sql, $ma_kh);
         return $result;
     }
-    function add_khach_hang($hoten, $username, $pass, $email , $diachi)
+    function add_khach_hang_user($hoten, $username, $pass, $email , $diachi)
     {
         $sql = "INSERT into khachhang(hoten, username, pass , email, diachi, vaitro, kichhoat) values(?,?,?,?,?,?,?)";
 

@@ -24,32 +24,29 @@
 
 </head>
 
-<body>
+<body >
     <header>
         <?php require_once './app/views/blocks/header.php'; ?>
     </header>
     <section class="mb-14" style="background-color: #F4F5F5;">
-        <div class=" text-center py-16">
-            <p class="text-6xl text-gray-600 font-normal pb-3">SHOP</p>
-            <span class="text-sm font-semibold">Home</span>
-            <span class="text-lg px-3 font-semibold">&gt;</span>
-            <span class="text-lg text-yellow-600 font-semibold">Shop</span>
+        <div class=" text-center ">
+        <img src="../../../../../Du_An_1/mvc/storage/image/banner_shop.png" alt="" style="max-width: 100%;">
         </div>
     </section>
     <div>
         <section class="w-10/12 m-auto">
-            <div id="fullProduct" class="grid grid-cols-7 gap-16 pt-5">
+            <div id="fullProduct" class="xl:grid xl:grid-cols-7 gap-16 pt-5">
 
                 <div id="right" class="col-span-7 xl:col-span-2">
                     <div class="mb-8">
-                        <p class="text-3xl mb-2">Sreach</p>
+                        <p class="text-3xl mb-2">Tìm kiếm</p>
                         <form action="" method="GET" class="w-5/12 xl:w-full border flex justify-between">
                             <input class="w-10/12 p-1 outline-none " type="text" placeholder="Tìm kiếm" name="search">
                             <button class="w-2/12  mx-auto btn_search" type="submit" name="submitSearch"><i class="fas fa-search"></i></button>
                         </form>
                     </div>
                     <ul>
-                        <li class="border text-white pl-4 text-xl py-2" style="background-color: #F4A851;color: #000;">CATEGORY</li>
+                        <li class="border text-white pl-4 text-xl py-2" style="background-color: #F4A851;color: #000;">LOẠI HÀNG</li>
 
                         <div style="height: 250px; overflow: scroll;">
                             <?php
@@ -71,7 +68,7 @@
                         </li>
                     </ul>
                     <ul>
-                        <li class="border text-white pl-4 text-xl py-2 mt-8" style="background-color: #F4A851;color: #000;">TOPS 10 FAVORITE</li>
+                        <li class="border text-white pl-4 text-xl py-2 mt-8" style="background-color: #F4A851;color: #000;">SẢN PHẨM ĐƯỢC YÊU THÍCH</li>
                         <?php
 
 

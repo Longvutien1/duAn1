@@ -7,7 +7,9 @@ class UserController
     {
         $error = "";
         extract($_REQUEST);
-        $so_thong_bao = count(DonHang::so_thong_bao_chua_xem());
+        if (isset($_SESSION['ma_kh'])) {
+            $so_thong_bao = count(DonHang::so_thong_bao_chua_xem($_SESSION['ma_kh']));
+        }
 
         if (isset($_GET['act'])) {
             $act = $_GET['act'];
@@ -111,13 +113,13 @@ class UserController
                             $error = "Mật khẩu không trùng khớp";
                         } else {
                             $pass = password_hash($pass, PASSWORD_DEFAULT);
-                            echo $pass;
-                            $result = User::add_khach_hang($fullname, $username, $pass, $email, $address);
+                            // echo $pass;
+                            $result_add_user = User::add_khach_hang_user($fullname, $username, $pass, $email, $address);
                         }
                     }
 
-                    if (isset($result)) {
-                        echo "<script> alert('$result')</script>";
+                    if (isset($result_add_user)) {
+                        echo "<script> alert('$result_add_user')</script>";
                         header("refresh:0.5;url=login?act=login");
                     }
                     include_once './app/views/pages/user/register.php';
@@ -216,7 +218,12 @@ class UserController
                     break;
 
                 case 'changePassword':
-
+                    if (isset($_SESSION['ma_kh'])) {
+                        $result = User::thong_tin_tk_by_id($_SESSION['ma_kh']);
+                        foreach ($result as $u) {
+                            extract($u);
+                        }
+                    }
                     if (isset($_POST['btn_update_pass'])) {
                         $pass = $_POST['pass'];
                         $pass_new = $_POST['pass_new'];
@@ -249,24 +256,67 @@ class UserController
                     break;
 
                 case 'thong_bao':
+
+                    if (isset($_SESSION['ma_kh'])) {
+                        $result = User::thong_tin_tk_by_id($_SESSION['ma_kh']);
+                        foreach ($result as $u) {
+                            extract($u);
+                        }
+                    }
                     $myPage = "./app/views/pages/user/thong_bao.php";
-                    $list_don_hang = DonHang::list_don_hang_thong_bao();
+                    $list_don_hang_thong_bao = DonHang::list_don_hang_thong_bao($_SESSION['ma_kh']);
 
                     include_once './app/views/pages/user/layout.php';
                     break;
+                case 'don_mua':
+
+                    if (isset($_SESSION['ma_kh'])) {
+                        $result = User::thong_tin_tk_by_id($_SESSION['ma_kh']);
+                        foreach ($result as $u) {
+                            extract($u);
+                        }
+                    }
+                    $myPage = "./app/views/pages/user/don_mua.php";
+                    $list_don_hang = DonHang::thong_tin_don_hang($_SESSION['ma_kh']);
+                    // var_dump($_SESSION['ma_kh']);
+                    // die;
+                    include_once './app/views/pages/user/layout.php';
+
+                    break;
+
                 case 'chi_tiet_don_hang':
+
+                    if (isset($_SESSION['ma_kh'])) {
+                        $result = User::thong_tin_tk_by_id($_SESSION['ma_kh']);
+                        foreach ($result as $u) {
+                            extract($u);
+                        }
+                    }
                     $myPage = "./app/views/pages/user/chi_tiet_don_hang.php";
                     $ma_don_hang = $_GET['ma_don_hang'];
-                    
-                    // $ten_hh = BinhLuan::name_hh_by_id($ma_hh);
-                    // var_dump($ten_hh);
+                    $ktra_trang_thai = DonHang::list_don_hang_by_id($ma_don_hang);
+                    if (isset($_POST['huy_don_hang'])) {
+                        
+                        if ($ktra_trang_thai[0]['trang_thai'] == 3) {
+                            echo "<script> alert('Đơn hàng đã giao không thể hủy')</script>";
+                        }else {
+                            $huy_don = DonHang::huy_don($ma_don_hang);
+                            echo "<script> alert('$huy_don')</script>";
+                            // header("refresh:0.5;url=login?act=chi_tiet_don_hang");
+                        }
 
+                       
+                    }
+                    
+                    if (isset($_GET['ma_thong_bao'])) {
+                        $da_xem_thong_bao = DonHang::da_xem_thong_bao($_GET['ma_thong_bao']);
+                    }
                     $result = DonHang::list_don_hang_by_id($ma_don_hang);
                     foreach ($result as $tt_kh) {
                         extract($tt_kh);
                     }
-                 
-                    DonHang::da_xem_thong_bao($_GET['ma_thong_bao']);
+
+                   
                     include_once './app/views/pages/user/layout.php';
                     break;
                 case 'logout':

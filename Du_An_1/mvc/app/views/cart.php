@@ -73,7 +73,14 @@
 
         }
 
-        @media(max-width:768px) {}
+        .cart{
+                display: block;
+            }
+        @media(max-width:768px) {
+            .cart{
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -86,7 +93,7 @@
 
         <section class="md:py-12">
 
-            <div class="cart hidden md:block w-10/12 m-auto " style="background-color: #fff; border-radius: 8px; padding: 40px; ">
+            <div class="cart  w-10/12 m-auto " style="background-color: #fff; border-radius: 8px; padding: 40px; ">
                 <p class="text-4xl" style=" font-weight: 800;line-height: 0px;">Giỏ hàng</p>
                 <div class="">
                     <div class="flex justify-between">

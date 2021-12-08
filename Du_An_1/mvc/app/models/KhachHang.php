@@ -16,6 +16,7 @@ class KhachHang
         }
     }
 
+
     function update_khach_hang($ma_kh, $username, $pass, $hoten, $kickhoat, $hinh, $email, $vaitro, $diachi, $phone)
     {
         $sql = "UPDATE khachhang SET username=?, pass=?, hoten=?, kichhoat=?, hinh=?, email=?, vaitro=?,  diachi=? ,phone=? WHERE ma_kh=?";
@@ -31,7 +32,7 @@ class KhachHang
 
     function list_khach_hang()
     {
-        $limit = 3;
+        $limit = 10;
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
         $start = ($page - 1) * $limit;
@@ -83,7 +84,7 @@ class KhachHang
     // tìm khách hàng
     public function search_ten_kh($search)
     {
-        $limit = 5;
+        $limit = 10;
         $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
         $start = ($page - 1) * $limit;

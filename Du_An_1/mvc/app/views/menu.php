@@ -23,7 +23,7 @@
             max-width: 100%;
         }
 
-        .img-banner {
+        /* .img-banner {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url(../../../../../Du_An_1/mvc/storage/image/p2-img.jpg);
             max-width: 100%;
             color: #fff;
@@ -32,7 +32,7 @@
             justify-content: center;
             align-items: center;
             font-size: 30px;
-        }
+        } */
 
         .intro {
             max-width: 980px;
@@ -41,14 +41,6 @@
             line-height: 30px;
 
         }
-
-
-
-
-
-
-
-
 
         .supplier {
             display: flex;
@@ -85,13 +77,7 @@
         <?php require_once './app/views/blocks/header.php'; ?>
     </header>
     <div class="banner3 w-full">
-
-        <div class=" text-center py-16">
-            <p class="text-6xl  font-normal pb-3">MENU</p>
-            <span class="text-lg font-semibold">Home</span>
-            <span class="text-lg px-3 font-semibold">&gt;</span>
-            <span class="text-lg text-yellow-600 font-semibold">Menu</span>
-        </div>
+        <img src="../../../../../Du_An_1/mvc/storage/image/banner_menu.png" alt="" style="max-width: 100%;">
     </div>
     <div class="container w-10/12 m-auto mt-16">
         <div class="title">
@@ -709,7 +695,7 @@
 
         </div>
     </div>
-    <footer>
+    <footer class="mt-16">
         <?php require_once './app/views/blocks/footer.php'; ?>
     </footer>
     <script src="../../../../Du_An_1/mvc/storage/js/home.js"></script>

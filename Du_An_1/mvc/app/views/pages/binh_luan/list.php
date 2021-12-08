@@ -1,4 +1,4 @@
-<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#3F3F3F ; color: #fff; border-radius: 8px;"> QUẢN LÝ BÌNH LUẬN</h2>
+<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#343A40 ; color: #fff; border-radius: 8px;"> QUẢN LÝ BÌNH LUẬN</h2>
 <div class="my-8 text-center">
 
   
@@ -13,7 +13,7 @@
 
                 <?php
                 for ($i = 1; $i <= $so_trang; $i++) { ?>
-                    <li class="inline-block" <?php echo $i == $page ? 'style="background-color: #3F3F3F;color:#fff; border-radius: 8px;"' : '' ?>><a href="?page=<?php echo $i ?><?php echo isset($search) ? "&search=$search" : '' ?>" class='w3-button'><?php echo $i ?></a> </li>
+                    <li class="inline-block" <?php echo $i == $page ? 'style="background-color: #343A40;color:#fff; border-radius: 8px;"' : '' ?>><a href="?page=<?php echo $i ?><?php echo isset($search) ? "&search=$search" : '' ?>" class='w3-button'><?php echo $i ?></a> </li>
                 <?php } ?>
 
                 <?php if ($page < $so_trang) {
@@ -35,10 +35,10 @@
     }
     ?>
     <form action="" method="GET">
-        <input class="w-52 h-8 p-4 font-bold border rounded-md" name="search" type="text" placeholder="Search" value="<?php if (isset($_GET['search'])) {
+        <input class="w-52 h-8 p-3 font-bold border rounded-md" name="search" type="text" placeholder="Search" value="<?php if (isset($_GET['search'])) {
                                                                                                                             echo $_GET['search'];
                                                                                                                         } ?>">
-        <input style="background: #3F3F3F; color: #fff;" class="p-1 px-3 rounded-md" type="submit" value="Submit">
+        <input style="background: #343A40; color: #fff;" class="p-1 px-3 rounded-md" type="submit" value="Submit">
     </form>
     <!-- end search -->
 
@@ -65,9 +65,9 @@
                 $result = BinhLuan::search_product($_GET['search']);
                 // var_dump($result);
                 if ($result) {
-                    echo "<h3 class='mt-2' style='color: green;font-weight: 600;'> Tìm thấy " . count($result) . " sản phẩm </h3>";
+                    echo "<h3 class='mt-2' style='color: green;font-weight: 600;'> Tìm thấy " . count($result) . " bình luận </h3>";
                 } else {
-                    echo "<h3 class='mt-2' style='color:red;font-weight: 600;'> Không tìm thấy sản phẩm nào !</h3>";
+                    echo "<h3 class='mt-2' style='color:red;font-weight: 600;'> Không tìm thấy bình luận nào !</h3>";
                 }
             } else {
 

@@ -268,7 +268,7 @@
                     var_dump($hh_by_loai[0]['ten_loai']);
                     ?> -->
 
-            <div class="w-7/12 m-auto lg:grid lg:grid-cols-12 lg:gap-8 lg:w-full ">
+            <div class="sm:w-7/12 m-auto lg:grid lg:grid-cols-12 lg:gap-8 lg:w-full ">
                 <div class="col-span-4 gap-8 item mt-8">
                     <a href="shop?name_category=<?php if (isset($hh_by_loai[0]['ten_loai'])) {
                                                     echo $hh_by_loai[0]['ten_loai'];

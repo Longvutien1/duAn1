@@ -5,7 +5,7 @@
         echo "<pre>";
     if (isset($_GET['quantity'])) {
         $sl = $_GET['quantity'];
-        var_dump($sl); 
+        // var_dump($sl); 
     }
         // var_dump($product);
         // nếu mà tồn tại product thì check giỏ hàng

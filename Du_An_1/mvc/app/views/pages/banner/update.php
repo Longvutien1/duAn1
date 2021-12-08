@@ -1,4 +1,4 @@
-<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#3F3F3F ; color: #fff; border-radius: 8px; padding: 8px;"> UPDATE BANNER</h2>
+<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#343A40 ; color: #fff; border-radius: 8px; padding: 8px;"> UPDATE BANNER</h2>
 <form action="?act=btn_update" method="POST" enctype="multipart/form-data">
     <div class="mb-4">
         <p>Mã Banner</p>
@@ -43,8 +43,8 @@
             <label for="Không sử dụng">Không sử dụng</label>
         </div>
         <div class="mb-4">
-            <button name="btn_update" class="px-4 py-1 border border-black mr-3">Update</button>
-            <button name="btn_rs" class="px-4 py-1 border border-black mr-3">Nhập lại</button>
+            <button name="btn_update" class=" mr-3" style="border-radius: 4px; border: 1px solid #3f3f3f; padding: 4px 16px; text-decoration: none;" >Update</button>
+            <button name="btn_rs" class=" mr-3" style="border-radius: 4px; border: 1px solid #3f3f3f; padding: 4px 16px; text-decoration: none;" >Nhập lại</button>
             <a href="?act=list" style="border-radius: 4px; border: 1px solid #3f3f3f; padding: 4px 16px; text-decoration: none;" class=" py-1 px-4 ">Danh sách</a>
         </div>
 </form>

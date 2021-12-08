@@ -50,8 +50,10 @@
                         <p>Ngày mua: </p>
                         <p><?= $ngay_mua ?></p>
                     </div>
-
-
+                    <div class=" py-2 mt-4" >
+                    <button onclick="return confirm('Bạn có chắc muốn xóa đơn hàng này không ?')" type="submit" class="btn_thanh_toan" name="huy_don_hang">Hủy đơn</button>
+                    </div>
+                  
                 </div>
 
             </div>

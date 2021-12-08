@@ -5,10 +5,11 @@ class Product {
     
 
    
-    function add_hang_hoa($ten_sp, $gia, $giamgia, $hinh,  $ngaynhap, $mota, $dacbiet, $maloai)
+    function add_hang_hoa($ten_sp, $hinh, $so_luong, $gia, $giamgia, $ngaynhap, $mota, $dacbiet, $maloai)
     {
-        $sql = "INSERT into sanpham(ten_sp, gia, giamgia, hinh,  ngaynhap, mota, dacbiet, maloai) values(?,?,?,?,?,?,?,?)";
-        $new_loai_hang = pdo_execute($sql, $ten_sp, $gia, $giamgia, $hinh,  $ngaynhap, $mota, $dacbiet, $maloai);
+        $luot_xem = 0;
+        $sql = "INSERT into sanpham(ten_sp, hinh, soluong, gia, giamgia, ngaynhap, mota, dacbiet, luotxem, maloai) values(?,?,?,?,?,?,?,?,?,?)";
+        $new_loai_hang = pdo_execute($sql,$ten_sp, $hinh, $so_luong, $gia, $giamgia, $ngaynhap, $mota, $dacbiet,$luot_xem, $maloai);
 
         if ($new_loai_hang) {
             return "Thêm hàng hóa " . $new_loai_hang;
@@ -17,10 +18,10 @@ class Product {
         }
     }
 
-    function update_hang_hoa($ten_sp, $gia, $giamgia, $hinh,  $ngaynhap, $mota, $dacbiet, $maloai, $ma_sp)
+    function update_hang_hoa($ten_sp, $gia, $giamgia, $so_luong, $hinh,  $ngaynhap, $mota, $dacbiet, $maloai, $ma_sp)
     {
-        $sql = "UPDATE sanpham SET ten_sp=?, gia=?, giamgia=?, hinh=?, ngaynhap=?, mota=?, dacbiet=?, maloai=? WHERE ma_sp=?";
-        $new_loai_hang = pdo_execute($sql, $ten_sp, $gia, $giamgia, $hinh,  $ngaynhap, $mota, $dacbiet, $maloai, $ma_sp);
+        $sql = "UPDATE sanpham SET ten_sp=?, gia=?, giamgia=?, soluong=?, hinh=?, ngaynhap=?, mota=?, dacbiet=?, maloai=? WHERE ma_sp=?";
+        $new_loai_hang = pdo_execute($sql, $ten_sp, $gia, $giamgia, $so_luong, $hinh,  $ngaynhap, $mota, $dacbiet, $maloai, $ma_sp);
 
         if ($new_loai_hang) {
             return "Sửa hàng hóa " . $new_loai_hang;

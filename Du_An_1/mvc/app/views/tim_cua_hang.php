@@ -76,7 +76,7 @@
 
         </div>
     </form>
-    <footer>
+    <footer class="mt-12">
         <?php require_once './app/views/blocks/footer.php'; ?>
     </footer>
     <script src="../../../../Du_An_1/mvc/storage/js/home.js"></script>

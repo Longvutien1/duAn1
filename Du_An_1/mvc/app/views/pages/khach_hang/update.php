@@ -1,6 +1,6 @@
-<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#3F3F3F ; color: #fff; border-radius: 8px;"> UPDATE KHÁCH HÀNG</h2>
+<h2 class="text-center p-3 mb-8 text-xl" style="background-color:#343A40 ; color: #fff; border-radius: 8px;"> UPDATE KHÁCH HÀNG</h2>
 <form action="?act=btn_update" method="post" enctype="multipart/form-data">
-    <div class="grid grid-cols-2 gap-8">
+    <div >
         <div class="col-span-1">
             <div class="mb-4">
                 <p>MÃ TÀI KHOẢN</p>
@@ -19,13 +19,30 @@
                 <p>XÁC NHẬN MẬT KHẨU</p>
                 <input type="password" name="xac_nhan_mat_khau" style="border:1px solid black; width: 100%;height: 32px;" value="<?php if (isset($pass)) echo $pass; ?>">
             </div>
+
+            <div class="mb-4"> 
+                <p>HỌ VÀ TÊN</p>
+                <input type="text" name="ho_va_ten" style="border:1px solid black; width: 100%;height: 30px; padding: 4px;" value="<?php if (isset($hoten)) echo $hoten; ?>">
+            </div>
+
+            <div class="mb-4">
+                <p>Địa chỉ</p>
+                <input type="text" name="diachi" style="border:1px solid black; width: 100%;height: 32px;" value="<?php if (isset($diachi)) echo $diachi; ?>">
+            </div>
             <div class="mb-4">
                 <p>ĐỊA CHỈ EMAIL</p>
                 <input type="email" name="email" style="border:1px solid black; width: 100%;height: 30px; padding: 4px;" value="<?php if (isset($email)) echo $email; ?>">
             </div>
+
+
+            <div class="mb-4">
+                <p>HÌNH ẢNH</p>
+                <input type="file" name="hinh_anh" style="border:1px solid black; width: 100%;height: 30px;">
+            </div>
+            
             <div class="mb-4">
                 <p>KÍCH HOẠT</p>
-                <div class="p-1 border text-center border-black">
+                <div class="p-1 border text-left border-black">
                     <input type="radio" name="kick_hoat" id="" value="Chưa kích hoạt" <?php
                                                                                         if (isset($kichhoat)) {
                                                                                             if ($kichhoat == 0) {
@@ -48,21 +65,11 @@
         </div> 
         <!-- end cột 1 --> 
         <div class="col-span-1"> 
-            <div class="mb-4"> 
-                <p>HỌ VÀ TÊN</p>
-                <input type="text" name="ho_va_ten" style="border:1px solid black; width: 100%;height: 30px; padding: 4px;" value="<?php if (isset($hoten)) echo $hoten; ?>">
-            </div>
-
-
-
-            <div class="mb-4">
-                <p>HÌNH ẢNH</p>
-                <input type="file" name="hinh_anh" style="border:1px solid black; width: 100%;height: 30px;">
-            </div>
+          
 
             <div class="mb-4">
                 <p>VAI TRÒ</p>
-                <div class="p-1 border text-center border-black">
+                <div class="p-1 border text-left border-black">
                     <input type="radio" name="vai_tro" id="" value="Khách hàng" <?php
                                                                                 if (isset($vaitro)) {
                                                                                     if ($vaitro == 0) {
@@ -82,10 +89,7 @@
                 </div>
             </div>
 
-            <div class="mb-4">
-                <p>Địa chỉ</p>
-                <input type="text" name="diachi" style="border:1px solid black; width: 100%;height: 32px;" value="<?php if (isset($diachi)) echo $diachi; ?>">
-            </div>
+            
 
             <div class="mb-4">
                 <p>Số điện thoại</p>
@@ -103,8 +107,8 @@
             }
             ?>
         </p>
-        <button name="btn_update" type="submit" class="px-4 py-1 border border-black mr-3">Update</button>
-        <button name="btn_rs" class="px-4 py-1 border border-black mr-3">Nhập lại</button>
-        <a href="?act=list" class="px-4 py-1 border border-black">Danh sách</a>
+        <button name="btn_update" type="submit" class="mr-3" style="border-radius: 4px; border: 1px solid #3f3f3f; padding: 4px 16px;background-color: #fff;">Update</button>
+        <button name="btn_rs"  class="mr-3" style="border-radius: 4px; border: 1px solid #3f3f3f; padding: 4px 16px;background-color: #fff;">Nhập lại</button>
+        <a href="?act=list" style="border-radius: 4px; border: 1px solid #3f3f3f; padding: 4px 16px;background-color: #fff;">Danh sách</a>
     </div>
 </form>

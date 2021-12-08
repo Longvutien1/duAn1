@@ -225,7 +225,7 @@ class HomeController
                         $diachi = $_POST['diachi'];
                         $diachi_cu_the = $_POST['diachi_cu_the'];
                         $ngay_mua = date_format(date_create(), 'Y-m-d H:i:s');
-                
+                        $trang_thai = 0;
                         $noi_nhan = $_POST['noi_nhan'];
                         // var_dump($noi_nhan);
                         
@@ -261,7 +261,7 @@ class HomeController
                             $tong_tien = $tong_tien + $phi_vc;
                             // var_dump("tổng tiền = ".$tong_tien);
                             // die;
-                            $add_don_hang = DonHang::add_don_hang($_SESSION['ma_kh'], $ngay_mua, $tong_tien);
+                            $add_don_hang = DonHang::add_don_hang($_SESSION['ma_kh'], $ngay_mua, $tong_tien, $trang_thai);
                             $ma_don_hang = DonHang::don_hang_new();
 
                             foreach ($_SESSION['cart'] as $key => $value) {

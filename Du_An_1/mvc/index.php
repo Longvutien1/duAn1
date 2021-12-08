@@ -51,6 +51,11 @@ switch ($url) {
         $page = new AdminController();
         echo $page->loai_hang();
         break;
+
+    case 'admin/loai_hang':
+        $page = new AdminController();
+        echo $page->loai_hang();
+        break;
     case 'admin/san_pham':
         $page = new AdminController();
         echo $page->san_pham();

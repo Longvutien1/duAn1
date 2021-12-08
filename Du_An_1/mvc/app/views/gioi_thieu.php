@@ -22,8 +22,8 @@
             max-width: 100%;
         }
 
-        .img-banner {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url(../../../../../Du_An_1/mvc/storage/image/p2-img.jpg);
+        /* .img-banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url(../../../../../Du_An_1/mvc/storage/image/banner_about_us.png);
             max-width: 100%;
             color: #fff;
             height: 500px;
@@ -31,7 +31,7 @@
             justify-content: center;
             align-items: center;
             font-size: 30px;
-        }
+        } */
 
         .intro {
             max-width: 980px;
@@ -87,23 +87,18 @@
     <section>
         <div class="img-banner">
 
-            <div class=" text-center py-16">
-                <p class="text-6xl  font-normal pb-3">ABOUT US</p>
-                <span class="text-lg font-semibold">Home</span>
-                <span class="text-lg px-3 font-semibold">&gt;</span>
-                <span class="text-lg text-yellow-600 font-semibold">Shop</span>
-            </div>
+          <img src="../../../../../Du_An_1/mvc/storage/image/banner_about_us.png" alt="">
 
         </div>
     </section>
 
     <section class="w-10/12 m-auto my-16">
         <div class="w-10/12 m-auto py-16">
-            <p class="heading"> about us <span>why choose us</span> </p>
+            <p class="heading"> giới thiệu <span>lí do chọn chúng tôi</span> </p>
         </div>
 
         <div class="text-intro my-8 text-center">
-            <p class="text-4xl mb-4">OUR STORY</p>
+            <p class="text-4xl mb-4">CÂU CHUYỆN CỦA CHÚNG TÔI</p>
             <p>Nằm tại Thị Trấn Phú Minh quán trà chanh Bee Tea nổi tiếng với những loại nước uống giải khát với mục tiêu giải trí trải nghiệm và thư giãn quán trà chanh luôn kĩ càng trong các loại đồ uống và dịch vụ khách hàng có thể tới trải nghiệm với chỗ ngoài thoáng mát thoải mái không gian rộng rãi nhân viên thân thiện.
             </p>
             <p> Các sản phẩm đồ uống hoàn toàn bảo đảm an toàn cho sức khỏe với tiêu chí vui lòng khách đến vừa lòng khách đi trà chanh Bee Tea hứa hẹn sẽ giúp cho khách hàng những loại đồ uống ngon nhất và một không gian giải trí tự nhiên thoải mái nhất</p>
@@ -120,24 +115,24 @@
     <section class="standard w-10/12 m-auto grid grid-cols-1 md:grid md:grid-cols-2 gap-4">
         <div class="stand1 col-span-1">
             <div class="stand-info mt-4">
-                <h1>100% Organic</h1>
+                <h1>100% Hữu cơ</h1>
                 <span>Theme natoque penatibus et magnis dis parturient montes, augue velit cursus. Nullam quis
                     ante...</span>
             </div>
             <div class="stand-info mt-4">
-                <h1>High Quality</h1>
+                <h1>Chất lượng cao</h1>
                 <span>Theme natoque penatibus et magnis dis parturient montes, augue velit cursus. Nullam quis
                     ante...</span>
             </div>
         </div>
         <div class="stand2 col-span-1">
             <div class="stand-info mt-4">
-                <h1>Always Fresh</h1>
+                <h1>Luôn tươi</h1>
                 <span>Theme natoque penatibus et magnis dis parturient montes, augue velit cursus. Nullam quis
                     ante...</span>
             </div>
             <div class="stand-info mt-4">
-                <h1>Our Plantations</h1>
+                <h1>Công ty của chúng tôi</h1>
                 <span>Theme natoque penatibus et magnis dis parturient montes, augue velit cursus. Nullam quis
                     ante...</span>
             </div>
@@ -173,8 +168,8 @@
         </div>
         <div class="text-footer pr-16">
             <div class="mt-8">
-                <span>HOUSE OF TEA</span>
-                <p class="text-4xl md:text-6xl">Explore The Magic Of Tea. Drink Of Health</p>
+                <span>NHÀ CỦA TRÀ</span>
+                <p class="text-4xl md:text-6xl">Khám phá sự kỳ diệu của trà, Đồ uống sức khỏe</p>
                 <span>Theme natoque penatibus et magnis dis parturient lo ntes, aug uevelit cursus. Nullam quis ante.
                     Sed fringi lla mauris sit amet nibhdonec sodales sagittis mlga. Tellus eget, sem quam semper libero,
                     sit amet.</span>

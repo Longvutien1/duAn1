@@ -20,11 +20,9 @@ class ThongKe
     function list_thong_ke_so_luong_don_hang()
     {
 
-        $sql = "SELECT c.ten_sp, count(a.ma_don_hang) as 'so_luong' from donhang a
-         join chitietdonhang b on b.ma_don_hang = a.ma_don_hang
-         join sanpham c on b.ma_sp = c.ma_sp
-        group by   c.ten_sp
-        order by a.ma_don_hang asc ";
+        $sql = "SELECT ma_don_hang ,count(ma_don_hang) as 'so_luong' from donhang 
+         where trang_thai = 3 and MONTH(ngay_mua) = MONTH(now())
+        order by ma_don_hang desc ";
         $row = pdo_query($sql);
         return $row;
     }
@@ -44,10 +42,10 @@ class ThongKe
     function so_sp_ban_in_1_month()
     {
 
-        $sql = "SELECT b.ma_sp , c.ten_sp , sum(b.so_luong_sp) as 'so_luong'  from donhang a
+        $sql = "SELECT b.ma_sp , c.ten_sp , sum(b.so_luong_sp) as 'so_luong', a.ngay_mua  from donhang a
         join chitietdonhang b on b.ma_don_hang = a.ma_don_hang
         join sanpham c on b.ma_sp = c.ma_sp
-        where a.duyet = 1 and a.giao_hang = 1 and MONTH(a.ngay_mua) = 12
+        where a.trang_thai = 3 and MONTH(a.ngay_mua) = MONTH(now())
         -- MONTH(now()) - 1
         group by b.ma_sp
         order by a.ma_don_hang asc ";

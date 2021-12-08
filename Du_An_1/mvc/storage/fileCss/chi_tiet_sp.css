@@ -207,6 +207,28 @@ div.stars {
 }
 
 
+@media(max-width:1024px){
+
+    .buttons_added form button{
+        display: block;
+        margin: 20px 0 ;
+        outline: none;
+        width: 100px;
+        height: 35px;
+        border: none;
+        
+        border: 1px solid #000;
+        background: #fff;
+        color: #000;
+    }
+
+    .product{
+        display: grid;
+        grid-template-columns: 1fr;
+        /* grid-gap: 30px; */
+    }
+  }
+
 
 /* ----------------------------------------- */
 
